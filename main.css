@@ -1,0 +1,243 @@
+:root {
+	--font-size: 1rem;
+}
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html {
+	font-size: var(--font-size);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+	color: black;
+	background-color: white;
+	width: 100vw;
+	height: 100vh;
+}
+ul {
+	list-style-type: none;
+}
+#card {
+	width: 100%;
+	height: 100%;
+	background-color: #333;
+	display: flex;
+	justify-content: stretch;
+	align-items: stretch;
+}
+.card-menu,
+.card-pages {
+	width: 100%;
+}
+.card-menu {
+	max-width: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+}
+.card-menu li {
+	display: block;
+}
+.card-menu li a {
+	width: 50%;
+	margin: 0.5em auto;
+	font-size: 0.8em;
+	font-weight: bold;
+	display: inherit;
+	text-align: center;
+	text-decoration: none;
+	padding: 1em;
+	color: white;
+	border-style: solid;
+	border-width: 0 4px;
+	border-color: transparent;
+	border-radius: 0.2em;
+	transition: transform 0.3s ease;
+}
+.card-menu li .peru {
+	background-color: hsl(30, 54%, 68%);
+}
+.card-menu li .peru:focus,
+.card-menu li .peru:hover {
+	background-color: hsl(30, 59%, 53%);
+}
+.card-menu li .dodgerblue {
+	background-color: hsl(210, 95%, 71%);
+}
+.card-menu li .dodgerblue:focus,
+.card-menu li .dodgerblue:hover {
+	background-color: hsl(210, 100%, 56%);
+}
+.card-menu li .crimson {
+	background-color: hsl(348, 78%, 62%);
+}
+.card-menu li .crimson:focus,
+.card-menu li .crimson:hover {
+	background-color: hsl(348, 83%, 47%);
+}
+.card-menu li .seagreen {
+	background-color: hsl(146, 45%, 51%);
+}
+.card-menu li .orchid {
+	background-color: hsl(302, 54%, 80%);
+}
+.card-menu li .orchid:focus,
+.card-menu li .orchid:hover {
+	background-color: hsl(302, 59%, 65%);
+}
+.card-menu li .seagreen:focus,
+.card-menu li .seagreen:hover {
+	background-color: hsl(146, 50%, 36%);
+}
+.card-menu li .tomato {
+	background-color: hsl(9, 95%, 79%);
+}
+.card-menu li .tomato:focus,
+.card-menu li .tomato:hover {
+	background-color: hsl(9, 100%, 64%);
+}
+.card-menu li .teal {
+	background-color: hsl(180, 95%, 40%);
+}
+.card-menu li .teal:focus,
+.card-menu li .teal:hover {
+	background-color: hsl(180, 100%, 25%);
+}
+.card-menu li a.active {
+	transform: scaleX(1.1);
+	border-color: white;
+}
+/* pages */
+.card-pages {
+	margin: clamp(1rem, calc(4vw), 3rem);
+	margin-left: 0;
+	background-color: white;
+	border-radius: 1rem;
+	overflow: hidden;
+	position: relative;
+}
+.card-pages .card-pages-wrapper {
+	display: flex;
+	justify-content: stretch;
+	align-items: stretch;
+
+	/**/
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+}
+.card-pages .card-pages-wrapper.horizontal {
+	width: 200%;
+	max-width: 200%;
+	height: 100%;
+	min-height: 100%;
+	flex-direction: row;
+}
+.card-pages .card-pages-wrapper.horizontal.push-left {
+	animation-name: push-left;
+}
+.card-pages .card-pages-wrapper.horizontal.push-right {
+	animation-name: push-right;
+}
+.card-pages .card-pages-wrapper.vertical.push-up {
+	animation-name: push-up;
+}
+.card-pages .card-pages-wrapper.vertical.push-down {
+	animation-name: push-down;
+}
+.card-pages .card-pages-wrapper.vertical {
+	width: 100%;
+	max-width: 100%;
+	height: 200%;
+	min-height: 200%;
+	flex-direction: column;
+}
+.card-pages .card-pages-wrapper > div {
+	overflow-y: scroll;
+}
+.card-pages .card-pages-wrapper > div::-webkit-scrollbar {
+	display: none;
+}
+.card-pages .card-pages-wrapper.horizontal > div {
+	width: 50%;
+	height: 100%;
+}
+.card-pages .card-pages-wrapper.vertical > div {
+	width: 100%;
+	height: 50%;
+}
+.card-pages .card-pages-wrapper > div:not(.active) {
+	display: none;
+}
+.card-pages .card-pages-wrapper > div :is(h1, p)::first-letter {
+	font-size: larger;
+}
+.card-pages .card-pages-wrapper > div :is(h1, p) {
+	color: white;
+	padding: 0.8em 1em;
+	line-height: 1.7em;
+}
+.card-pages .card-pages-wrapper .page1 {
+	background-color: peru;
+}
+.card-pages .card-pages-wrapper .page2 {
+	background-color: dodgerblue;
+}
+.card-pages .card-pages-wrapper .page3 {
+	background-color: crimson;
+}
+.card-pages .card-pages-wrapper .page4 {
+	background-color: orchid;
+}
+.card-pages .card-pages-wrapper .page5 {
+	background-color: seagreen;
+}
+.card-pages .card-pages-wrapper .page6 {
+	background-color: tomato;
+}
+/*  */
+.page1 h1 {
+	font-size: 3em;
+}
+.page1 p {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #ddd;
+}
+.page1 img {
+	width: 40%;
+	height: auto;
+	margin: 1em 0 0 1em;
+	float: right;
+	border: 5px solid white;
+	border-right-width: 0;
+	border-radius: 1rem 0 0 1rem;
+	object-fit: cover;
+}
+
+/*  */
+@keyframes push-left {
+	to {
+		transform: translateX(-50%);
+	}
+}
+@keyframes push-right {
+	from {
+		transform: translateX(-50%);
+	}
+}
+@keyframes push-up {
+	to {
+		transform: translateY(-50%);
+	}
+}
+@keyframes push-down {
+	from {
+		transform: translateY(-50%);
+	}
+}
