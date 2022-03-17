@@ -1,6 +1,3 @@
-:root {
-	--font-size: 1rem;
-}
 * {
 	margin: 0;
 	padding: 0;
@@ -10,7 +7,8 @@
 	box-sizing: border-box;
 }
 html {
-	font-size: var(--font-size);
+	font-size: 1rem;
+	/* font-size: calc(1.2vw); */
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
@@ -115,9 +113,9 @@ ul {
 }
 /* pages */
 .card-pages {
-	margin: clamp(1rem, calc(4vw), 3rem);
+	margin: clamp(1rem, 4vw, 3rem);
 	margin-left: 0;
-	background-color: white;
+	color: white;
 	border-radius: 1rem;
 	overflow: hidden;
 	position: relative;
@@ -174,14 +172,16 @@ ul {
 .card-pages .card-pages-wrapper > div:not(.active) {
 	display: none;
 }
-.card-pages .card-pages-wrapper > div :is(h1, p)::first-letter {
+.card-pages .card-pages-wrapper > div :is(h1, h2, p)::first-letter {
 	font-size: larger;
 }
-.card-pages .card-pages-wrapper > div :is(h1, p) {
+.card-pages .card-pages-wrapper > div :is(h1, h2, p) {
 	color: white;
 	padding: 0.8em 1em;
+	padding-left: 1rem;
 	line-height: 1.7em;
 }
+/* TODO: change '.page*' classnames to hashnames */
 .card-pages .card-pages-wrapper .page1 {
 	background-color: peru;
 }
@@ -201,15 +201,18 @@ ul {
 	background-color: tomato;
 }
 /*  */
-.page1 h1 {
+/* .card-pages h1 {
 	font-size: 3em;
 }
-.page1 p {
+.card-pages h2 {
+	font-size: 2em;
+}
+.card-pages p {
 	font-size: 1.2em;
 	font-weight: bold;
 	color: #ddd;
-}
-.page1 img {
+} */
+.card-pages img {
 	width: 40%;
 	height: auto;
 	margin: 1em 0 0 1em;
@@ -239,5 +242,27 @@ ul {
 @keyframes push-down {
 	from {
 		transform: translateY(-50%);
+	}
+}
+
+/* @media */
+@media (orientation: portrait) {
+	.card-pages {
+		margin: 0;
+		border-radius: 0;
+		overflow-y: scroll;
+	}
+	.card-pages .card-pages-wrapper:is(.horizontal, .vertical) {
+		display: block;
+		/* flex-direction: column; */
+		width: 100%;
+		height: auto;
+		/* overflow-y: scroll; */
+	}
+	.card-pages .card-pages-wrapper:is(.horizontal, .vertical) > div {
+		width: 100%;
+	}
+	.card-pages .card-pages-wrapper > div:not(.active) {
+		display: block;
 	}
 }
