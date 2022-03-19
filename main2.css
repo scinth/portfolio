@@ -1,5 +1,6 @@
 :root {
 	--footer-header-height: 0;
+	--footer-height: 0;
 	--total-menu-height: 0;
 }
 * {
@@ -28,10 +29,23 @@ body {
 		'pages'
 		'links-and-info';
 }
+body.showFooter #pages {
+	--page-height: calc(100vh - var(--footer-height));
+}
+body.showFooter #footer-toggler .footer-icon {
+	transform: rotate(180deg);
+}
+h1,
+p {
+	padding: 1rem 1.5rem;
+}
+a,
+button {
+	cursor: pointer;
+}
 
 /* menu */
 .menu {
-	/* grid-area: menu; */
 	/* -2rem for toggler margin */
 	width: 100%;
 	max-width: 250px;
@@ -41,9 +55,9 @@ body {
 	border-radius: 5px;
 	transform: translateX(calc(100% + 2rem));
 	transition: transform 0.3s ease;
+	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
-	z-index: 1;
 }
 .menu.active {
 	transform: none;
@@ -73,27 +87,27 @@ body {
 	border-width: 0 5px;
 	border-color: transparent;
 }
-.menu li a[href='#!aboutme']:is(:hover, .active) {
+.menu li a[href='#aboutme']:is(:hover, .active) {
 	border-color: peru;
 	background-color: hsl(30, 59%, 53%, 0.333);
 }
-.menu li a[href='#!education']:is(:hover, .active) {
+.menu li a[href='#education']:is(:hover, .active) {
 	border-color: dodgerblue;
 	background-color: hsl(210, 100%, 56%, 0.333);
 }
-.menu li a[href='#!selftaught']:is(:hover, .active) {
+.menu li a[href='#selftaught']:is(:hover, .active) {
 	border-color: crimson;
 	background-color: hsl(348, 83%, 47%, 0.333);
 }
-.menu li a[href='#!projects']:is(:hover, .active) {
+.menu li a[href='#projects']:is(:hover, .active) {
 	border-color: orchid;
 	background-color: hsl(302, 59%, 65%, 0.333);
 }
-.menu li a[href='#!skills']:is(:hover, .active) {
+.menu li a[href='#skills']:is(:hover, .active) {
 	border-color: seagreen;
 	background-color: hsl(146, 50%, 36%, 0.333);
 }
-.menu li a[href='#!others']:is(:hover, .active) {
+.menu li a[href='#others']:is(:hover, .active) {
 	border-color: tomato;
 	background-color: hsl(9, 100%, 64%, 0.333);
 }
@@ -103,7 +117,6 @@ body {
 
 /* menu toggler */
 .menu-toggler {
-	/* grid-area: toggler; */
 	--menu-toggler-size: 5vh;
 	display: block;
 	width: var(--menu-toggler-size);
@@ -132,6 +145,7 @@ body {
 	width: 100%;
 	height: var(--page-height);
 	min-height: var(--page-height);
+	transition: height 0.3s ease;
 }
 #pages-wrapper {
 	width: 100%;
@@ -147,12 +161,6 @@ body {
 }
 #links-and-info {
 	grid-area: links-and-info;
-	/* overflow: hidden; */
-}
-h1,
-p {
-	/* font-size: clamp(5px, calc(1vw * 1rem), 10px); */
-	padding: 1rem 1.5rem;
 }
 #aboutme {
 	background-color: peru;
@@ -176,6 +184,7 @@ p {
 /* footer */
 .info {
 	background-color: hsl(0, 0%, 0%);
+	overflow-y: scroll;
 }
 .info header {
 	display: flex;
@@ -202,6 +211,7 @@ p {
 	width: 100%;
 	height: 100%;
 	filter: invert(100%);
+	transition: transform 0.3s ease;
 }
 
 /* breakpoints */
@@ -226,10 +236,13 @@ p {
 		justify-content: space-between;
 		align-items: center;
 	}
-	.menu {
+	.menu,
+	.menu.active {
 		margin: 0;
 		max-width: inherit;
 		border-radius: 0;
+		transform: none;
+		transition: none;
 	}
 	.menu-toggler {
 		display: none;
