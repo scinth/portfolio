@@ -1,18 +1,23 @@
 var currentPageIndex = 0;
+var isSliding = false;
 
 // elements
 var menu = null;
 var menuToggler = null;
-var footer = null;
-var footerHeader = null;
 var arrows = null;
-var footerToggler = null;
+var pagesWrapper = null;
 var pages = null;
 var links = null;
+var footerHeader = null;
+var footerToggler = null;
+var footer = null;
 
 // ACTIONS
 // click keyboard
 document.addEventListener('keydown', e => {
+	if (e.repeat) return;
+	if (isSliding) return;
+
 	let nextIndex = null;
 	switch (e.key) {
 		case 'ArrowRight':
@@ -28,14 +33,19 @@ document.addEventListener('keydown', e => {
 			renderPage(nextIndex);
 	}
 });
-// click history | change hash
-window.addEventListener('popstate', () => {
+// change hash
+window.addEventListener('hashchange', e => {
+	e.preventDefault();
+	e.stopPropagation();
 	let nextIndex = links.findIndex(link => {
-		return link.hash === location.hash;
+		return link.hash == location.hash;
 	});
-	if (nextIndex < 0) throw new Error('nextIndex is not found');
-	activateLink(nextIndex);
-	renderPage(nextIndex);
+	setTimeout(() => {
+		if (nextIndex == -1) throw new Error('nextIndex is not found');
+		if (nextIndex == currentPageIndex) return;
+		activateLink(nextIndex);
+		renderPage(nextIndex);
+	}, 0.3);
 });
 
 // HANDLERS
@@ -43,15 +53,41 @@ window.addEventListener('popstate', () => {
 const renderPage = index => {
 	let currentPage = pages[currentPageIndex];
 	let nextPage = pages[index];
-	currentPage.classList.remove('active');
+	let { name: animationName, axis, order } = getAnimationSettings();
+
+	pagesWrapper.setAnimationAxis(axis);
+	currentPage.style.order = order.activePage;
+	nextPage.style.order = order.nextPage;
 	nextPage.classList.add('active');
-	currentPageIndex = index;
-	pages[index].focus();
+
+	pagesWrapper.addEventListener(
+		'animationend',
+		function () {
+			currentPage.classList.remove('active');
+			this.setAttribute('class', '');
+			currentPage.style.order = '';
+			nextPage.style.order = '';
+			nextPage.focus();
+			isSliding = false;
+			currentPageIndex = index;
+		},
+		{ once: true },
+	);
+
+	// run animation
+	isSliding = true;
+	pagesWrapper.classList.add(animationName);
 };
 // replace history
 const replaceHistory = index => {
 	let hash = links[index].hash;
-	history.replaceState(null, null, `index.html${hash}`);
+	history.replaceState(
+		{
+			pageIndex: currentPageIndex,
+		},
+		null,
+		`index.html${hash}`,
+	);
 };
 // activate link
 const activateLink = index => {
@@ -78,6 +114,45 @@ const getNextIndex = function (type = 'increment') {
 	return nextIndex;
 };
 
+const getAnimationSettings = () => {
+	let settings = [
+		{
+			name: 'push-left',
+			axis: 'horizontal',
+			order: {
+				activetPage: '0',
+				nextPage: '1',
+			},
+		},
+		{
+			name: 'push-right',
+			axis: 'horizontal',
+			order: {
+				activePage: '1',
+				nextPage: '0',
+			},
+		},
+		{
+			name: 'push-up',
+			axis: 'vertical',
+			order: {
+				activePage: '0',
+				nextPage: '1',
+			},
+		},
+		{
+			name: 'push-down',
+			axis: 'vertical',
+			order: {
+				activePage: '1',
+				nextPage: '0',
+			},
+		},
+	];
+	let index = Math.round(Math.random() * (settings.length - 1));
+	return settings[index];
+};
+
 window.addEventListener('resize', updateCustomProps);
 document.addEventListener('DOMContentLoaded', function () {
 	menu = document.getElementById('menu');
@@ -88,21 +163,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	pages = [...document.querySelectorAll('#pages section')];
 	links = [...document.querySelectorAll('#menu a')];
+	pagesWrapper = document.getElementById('pages-wrapper');
 	footerToggler = document.getElementById('footer-toggler');
 	arrows = [...document.querySelectorAll('#arrow-nav button')];
+
+	pagesWrapper.setAnimationAxis = function (axis) {
+		if (this.classList.contains(axis)) return;
+		if (axis == 'horizontal') {
+			this.classList.remove('vertical');
+		} else if (axis == 'vertical') {
+			this.classList.remove('horizontal');
+		}
+		this.classList.add(axis);
+	};
 
 	// initial hash
 	let hash = location.hash;
 	if (!hash) {
-		history.replaceState(null, null, 'index.html#aboutme');
+		history.replaceState(
+			{
+				pageIndex: currentPageIndex,
+			},
+			null,
+			'index.html#aboutme',
+		);
 	} else {
 		let nextIndex = links.findIndex(link => {
 			return link.hash === hash;
 		});
-		if (nextIndex < 0) throw new Error('nextIndex not found');
-		history.replaceState(null, null, `index.html${hash}`);
-		activateLink(nextIndex);
-		renderPage(nextIndex);
+		setTimeout((index = nextIndex) => {
+			if (index == -1) throw new Error('nextIndex not found');
+			if (hash == '#aboutme') return;
+			history.replaceState(
+				{
+					pageIndex: currentPageIndex,
+				},
+				null,
+				`index.html${hash}`,
+			);
+			activateLink(index);
+
+			// render page;
+			let currentPage = pages[currentPageIndex];
+			let nextPage = pages[index];
+			currentPage.classList.remove('active');
+			nextPage.classList.add('active');
+			currentPageIndex = index;
+		}, 0.3);
 	}
 
 	// ACTIONS
@@ -122,6 +229,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	links.forEach((link, nextIndex) => {
 		link.addEventListener('click', e => {
 			e.preventDefault();
+			if (isSliding) return;
+			if (nextIndex == currentPageIndex) return;
 			activateLink(nextIndex);
 			replaceHistory(nextIndex);
 			renderPage(nextIndex);
@@ -131,6 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	// click arrow buttons
 	arrows.forEach(arrow => {
 		arrow.addEventListener('click', () => {
+			if (isSliding) return;
 			let nextIndex = null;
 			if (arrow.id == 'next') nextIndex = getNextIndex('increment');
 			else if (arrow.id == 'prev') nextIndex = getNextIndex('decrement');
