@@ -1,16 +1,21 @@
-var currentPageIndex = 0;
-var isSliding = false;
+let currentPageIndex = 0;
+let isSliding = false;
+let featuredInterval = null;
+let startFeaturedInterval = null;
+let stopFeaturedInterval = null;
 
 // elements
-var menu = null;
-var menuToggler = null;
-var arrows = null;
-var pagesWrapper = null;
-var pages = null;
-var links = null;
-var footerHeader = null;
-var footerToggler = null;
-var footer = null;
+let menu = null;
+let menuToggler = null;
+let arrows = null;
+let pagesWrapper = null;
+let projectsWrapper = null;
+let pages = null;
+let pageLogo = null;
+let links = null;
+let pageNavigation = null;
+let footerToggler = null;
+let footer = null;
 
 // ACTIONS
 // click keyboard
@@ -24,13 +29,13 @@ document.addEventListener('keydown', e => {
 			nextIndex = getNextIndex('increment');
 			activateLink(nextIndex);
 			replaceHistory(nextIndex);
-			renderPage(nextIndex);
+			renderPage(nextIndex, getAnimationSettings());
 			break;
 		case 'ArrowLeft':
 			nextIndex = getNextIndex('decrement');
 			activateLink(nextIndex);
 			replaceHistory(nextIndex);
-			renderPage(nextIndex);
+			renderPage(nextIndex, getAnimationSettings());
 	}
 });
 // change hash
@@ -44,16 +49,16 @@ window.addEventListener('hashchange', e => {
 		if (nextIndex == -1) throw new Error('nextIndex is not found');
 		if (nextIndex == currentPageIndex) return;
 		activateLink(nextIndex);
-		renderPage(nextIndex);
+		renderPage(nextIndex, getAnimationSettings());
 	}, 0.3);
 });
 
 // HANDLERS
 // render page
-const renderPage = index => {
+const renderPage = (index, animationSettings) => {
 	let currentPage = pages[currentPageIndex];
 	let nextPage = pages[index];
-	let { name: animationName, axis, order } = getAnimationSettings();
+	let { name: animationName, axis, order } = animationSettings;
 
 	pagesWrapper.setAnimationAxis(axis);
 	currentPage.style.order = order.activePage;
@@ -63,6 +68,10 @@ const renderPage = index => {
 	pagesWrapper.addEventListener(
 		'animationend',
 		function () {
+			// featured
+			if (index == 0) startFeaturedInterval();
+			else stopFeaturedInterval();
+
 			currentPage.classList.remove('active');
 			this.setAttribute('class', '');
 			currentPage.style.order = '';
@@ -101,9 +110,14 @@ const activateLink = index => {
 
 const updateCustomProps = function () {
 	let style = document.documentElement.style;
-	style.setProperty('--total-menu-height', `-${menu.clientHeight + menuToggler.clientHeight}px`);
-	style.setProperty('--footer-height', `${footer.clientHeight}px`);
-	style.setProperty('--footer-header-height', `${footerHeader.clientHeight}px`);
+	let pageLogoHeight = pageLogo.clientHeight;
+	let pageNavHeight = pageNavigation.clientHeight;
+	let footerHeight = footer.clientHeight;
+	style.setProperty('--client-height', `${window.innerHeight}px`);
+	style.setProperty('--footer-height', `${pageNavHeight + pageLogoHeight + footerHeight}px`);
+	style.setProperty('--page-logo-height', `${pageLogoHeight}px`);
+	style.setProperty('--page-navigation-height', `${pageNavHeight}px`);
+	style.setProperty('--pagenav-slide-height', `-${pageLogoHeight + footerHeight}px`);
 };
 
 const getNextIndex = function (type = 'increment') {
@@ -120,7 +134,7 @@ const getAnimationSettings = () => {
 			name: 'push-left',
 			axis: 'horizontal',
 			order: {
-				activetPage: '0',
+				activePage: '0',
 				nextPage: '1',
 			},
 		},
@@ -155,17 +169,57 @@ const getAnimationSettings = () => {
 
 window.addEventListener('resize', updateCustomProps);
 document.addEventListener('DOMContentLoaded', function () {
-	menu = document.getElementById('menu');
-	menuToggler = document.getElementById('menu-toggler');
+	let main = document.getElementById('pages');
+	menu = document.getElementById('link-navigation');
+	menuToggler = document.getElementsByClassName('menu-toggler')[0];
+	pageNavigation = document.getElementById('page-navigation');
+	pageLogo = document.getElementById('page-logo');
 	footer = document.getElementById('info');
-	footerHeader = footer.firstElementChild;
-	updateCustomProps();
+	setTimeout(updateCustomProps, 100);
 
-	pages = [...document.querySelectorAll('#pages section')];
-	links = [...document.querySelectorAll('#menu a')];
+	pages = [...document.querySelectorAll('#pages .page')];
+	links = [...document.querySelectorAll('#link-navigation a')];
 	pagesWrapper = document.getElementById('pages-wrapper');
-	footerToggler = document.getElementById('footer-toggler');
-	arrows = [...document.querySelectorAll('#arrow-nav button')];
+	projectsWrapper = document.querySelector('#featured-section .projects-wrapper');
+	footerToggler = document.getElementsByClassName('footer-toggler')[0];
+	arrows = [...document.querySelectorAll('.arrow')];
+
+	let slideNext = (function () {
+		let activeBanner = 0;
+		let banners = [...projectsWrapper.children];
+		let bannerCount = banners.length - 1;
+		return function () {
+			let nextBanner = activeBanner + 1;
+			if (nextBanner > bannerCount) nextBanner = 0;
+			// set proper order
+			banners[activeBanner].style.order = '0';
+			banners[nextBanner].style.order = '1';
+			// show next banner
+			banners[nextBanner].classList.add('active');
+			// remove prev banner
+			projectsWrapper.addEventListener(
+				'animationend',
+				e => {
+					e.target.classList.remove('slide-left');
+					banners[activeBanner].classList.remove('active');
+					activeBanner = nextBanner;
+				},
+				{ once: true },
+			);
+			// slide left
+			projectsWrapper.classList.add('slide-left');
+		};
+	})();
+
+	startFeaturedInterval = () => {
+		featuredInterval = setInterval(slideNext, 7000);
+	};
+
+	stopFeaturedInterval = () => {
+		clearInterval(featuredInterval);
+	};
+
+	startFeaturedInterval();
 
 	pagesWrapper.setAnimationAxis = function (axis) {
 		if (this.classList.contains(axis)) return;
@@ -177,6 +231,75 @@ document.addEventListener('DOMContentLoaded', function () {
 		this.classList.add(axis);
 	};
 
+	const [saveSwipePaths, getSwipePath] = (function () {
+		let path = [];
+		return [
+			coord => {
+				// save paths
+				path.push(coord);
+			},
+			() => {
+				// return first & last path
+				if (!(path[0] && path[path.length - 1])) return [];
+				let paths = [path[0], path[path.length - 1]];
+				path = [];
+				return paths;
+			},
+		];
+	})();
+
+	const getSwipeDirection = path => {
+		let [touchStart, touchEnd] = path;
+		let verticalSwipeLength = Math.abs(touchStart[1] - touchEnd[1]);
+		if (verticalSwipeLength > 40) return 'invalid';
+		let horizontalSwipeLength = Math.abs(touchStart[0] - touchEnd[0]);
+		if (horizontalSwipeLength < 80) return 'invalid';
+		if (touchStart[0] < touchEnd[0]) return 'right';
+		if (touchStart[0] > touchEnd[0]) return 'left';
+		return 'invalid';
+	};
+
+	main.addEventListener('touchmove', e => {
+		let coord = [];
+		coord.push(e.changedTouches[0].clientX);
+		coord.push(e.changedTouches[0].clientY);
+		if (coord[0] && coord[1]) saveSwipePaths(coord);
+	});
+
+	main.addEventListener('touchend', () => {
+		let swipePath = getSwipePath();
+		if (swipePath.length < 2) return;
+		let swipeDirection = getSwipeDirection(swipePath);
+		let nextIndex = null;
+		switch (swipeDirection) {
+			case 'left':
+				nextIndex = getNextIndex('increment');
+				activateLink(nextIndex);
+				replaceHistory(nextIndex);
+				renderPage(nextIndex, {
+					name: 'push-left',
+					axis: 'horizontal',
+					order: {
+						activePage: '0',
+						nextPage: '1',
+					},
+				});
+				break;
+			case 'right':
+				nextIndex = getNextIndex('decrement');
+				activateLink(nextIndex);
+				replaceHistory(nextIndex);
+				renderPage(nextIndex, {
+					name: 'push-right',
+					axis: 'horizontal',
+					order: {
+						activePage: '1',
+						nextPage: '0',
+					},
+				});
+		}
+	});
+
 	// initial hash
 	let hash = location.hash;
 	if (!hash) {
@@ -185,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				pageIndex: currentPageIndex,
 			},
 			null,
-			'index.html#aboutme',
+			'index.html#homepage',
 		);
 	} else {
 		let nextIndex = links.findIndex(link => {
@@ -193,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 		setTimeout((index = nextIndex) => {
 			if (index == -1) throw new Error('nextIndex not found');
-			if (hash == '#aboutme') return;
+			if (hash == '#homepage') return;
 			history.replaceState(
 				{
 					pageIndex: currentPageIndex,
@@ -217,6 +340,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	// toggle menu
 	menuToggler.addEventListener('click', e => {
 		menu.classList.toggle('active');
+		if (menu.classList.contains('active')) {
+			e.target.setAttribute('src', 'assets/icons/pagenav/xmark-solid.svg');
+		} else {
+			e.target.setAttribute('src', 'assets/icons/pagenav/bars-solid.svg');
+		}
 		e.stopPropagation();
 	});
 
@@ -233,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (nextIndex == currentPageIndex) return;
 			activateLink(nextIndex);
 			replaceHistory(nextIndex);
-			renderPage(nextIndex);
+			renderPage(nextIndex, getAnimationSettings());
 		});
 	});
 
@@ -242,16 +370,22 @@ document.addEventListener('DOMContentLoaded', function () {
 		arrow.addEventListener('click', () => {
 			if (isSliding) return;
 			let nextIndex = null;
-			if (arrow.id == 'next') nextIndex = getNextIndex('increment');
-			else if (arrow.id == 'prev') nextIndex = getNextIndex('decrement');
+			if (arrow.classList.contains('next-page')) nextIndex = getNextIndex('increment');
+			else if (arrow.classList.contains('prev-page')) nextIndex = getNextIndex('decrement');
 			activateLink(nextIndex);
 			replaceHistory(nextIndex);
-			renderPage(nextIndex);
+			renderPage(nextIndex, getAnimationSettings());
 		});
+	});
+
+	// remove footer on menu click
+	menu.addEventListener('click', () => {
+		document.body.classList.remove('showFooter');
 	});
 });
 
 // remove menu on document click
 document.addEventListener('click', () => {
 	menu.classList.remove('active');
+	menuToggler.firstElementChild.setAttribute('src', 'assets/icons/pagenav/bars-solid.svg');
 });

@@ -6,165 +6,587 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Rodniel Briones Portfolio</title>
 		<link rel="stylesheet" href="main.css" />
-		<script defer src="index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="index.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<main role="main" id="pages" class="pages">
+		<div id="links-and-info">
+			<nav role="navigation" id="link-navigation" class="">
+				<ul>
+					<li>
+						<a class="active" href="#homepage">
+							<img
+								loading="lazy"
+								class="icon"
+								src="assets/icons/menulinks/house-user-solid.svg"
+								alt="homepage icon"
+							/>
+							Homepage
+						</a>
+					</li>
+					<li>
+						<a href="#aboutme">
+							<img
+								loading="lazy"
+								class="icon"
+								src="assets/icons/menulinks/user-solid.svg"
+								alt="about-me icon"
+							/>
+							About Me
+						</a>
+					</li>
+					<li>
+						<a href="#skills">
+							<img
+								loading="lazy"
+								class="icon"
+								src="assets/icons/menulinks/brain-solid.svg"
+								alt="skills icon"
+							/>
+							Skills
+						</a>
+					</li>
+					<li>
+						<a href="#experience">
+							<img
+								loading="lazy"
+								class="icon"
+								src="assets/icons/menulinks/laptop-code-solid.svg"
+								alt="experience icon"
+							/>
+							Experience
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<nav role="navigation" id="page-navigation">
+				<button class="footer-toggler">
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/pagenav/chevron-up-solid.svg"
+						alt="arrow-up/arrow-down"
+					/>
+				</button>
+				<a href="#">
+					<img
+						loading="lazy"
+						class="icon resume"
+						src="assets/icons/pagenav/address-card-regular.svg"
+						alt="resume icon"
+					/>
+					resume
+				</a>
+				<button class="menu-toggler">
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/pagenav/bars-solid.svg"
+						alt="menu icon"
+					/>
+				</button>
+			</nav>
+			<div id="page-logo">
+				<img 
+					class="logo-image"
+					src="assets/images/rodniel_briones_logo.png"
+					alt="Rodniel Briones logo"
+				/>
+				<span class="logo-name">Rodniel Briones</span>
+			</div>
+			<footer role="contentinfo" id="info">
+				<div id="tech-stack">
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/html5-original.svg"
+						alt="Html5 icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/css3-original.svg"
+						alt="Css3 icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/javascript-original.svg"
+						alt="Javascript icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/nodejs-original.svg"
+						alt="NodeJS icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/npm-original-wordmark.svg"
+						alt="Npm icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/sass-original.svg"
+						alt="Sass icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/react-original.svg"
+						alt="React icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/redux-original.svg"
+						alt="Redux icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/webpack-original.svg"
+						alt="Webpack icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/git-original.svg"
+						alt="Git icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/github-original.svg"
+						alt="Github icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/bash-original.svg"
+						alt="Bash icon"
+					/>
+					<img
+						loading="lazy"
+						class="icon"
+						src="assets/icons/techstack/vscode-original.svg"
+						alt="VScode icon"
+					/>
+				</div>
+				<div id="social-links">
+					<a href="https://www.facebook.com/profile.php/?id=100076113183013">
+						<img
+							loading="lazy"
+							class="icon"
+							src="assets/icons/sociallinks/facebook-brands.svg"
+							alt="facebook account "
+						/>
+					</a>
+					<a href="mailto:rodnielbriones@gmail.com">
+						<img
+							loading="lazy"
+							class="icon"
+							src="assets/icons/sociallinks/envelope-regular.svg"
+							alt="Google mail"
+						/>
+					</a>
+					<a href="https://www.linkedin.com/in/rodniel-b-a75bb7226/">
+						<img
+							loading="lazy"
+							class="icon"
+							src="assets/icons/sociallinks/linkedin-brands.svg"
+							alt="linkedin account"
+						/>
+					</a>
+					<a href="https://github.com/scinth">
+						<img
+							loading="lazy"
+							class="icon"
+							src="assets/icons/sociallinks/github-brands.svg"
+							alt="github account"
+						/>
+					</a>
+				</div>
+			</footer>
+		</div>
+		<main role="main" id="pages">
 			<div id="pages-wrapper" class="">
-				<section id="aboutme" class="active" tabindex="0">
-					<!-- <h1>About Me</h1> -->
-					<h1>Who is Rodniel Briones?</h1>
-					<p>
-						Hello!, My name is <em>Rodniel Briones</em>, 25 years old living in Pagsabungan Mandaue
-						City, Cebu, Philippines.<br />I am very passionate about programming and some other
-						problem solving activities like Chess, and puzzles.
+				<section id="homepage" class="page active" tabindex="0">
+					<img
+						loading="lazy"
+						class="page-image"
+						src="assets/icons/illustrations/homepage_feeling_proud.svg"
+						alt="home image"
+					/>
+					<h1 class="page-title">Maayong Buntag!</h1>
+					<p class="tag-line">
+						Rodniel from Cebu,<br />passionately crafting innovative, accessible, and performant web
+						interfaces.
 					</p>
-					<p>
-						Unfortunately I did not finish college for a lot of reasons, but I really love coding so
-						I decided to teach myself.<br />My goal in life is to become a "Self-Taught Fullstack
-						Web & Andriod Developer" in the near future but for now I am currently studying the
-						"Frontend".
-					</p>
+					<div id="featured-section">
+						<div class="projects-wrapper">
+							<div class="project-banner active">
+								<div class="image-header">
+									<img
+										class="mobile"
+										src="assets/images/nielbrioneschessgui_mobileimage.png"
+										alt="mobile image"
+									/>
+									<img
+										class="desktop"
+										src="assets/images/nielbrioneschessgui_desktopimage.png"
+										alt="desktop image"
+									/>
+								</div>
+								<div class="project-title">
+									<img
+										class="project-icon"
+										src="assets/images/nielbrioneschessgui_logo.png"
+										alt="project icon"
+									/>
+									<h3>Chess GUI</h3>
+								</div>
+								<a class="project-link view-project" href="#experience">view project</a>
+							</div>
+							<div class="project-banner">
+								<div class="image-header">
+									<img
+										class="mobile"
+										src="assets/images/nielbriones2048_mobileimage.png"
+										alt="mobile image"
+									/>
+									<img
+										class="desktop"
+										src="assets/images/nielbriones2048_desktopimage.png"
+										alt="desktop image"
+									/>
+								</div>
+								<div class="project-title">
+									<img
+										class="project-icon"
+										src="assets/images/nielbriones2048_logo.png"
+										alt="project icon"
+									/>
+									<h3>2048</h3>
+								</div>
+								<a class="project-link view-project" href="#experience">view project</a>
+							</div>
+						</div>
+					</div>
 				</section>
-				<section id="education" class="" tabindex="0">
-					<!-- <h1>Education</h1> -->
-					<h1>What is Rodniel Briones's academic background?</h1>
+				<section id="aboutme" class="page" tabindex="0">
+					<img
+						loading="lazy"
+						class="page-image"
+						src="assets/icons/illustrations/aboutme_profile.svg"
+						alt="aboutme image"
+					/>
+					<h1>About Me</h1>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus accusamus consequatur
-						minima vitae dignissimos illum nobis est libero minus facere debitis, sed natus nulla
-						dolores officiis temporibus, reiciendis nam reprehenderit incidunt in. Temporibus, fuga?
-						Nemo distinctio dolore, aliquam laboriosam quod sed expedita tempore ipsa illo ullam
-						labore fugit, aperiam quasi. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Ratione laudantium, delectus modi error dolore voluptatum impedit quam recusandae
-						officiis eveniet consectetur dicta quo distinctio voluptate beatae aperiam accusantium
-						est voluptates laboriosam doloremque porro, dolor fugit at cum. Minima, ea quisquam amet
-						temporibus quis officiis, eos earum sed quos adipisci voluptatum!
-						<br />
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolores tempora eligendi
-						et sit quam reiciendis pariatur laborum aperiam! Recusandae odit quas qui ipsa esse,
-						quia distinctio cum pariatur odio earum nobis consectetur cupiditate sed totam! Nemo sed
-						aut fugiat at! Iste vero, autem eveniet similique doloremque cupiditate deleniti totam!
+						I am Rodniel Briones from Mandaue City Cebu, currently busy teaching myself about
+						Frontend Development.
 					</p>
+					<p>
+						I am interested in anything related to programming, chess, self-improvement, psychology,
+						nature, supernatural, mysteries, photo editing, problem solving, puzzles and other
+						similar subjects.
+					</p>
+					<p>
+						It is my deepest desire to become an "Android and Fullstack Website Developer" to be
+						able to contribute to the community by creating useful websites and apps that solves
+						daily hassle and services that allows people to boost their productivity especially for
+						students and self-taught.
+					</p>
+					<section>
+						<h2>College Undergraduate</h2>
+
+						<p>
+							I spent two years as a Bachelor of Science in Information Technology at Salazar
+							Colleges of Science in Information Technology where I first learned about programming.
+							What I learned from school was the basics of C, C++, a little bit of Html, Css and
+							JavaScript. Then out of curiosity I also studied the basics of C#, Java and Python.
+						</p>
+					</section>
+					<section>
+						<h2>Self-taught</h2>
+
+						<p>
+							During the pandemic I decided to teach myself about Frontend Web Development using the
+							following resources:
+						</p>
+
+						<ul>
+							<li>YouTube tutorials</li>
+							<li>MDN Web Docs</li>
+							<li>W3Schools</li>
+							<li>Documentations</li>
+							<li>freeCodeCamp tutorials</li>
+							<li>Blogs</li>
+							<li>Newsletters</li>
+							<li>Podcasts</li>
+						</ul>
+
+						<p>
+							"70% - 80% of my knowlegde and skills are achieved during my self-learning journey."
+						</p>
+					</section>
+					<p>For now I'm focusing on learning these technologies:</p>
+					<ul class="tech-to-study">
+						<li>React</li>
+						<li>React Testing Library</li>
+						<li>Tailwind</li>
+						<li>NextJS</li>
+						<li>Redux</li>
+						<li>Axios</li>
+						<li>Express</li>
+						<li>Firebase</li>
+						<li>MongoDB</li>
+					</ul>
 				</section>
-				<section id="selftaught" class="" tabindex="0">
-					<!-- <h1>Self-Taught</h1> -->
-					<h1>How did Rodniel Briones teach himself to code?</h1>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus accusamus consequatur
-						minima vitae dignissimos illum nobis est libero minus facere debitis, sed natus nulla
-						dolores officiis temporibus, reiciendis nam reprehenderit incidunt in. Temporibus, fuga?
-						Nemo distinctio dolore, aliquam laboriosam quod sed expedita tempore ipsa illo ullam
-						labore fugit, aperiam quasi.
+				<section id="skills" class="page" tabindex="0">
+					<img
+						loading="lazy"
+						class="page-image"
+						src="assets/icons/illustrations/skills_programming.svg"
+						alt="selftaught image"
+					/>
+					<h1>Skills</h1>
+					<section>
+						<h2>Knowledge/Skills Evaluation</h2>
+
+						<table>
+							<tr>
+								<th>Technology</th>
+								<th>Rating</th>
+							</tr>
+							<tr>
+								<td>Html5</td>
+								<td>85%</td>
+							</tr>
+							<tr>
+								<td>Css3</td>
+								<td>60%</td>
+							</tr>
+							<tr>
+								<td>JavaScript</td>
+								<td>75%</td>
+							</tr>
+							<tr>
+								<td>Sass</td>
+								<td>50%</td>
+							</tr>
+							<tr>
+								<td>React</td>
+								<td>50%</td>
+							</tr>
+							<tr>
+								<td>React Router</td>
+								<td>70%</td>
+							</tr>
+							<tr>
+								<td>Framer Motion</td>
+								<td>80%</td>
+							</tr>
+							<tr>
+								<td>styled-components</td>
+								<td>100%</td>
+							</tr>
+							<tr>
+								<td>Redux</td>
+								<td>70%</td>
+							</tr>
+							<tr>
+								<td>React Testing Library</td>
+								<td>65%</td>
+							</tr>
+							<tr>
+								<td>Webpack</td>
+								<td>40%</td>
+							</tr>
+							<tr>
+								<td>npm</td>
+								<td>40%</td>
+							</tr>
+							<tr>
+								<td>NodeJS</td>
+								<td>30%</td>
+							</tr>
+							<tr>
+								<td>Git</td>
+								<td>35%</td>
+							</tr>
+							<tr>
+								<td>Bash</td>
+								<td>30%</td>
+							</tr>
+							<tr>
+								<td>VSCode</td>
+								<td>85%</td>
+							</tr>
+						</table>
+
 						<br />
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione laudantium, delectus
-						modi error dolore voluptatum impedit quam recusandae officiis eveniet consectetur dicta
-						quo distinctio voluptate beatae aperiam accusantium est voluptates laboriosam doloremque
-						porro, dolor fugit at cum. Minima, ea quisquam amet temporibus quis officiis, eos earum
-						sed quos adipisci voluptatum!
-						<br />
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolores tempora eligendi
-						et sit quam reiciendis pariatur laborum aperiam! Recusandae odit quas qui ipsa esse,
-						quia distinctio cum pariatur odio earum nobis consectetur cupiditate sed totam! Nemo sed
-						aut fugiat at! Iste vero, autem eveniet similique doloremque cupiditate deleniti totam!
-					</p>
+
+						<aside class="note">
+							<p>
+								<b>Note:</b><br /><br />
+								The evaluations presented above are solely based on the author's personal estimation
+								with the only purpose of visualizing his coding capabilities and is therefore not
+								considered accurate.
+							</p>
+						</aside>
+					</section>
 				</section>
-				<section id="projects" class="" tabindex="0">
-					<!-- <h1>Projects</h1> -->
-					<h1>What are Rodniel Briones's best projects?</h1>
+				<section id="experience" class="page" tabindex="0">
+					<img
+						loading="lazy"
+						class="page-image"
+						src="assets/icons/illustrations/experience_building_websites.svg"
+						alt="experience image"
+					/>
+					<h1>Experience</h1>
+
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus accusamus consequatur
-						minima vitae dignissimos illum nobis est libero minus facere debitis, sed natus nulla
-						dolores officiis temporibus, reiciendis nam reprehenderit incidunt in. Temporibus, fuga?
-						Nemo distinctio dolore, aliquam laboriosam quod sed expedita tempore ipsa illo ullam
-						labore fugit, aperiam quasi. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Ratione laudantium, delectus modi error dolore voluptatum impedit quam recusandae
-						officiis eveniet consectetur dicta quo distinctio voluptate beatae aperiam accusantium
-						est voluptates laboriosam doloremque porro, dolor fugit at cum. Minima, ea quisquam amet
-						temporibus quis officiis, eos earum sed quos adipisci voluptatum!
-						<br />
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolores tempora eligendi
-						et sit quam reiciendis pariatur laborum aperiam! Recusandae odit quas qui ipsa esse,
-						quia distinctio cum pariatur odio earum nobis consectetur cupiditate sed totam! Nemo sed
-						aut fugiat at! Iste vero, autem eveniet similique doloremque cupiditate deleniti totam!
+						For now I don't have a real life coding job experience so let me show you some of my
+						projects where I experienced a lot of problem solving. Most of these projects are
+						game-based because I love the complexity of thinking algorithmically.
 					</p>
-				</section>
-				<section id="skills" class="" tabindex="0">
-					<!-- <h1>Skills</h1> -->
-					<h1>Where is Rodniel Briones good at?</h1>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus accusamus consequatur
-						minima vitae dignissimos illum nobis est libero minus facere debitis, sed natus nulla
-						dolores officiis temporibus, reiciendis nam reprehenderit incidunt in. Temporibus, fuga?
-						Nemo distinctio dolore, aliquam laboriosam quod sed expedita tempore ipsa illo ullam
-						labore fugit, aperiam quasi. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Ratione laudantium, delectus modi error dolore voluptatum impedit quam recusandae
-						officiis eveniet consectetur dicta quo distinctio voluptate beatae aperiam accusantium
-						est voluptates laboriosam doloremque porro, dolor fugit at cum. Minima, ea quisquam amet
-						temporibus quis officiis, eos earum sed quos adipisci voluptatum!
-						<br />
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolores tempora eligendi
-						et sit quam reiciendis pariatur laborum aperiam! Recusandae odit quas qui ipsa esse,
-						quia distinctio cum pariatur odio earum nobis consectetur cupiditate sed totam! Nemo sed
-						aut fugiat at! Iste vero, autem eveniet similique doloremque cupiditate deleniti totam!
-					</p>
-				</section>
-				<section id="others" class="" tabindex="0">
-					<!-- <h1>Others</h1> -->
-					<h1>More about Rodniel Briones</h1>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus accusamus consequatur
-						minima vitae dignissimos illum nobis est libero minus facere debitis, sed natus nulla
-						dolores officiis temporibus, reiciendis nam reprehenderit incidunt in. Temporibus, fuga?
-						Nemo distinctio dolore, aliquam laboriosam quod sed expedita tempore ipsa illo ullam
-						labore fugit, aperiam quasi. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Ratione laudantium, delectus modi error dolore voluptatum impedit quam recusandae
-						officiis eveniet consectetur dicta quo distinctio voluptate beatae aperiam accusantium
-						est voluptates laboriosam doloremque porro, dolor fugit at cum. Minima, ea quisquam amet
-						temporibus quis officiis, eos earum sed quos adipisci voluptatum!
-						<br />
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat dolores tempora eligendi
-						et sit quam reiciendis pariatur laborum aperiam! Recusandae odit quas qui ipsa esse,
-						quia distinctio cum pariatur odio earum nobis consectetur cupiditate sed totam! Nemo sed
-						aut fugiat at! Iste vero, autem eveniet similique doloremque cupiditate deleniti totam!
-					</p>
+
+					<ul>
+						<li class="project-banner">
+							<div class="image-header">
+								<img
+									loading="lazy"
+									class="mobile"
+									src="assets/images/nielbrioneschessgui_mobileimage.png"
+									alt="mobile image"
+								/>
+								<img
+									loading="lazy"
+									class="desktop"
+									src="assets/images/nielbrioneschessgui_desktopimage.png"
+									alt="desktop image"
+								/>
+							</div>
+							<div class="project-title">
+								<img
+									loading="lazy"
+									class="project-icon"
+									src="assets/images/nielbrioneschessgui_logo.png"
+									alt="project icon"
+								/>
+								<h3>Simple Chess GUI</h3>
+							</div>
+							<p class="project-description">
+								"A fully-functional chess interface with animations."
+							</p>
+							<div class="skill-showcase">
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/html5-original.svg"
+									alt="html5 icon"
+								/>
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/css3-original.svg"
+									alt="css3 icon"
+								/>
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/javascript-original.svg"
+									alt="javascript icon"
+								/>
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/nodejs-original.svg"
+									alt="nodejs icon"
+								/>
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/webpack-original.svg"
+									alt="webpack icon"
+								/>
+							</div>
+							<a class="project-link website-link" href="https://nielbrioneschessgui.netlify.app"
+								>Browse Simple Chess GUI</a
+							>
+							<a class="project-link github-link" href="https://github.com/scinth/SimpleChessGUI"
+								>View Repository on Github</a
+							>
+						</li>
+						<li class="project-banner">
+							<div class="image-header">
+								<img
+									loading="lazy"
+									class="mobile"
+									src="assets/images/nielbriones2048_mobileimage.png"
+									alt="mobile image"
+								/>
+								<img
+									loading="lazy"
+									class="desktop"
+									src="assets/images/nielbriones2048_desktopimage.png"
+									alt="desktop image"
+								/>
+							</div>
+							<div class="project-title">
+								<img
+									loading="lazy"
+									class="project-icon"
+									src="assets/images/nielbriones2048_logo.png"
+									alt="project icon"
+								/>
+								<h3>2048 Game</h3>
+							</div>
+							<p class="project-description">"A number-matching puzzle game with animations."</p>
+							<div class="skill-showcase">
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/html5-original.svg"
+									alt="html5 icon"
+								/>
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/css3-original.svg"
+									alt="css3 icon"
+								/>
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/javascript-original.svg"
+									alt="javascript icon"
+								/>
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/nodejs-original.svg"
+									alt="nodejs icon"
+								/>
+								<img
+									loading="lazy"
+									class="icon"
+									src="assets/icons/techstack/webpack-original.svg"
+									alt="webpack icon"
+								/>
+							</div>
+							<a class="project-link website-link" href="https://nielbriones2048.netlify.app"
+								>Browse 2048 Game</a
+							>
+							<a class="project-link github-link" href="https://github.com/scinth/2048"
+								>View Repository on Github</a
+							>
+						</li>
+					</ul>
 				</section>
 			</div>
 		</main>
-		<div id="links-and-info" class="links-and-info">
-			<nav role="navigation" id="menu" class="menu">
-				<ul class="menu-list">
-					<li><a href="#aboutme" class="active">About Me</a></li>
-					<li><a href="#education" class="">Education</a></li>
-					<li><a href="#selftaught" class="">Self-taught</a></li>
-					<li><a href="#projects" class="">Projects</a></li>
-					<li><a href="#skills" class="">Skills</a></li>
-					<li><a href="#others" class="">Others</a></li>
-				</ul>
-			</nav>
-			<button id="menu-toggler" class="menu-toggler">
-				<img class="menu-icon" src="icons/bars-solid.svg" alt="toggle menu" />
-			</button>
-			<footer role="contentinfo" id="info" class="info">
-				<header>
-					<button id="footer-toggler">
-						<img class="footer-icon" src="icons/chevron-up-solid.svg" alt="footer-toggler" />
-					</button>
-					<nav role="navigation" id="arrow-nav">
-						<button id="prev">
-							<img class="footer-icon" src="icons/chevron-left-solid.svg" alt="prev" />
-						</button>
-						<button id="next">
-							<img class="footer-icon" src="icons/chevron-right-solid.svg" alt="next" />
-						</button>
-					</nav>
-				</header>
-				<section>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, porro ullam accusamus
-						facilis accusantium nisi omnis suscipit illo qui excepturi!
-					</p>
-				</section>
-			</footer>
-		</div>
 	</body>
 </html>
