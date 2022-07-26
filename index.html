@@ -4,8 +4,26 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="title" content="Rodniel Briones Portfolio" />
+		<meta name="description" content="Rodniel Briones personal portfolio website" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://scinth.github.io/" />
+		<meta property="og:title" content="Rodniel Briones Portfolio" />
+		<meta property="og:description" content="Rodniel Briones personal portfolio website" />
+		<meta property="og:image" content="./portfolio.png" />
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://scinth.github.io/" />
+		<meta property="twitter:title" content="Rodniel Briones Portfolio" />
+		<meta property="twitter:description" content="Rodniel Briones personal portfolio website" />
+		<meta property="twitter:image" content="./portfolio.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+		<link rel="manifest" href="./site.webmanifest" />
 		<title>Rodniel Briones Portfolio</title>
 		<link rel="stylesheet" href="main.css" />
+		<script src="gsap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="ScrollTrigger.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="index.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
@@ -15,7 +33,6 @@
 					<li>
 						<a class="active" href="#homepage">
 							<img
-								loading="lazy"
 								class="icon"
 								src="assets/icons/menulinks/house-user-solid.svg"
 								alt="homepage icon"
@@ -25,35 +42,18 @@
 					</li>
 					<li>
 						<a href="#aboutme">
-							<img
-								loading="lazy"
-								class="icon"
-								src="assets/icons/menulinks/user-solid.svg"
-								alt="about-me icon"
-							/>
+							<img class="icon" src="assets/icons/menulinks/user-solid.svg" alt="about-me icon" />
 							About Me
 						</a>
 					</li>
 					<li>
-						<a href="#skills">
+						<a href="#projects">
 							<img
-								loading="lazy"
-								class="icon"
-								src="assets/icons/menulinks/brain-solid.svg"
-								alt="skills icon"
-							/>
-							Skills
-						</a>
-					</li>
-					<li>
-						<a href="#experience">
-							<img
-								loading="lazy"
 								class="icon"
 								src="assets/icons/menulinks/laptop-code-solid.svg"
-								alt="experience icon"
+								alt="projects icon"
 							/>
-							Experience
+							Projects
 						</a>
 					</li>
 				</ul>
@@ -61,7 +61,6 @@
 			<nav role="navigation" id="page-navigation">
 				<button class="footer-toggler">
 					<img
-						loading="lazy"
 						class="icon"
 						src="assets/icons/pagenav/chevron-up-solid.svg"
 						alt="arrow-up/arrow-down"
@@ -69,7 +68,6 @@
 				</button>
 				<a href="#">
 					<img
-						loading="lazy"
 						class="icon resume"
 						src="assets/icons/pagenav/address-card-regular.svg"
 						alt="resume icon"
@@ -77,16 +75,11 @@
 					resume
 				</a>
 				<button class="menu-toggler">
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/pagenav/bars-solid.svg"
-						alt="menu icon"
-					/>
+					<img class="icon" src="assets/icons/pagenav/bars-solid.svg" alt="menu icon" />
 				</button>
 			</nav>
 			<div id="page-logo">
-				<img 
+				<img
 					class="logo-image"
 					src="assets/images/rodniel_briones_logo.png"
 					alt="Rodniel Briones logo"
@@ -95,89 +88,27 @@
 			</div>
 			<footer role="contentinfo" id="info">
 				<div id="tech-stack">
+					<img class="icon" src="assets/icons/techstack/html5-original.svg" alt="Html5 icon" />
+					<img class="icon" src="assets/icons/techstack/css3-original.svg" alt="Css3 icon" />
 					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/html5-original.svg"
-						alt="Html5 icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/css3-original.svg"
-						alt="Css3 icon"
-					/>
-					<img
-						loading="lazy"
 						class="icon"
 						src="assets/icons/techstack/javascript-original.svg"
 						alt="Javascript icon"
 					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/nodejs-original.svg"
-						alt="NodeJS icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/npm-original-wordmark.svg"
-						alt="Npm icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/sass-original.svg"
-						alt="Sass icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/react-original.svg"
-						alt="React icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/redux-original.svg"
-						alt="Redux icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/webpack-original.svg"
-						alt="Webpack icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/git-original.svg"
-						alt="Git icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/github-original.svg"
-						alt="Github icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/bash-original.svg"
-						alt="Bash icon"
-					/>
-					<img
-						loading="lazy"
-						class="icon"
-						src="assets/icons/techstack/vscode-original.svg"
-						alt="VScode icon"
-					/>
+					<img class="icon" src="assets/icons/techstack/nodejs-original.svg" alt="NodeJS icon" />
+					<img class="icon" src="assets/icons/techstack/npm-original-wordmark.svg" alt="Npm icon" />
+					<img class="icon" src="assets/icons/techstack/sass-original.svg" alt="Sass icon" />
+					<img class="icon" src="assets/icons/techstack/react-original.svg" alt="React icon" />
+					<img class="icon" src="assets/icons/techstack/redux-original.svg" alt="Redux icon" />
+					<img class="icon" src="assets/icons/techstack/webpack-original.svg" alt="Webpack icon" />
+					<img class="icon" src="assets/icons/techstack/git-original.svg" alt="Git icon" />
+					<img class="icon" src="assets/icons/techstack/github-original.svg" alt="Github icon" />
+					<img class="icon" src="assets/icons/techstack/bash-original.svg" alt="Bash icon" />
+					<img class="icon" src="assets/icons/techstack/vscode-original.svg" alt="VScode icon" />
 				</div>
 				<div id="social-links">
 					<a href="https://www.facebook.com/profile.php/?id=100076113183013">
 						<img
-							loading="lazy"
 							class="icon"
 							src="assets/icons/sociallinks/facebook-brands.svg"
 							alt="facebook account "
@@ -185,7 +116,6 @@
 					</a>
 					<a href="mailto:rodnielbriones@gmail.com">
 						<img
-							loading="lazy"
 							class="icon"
 							src="assets/icons/sociallinks/envelope-regular.svg"
 							alt="Google mail"
@@ -193,7 +123,6 @@
 					</a>
 					<a href="https://www.linkedin.com/in/rodniel-b-a75bb7226/">
 						<img
-							loading="lazy"
 							class="icon"
 							src="assets/icons/sociallinks/linkedin-brands.svg"
 							alt="linkedin account"
@@ -201,7 +130,6 @@
 					</a>
 					<a href="https://github.com/scinth">
 						<img
-							loading="lazy"
 							class="icon"
 							src="assets/icons/sociallinks/github-brands.svg"
 							alt="github account"
@@ -214,12 +142,11 @@
 			<div id="pages-wrapper" class="">
 				<section id="homepage" class="page active" tabindex="0">
 					<img
-						loading="lazy"
 						class="page-image"
 						src="assets/icons/illustrations/homepage_feeling_proud.svg"
 						alt="home image"
 					/>
-					<h1 class="page-title">Maayong Buntag!</h1>
+					<h1 class="page-title">Maayong Adlaw!</h1>
 					<p class="tag-line">
 						Rodniel from Cebu,<br />passionately crafting innovative, accessible, and performant web
 						interfaces.
@@ -247,7 +174,7 @@
 									/>
 									<h3>Chess GUI</h3>
 								</div>
-								<a class="project-link view-project" href="#experience">view project</a>
+								<a class="project-link view-project" href="#projects">view project</a>
 							</div>
 							<div class="project-banner">
 								<div class="image-header">
@@ -270,7 +197,7 @@
 									/>
 									<h3>2048</h3>
 								</div>
-								<a class="project-link view-project" href="#experience">view project</a>
+								<a class="project-link view-project" href="#projects">view project</a>
 							</div>
 						</div>
 					</div>
@@ -283,17 +210,18 @@
 						alt="aboutme image"
 					/>
 					<h1>About Me</h1>
-					<p>
-						I am Rodniel Briones from Mandaue City Cebu, currently busy teaching myself about
-						Frontend Development.
+					<p class="text-animate">
+						I am Rodniel Briones from Mandaue City Cebu, passionate about programming, loves any
+						logical stuff that requires deep thinking, and is determined to become a professional
+						Web Developer.
 					</p>
-					<p>
+					<p class="text-animate">
 						I am interested in anything related to programming, chess, self-improvement, psychology,
 						nature, supernatural, mysteries, photo editing, problem solving, puzzles and other
 						similar subjects.
 					</p>
-					<p>
-						It is my deepest desire to become an "Android and Fullstack Website Developer" to be
+					<p class="text-animate">
+						It is my greatest desire to become an "Android and Fullstack Website Developer" to be
 						able to contribute to the community by creating useful websites and apps that solves
 						daily hassle and services that allows people to boost their productivity especially for
 						students and self-taught.
@@ -301,7 +229,7 @@
 					<section>
 						<h2>College Undergraduate</h2>
 
-						<p>
+						<p class="text-animate">
 							I spent two years as a Bachelor of Science in Information Technology at Salazar
 							Colleges of Science in Information Technology where I first learned about programming.
 							What I learned from school was the basics of C, C++, a little bit of Html, Css and
@@ -311,159 +239,56 @@
 					<section>
 						<h2>Self-taught</h2>
 
-						<p>
-							During the pandemic I decided to teach myself about Frontend Web Development using the
-							following resources:
+						<p class="text-animate">
+							During the pandemic I decided to continue learning about Frontend Web Development by
+							teaching myself using the following resources:
 						</p>
 
-						<ul>
-							<li>YouTube tutorials</li>
+						<ol>
 							<li>MDN Web Docs</li>
 							<li>W3Schools</li>
 							<li>Documentations</li>
+							<li>Stack Overflow</li>
+							<li>YouTube tutorials</li>
 							<li>freeCodeCamp tutorials</li>
 							<li>Blogs</li>
 							<li>Newsletters</li>
 							<li>Podcasts</li>
-						</ul>
-
-						<p>
-							"70% - 80% of my knowlegde and skills are achieved during my self-learning journey."
-						</p>
+						</ol>
 					</section>
-					<p>For now I'm focusing on learning these technologies:</p>
-					<ul class="tech-to-study">
-						<li>React</li>
+					<p class="text-animate">For now I'm focusing on learning these technologies:</p>
+					<ol class="tech-to-study">
 						<li>React Testing Library</li>
 						<li>Tailwind</li>
 						<li>NextJS</li>
-						<li>Redux</li>
 						<li>Axios</li>
-						<li>Express</li>
 						<li>Firebase</li>
 						<li>MongoDB</li>
-					</ul>
+					</ol>
 				</section>
-				<section id="skills" class="page" tabindex="0">
+				<section id="projects" class="page" tabindex="0">
 					<img
-						loading="lazy"
-						class="page-image"
-						src="assets/icons/illustrations/skills_programming.svg"
-						alt="selftaught image"
-					/>
-					<h1>Skills</h1>
-					<section>
-						<h2>Knowledge/Skills Evaluation</h2>
-
-						<table>
-							<tr>
-								<th>Technology</th>
-								<th>Rating</th>
-							</tr>
-							<tr>
-								<td>Html5</td>
-								<td>85%</td>
-							</tr>
-							<tr>
-								<td>Css3</td>
-								<td>60%</td>
-							</tr>
-							<tr>
-								<td>JavaScript</td>
-								<td>75%</td>
-							</tr>
-							<tr>
-								<td>Sass</td>
-								<td>50%</td>
-							</tr>
-							<tr>
-								<td>React</td>
-								<td>50%</td>
-							</tr>
-							<tr>
-								<td>React Router</td>
-								<td>70%</td>
-							</tr>
-							<tr>
-								<td>Framer Motion</td>
-								<td>80%</td>
-							</tr>
-							<tr>
-								<td>styled-components</td>
-								<td>100%</td>
-							</tr>
-							<tr>
-								<td>Redux</td>
-								<td>70%</td>
-							</tr>
-							<tr>
-								<td>React Testing Library</td>
-								<td>65%</td>
-							</tr>
-							<tr>
-								<td>Webpack</td>
-								<td>40%</td>
-							</tr>
-							<tr>
-								<td>npm</td>
-								<td>40%</td>
-							</tr>
-							<tr>
-								<td>NodeJS</td>
-								<td>30%</td>
-							</tr>
-							<tr>
-								<td>Git</td>
-								<td>35%</td>
-							</tr>
-							<tr>
-								<td>Bash</td>
-								<td>30%</td>
-							</tr>
-							<tr>
-								<td>VSCode</td>
-								<td>85%</td>
-							</tr>
-						</table>
-
-						<br />
-
-						<aside class="note">
-							<p>
-								<b>Note:</b><br /><br />
-								The evaluations presented above are solely based on the author's personal estimation
-								with the only purpose of visualizing his coding capabilities and is therefore not
-								considered accurate.
-							</p>
-						</aside>
-					</section>
-				</section>
-				<section id="experience" class="page" tabindex="0">
-					<img
-						loading="lazy"
 						class="page-image"
 						src="assets/icons/illustrations/experience_building_websites.svg"
-						alt="experience image"
+						alt="projects image"
 					/>
-					<h1>Experience</h1>
+					<h1>Projects</h1>
 
 					<p>
-						For now I don't have a real life coding job experience so let me show you some of my
-						projects where I experienced a lot of problem solving. Most of these projects are
-						game-based because I love the complexity of thinking algorithmically.
+						The following 3 projects are the ones I have been working to be included in this
+						portfolio. These projects are game-based because I love the complexity of thinking
+						algorithmically. Projects are sorted from oldest to newest.
 					</p>
 
 					<ul>
 						<li class="project-banner">
 							<div class="image-header">
 								<img
-									loading="lazy"
 									class="mobile"
 									src="assets/images/nielbrioneschessgui_mobileimage.png"
 									alt="mobile image"
 								/>
 								<img
-									loading="lazy"
 									class="desktop"
 									src="assets/images/nielbrioneschessgui_desktopimage.png"
 									alt="desktop image"
@@ -471,7 +296,6 @@
 							</div>
 							<div class="project-title">
 								<img
-									loading="lazy"
 									class="project-icon"
 									src="assets/images/nielbrioneschessgui_logo.png"
 									alt="project icon"
@@ -483,31 +307,22 @@
 							</p>
 							<div class="skill-showcase">
 								<img
-									loading="lazy"
 									class="icon"
 									src="assets/icons/techstack/html5-original.svg"
 									alt="html5 icon"
 								/>
+								<img class="icon" src="assets/icons/techstack/sass-original.svg" alt="sass icon" />
 								<img
-									loading="lazy"
-									class="icon"
-									src="assets/icons/techstack/css3-original.svg"
-									alt="css3 icon"
-								/>
-								<img
-									loading="lazy"
 									class="icon"
 									src="assets/icons/techstack/javascript-original.svg"
 									alt="javascript icon"
 								/>
 								<img
-									loading="lazy"
 									class="icon"
 									src="assets/icons/techstack/nodejs-original.svg"
 									alt="nodejs icon"
 								/>
 								<img
-									loading="lazy"
 									class="icon"
 									src="assets/icons/techstack/webpack-original.svg"
 									alt="webpack icon"
@@ -523,13 +338,11 @@
 						<li class="project-banner">
 							<div class="image-header">
 								<img
-									loading="lazy"
 									class="mobile"
 									src="assets/images/nielbriones2048_mobileimage.png"
 									alt="mobile image"
 								/>
 								<img
-									loading="lazy"
 									class="desktop"
 									src="assets/images/nielbriones2048_desktopimage.png"
 									alt="desktop image"
@@ -537,7 +350,6 @@
 							</div>
 							<div class="project-title">
 								<img
-									loading="lazy"
 									class="project-icon"
 									src="assets/images/nielbriones2048_logo.png"
 									alt="project icon"
@@ -547,31 +359,22 @@
 							<p class="project-description">"A number-matching puzzle game with animations."</p>
 							<div class="skill-showcase">
 								<img
-									loading="lazy"
 									class="icon"
 									src="assets/icons/techstack/html5-original.svg"
 									alt="html5 icon"
 								/>
+								<img class="icon" src="assets/icons/techstack/sass-original.svg" alt="sass icon" />
 								<img
-									loading="lazy"
-									class="icon"
-									src="assets/icons/techstack/css3-original.svg"
-									alt="css3 icon"
-								/>
-								<img
-									loading="lazy"
 									class="icon"
 									src="assets/icons/techstack/javascript-original.svg"
 									alt="javascript icon"
 								/>
 								<img
-									loading="lazy"
 									class="icon"
 									src="assets/icons/techstack/nodejs-original.svg"
 									alt="nodejs icon"
 								/>
 								<img
-									loading="lazy"
 									class="icon"
 									src="assets/icons/techstack/webpack-original.svg"
 									alt="webpack icon"

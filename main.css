@@ -39,6 +39,7 @@ body {
 }
 body.showFooter #links-and-info {
 	transform: translateY(var(--pagenav-slide-height));
+	z-index: 1;
 }
 body.showFooter #links-and-info #link-navigation {
 	background-color: rgb(230, 230, 230, 0.7);
@@ -205,8 +206,8 @@ table tr:last-child td:last-child {
 	border-color: rgb(220, 20, 60);
 	background-color: rgb(220, 20, 60, 0.3);
 }
-#link-navigation a[href='#experience']:hover,
-#link-navigation a[href='#experience'].active {
+#link-navigation a[href='#projects']:hover,
+#link-navigation a[href='#projects'].active {
 	border-color: rgb(218, 112, 214);
 	background-color: rgb(218, 112, 214, 0.3);
 }
@@ -373,7 +374,7 @@ table tr:last-child td:last-child {
 	animation-name: push-down;
 }
 #pages-wrapper > section {
-	overflow-y: scroll;
+	overflow: hidden scroll;
 }
 #pages-wrapper > section:not(.active) {
 	display: none;
@@ -508,8 +509,8 @@ table tr:last-child td:last-child {
 #homepage .tag-line {
 	font-family: 'Economica', sans-serif;
 	width: stretch;
-	width: calc(100% - 2em);
 	width: -webkit-fill-available;
+	width: calc(100% - 2em);
 	margin-inline: auto;
 	text-align: center;
 	color: #ffffffde;
@@ -520,9 +521,9 @@ table tr:last-child td:last-child {
 #aboutme {
 	background-color: peru;
 }
-#aboutme ul {
+#aboutme ol {
 	font-family: 'Josefin Sans', sans-serif;
-	list-style-type: disc;
+	/* list-style-type: disc; */
 	list-style-position: inside;
 	line-height: 1.5em;
 	padding: 1rem 1.5rem;
@@ -530,7 +531,7 @@ table tr:last-child td:last-child {
 #skills {
 	background-color: crimson;
 }
-#experience {
+#projects {
 	background-color: orchid;
 }
 /* animations */

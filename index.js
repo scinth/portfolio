@@ -382,6 +382,52 @@ document.addEventListener('DOMContentLoaded', function () {
 	menu.addEventListener('click', () => {
 		document.body.classList.remove('showFooter');
 	});
+
+	///////////////////////////////////////////////////
+	// GSAP ANIMATIONS
+	///////////////////////////////////////////////////
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const setIllustrationAnimation = function (id) {
+		gsap.to('.page-image', {
+			scrollTrigger: {
+				scroller: id,
+				trigger: '.page-image',
+				start: 'top top',
+				end: 'bottom top',
+				scrub: true,
+			},
+			opacity: 0,
+			scale: 1.6,
+			duration: 0.3,
+		});
+	};
+
+	const setTextAnimation = function (parent, target) {
+		gsap.from(target, {
+			scrollTrigger: {
+				scroller: parent,
+				trigger: target,
+				start: 'top 70%',
+			},
+			x: 20,
+			opacity: 0,
+			duration: 1,
+			stagger: 0.3,
+			ease: 'expo.out',
+		});
+	};
+
+	let text_animate = [...document.getElementsByClassName('text-animate')];
+
+	text_animate.forEach(text => {
+		setTextAnimation('#aboutme', text);
+	});
+
+	setIllustrationAnimation('#homepage');
+	setIllustrationAnimation('#aboutme');
+	setIllustrationAnimation('#projects');
 });
 
 // remove menu on document click
@@ -389,3 +435,5 @@ document.addEventListener('click', () => {
 	menu.classList.remove('active');
 	menuToggler.firstElementChild.setAttribute('src', 'assets/icons/pagenav/bars-solid.svg');
 });
+
+//  TODO  make text animation properly
