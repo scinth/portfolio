@@ -515,11 +515,25 @@ table tr:last-child td:last-child {
 	text-align: center;
 	color: #ffffffde;
 }
+#homepage .tag-line > span {
+	font-weight: bold;
+	display: inline-block;
+}
+#homepage .tag-line > span span {
+	display: inline-block;
+}
+#homepage .tag-line .accessible {
+	margin-bottom: -0.35em;
+	overflow-y: hidden;
+}
 #homepage .project-banner:not(.active) {
 	display: none;
 }
 #aboutme {
 	background-color: peru;
+}
+#aboutme p {
+	transform: none;
 }
 #aboutme ol {
 	font-family: 'Josefin Sans', sans-serif;

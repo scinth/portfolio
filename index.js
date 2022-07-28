@@ -3,6 +3,19 @@ let isSliding = false;
 let featuredInterval = null;
 let startFeaturedInterval = null;
 let stopFeaturedInterval = null;
+const tagTimelines = [];
+const illustrationTransforms = {
+	transforms: [],
+	add(id, callback) {
+		this.transforms.push({ id, callback });
+	},
+	get(id) {
+		let item = this.transforms.find(item => {
+			return item.id === id;
+		});
+		return item?.callback;
+	},
+};
 
 // elements
 let menu = null;
@@ -342,15 +355,40 @@ document.addEventListener('DOMContentLoaded', function () {
 		menu.classList.toggle('active');
 		if (menu.classList.contains('active')) {
 			e.target.setAttribute('src', 'assets/icons/pagenav/xmark-solid.svg');
+			let removeTransforms = illustrationTransforms.get(location.hash);
+			removeTransforms();
+			tagTimelines.forEach(({ timeline, elems }) => {
+				timeline.pause();
+				elems.forEach(elem => {
+					elem.style.transform = 'none';
+				});
+			});
 		} else {
 			e.target.setAttribute('src', 'assets/icons/pagenav/bars-solid.svg');
+			tagTimelines.forEach(({ timeline }) => {
+				timeline.resume();
+			});
 		}
 		e.stopPropagation();
 	});
 
 	// toggle footer
-	footerToggler.addEventListener('click', () => {
+	footerToggler.addEventListener('click', e => {
 		document.body.classList.toggle('showFooter');
+		if (document.body.classList.contains('showFooter')) {
+			menu.classList.remove('active');
+			tagTimelines.forEach(({ timeline, elems }) => {
+				timeline.pause();
+				elems.forEach(elem => {
+					elem.style.transform = 'none';
+				});
+			});
+		} else {
+			tagTimelines.forEach(({ timeline }) => {
+				timeline.resume();
+			});
+		}
+		e.stopPropagation();
 	});
 
 	// click link
@@ -389,8 +427,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	gsap.registerPlugin(ScrollTrigger);
 
+	// illustration
 	const setIllustrationAnimation = function (id) {
-		gsap.to('.page-image', {
+		gsap.to(`${id} .page-image`, {
 			scrollTrigger: {
 				scroller: id,
 				trigger: '.page-image',
@@ -402,8 +441,119 @@ document.addEventListener('DOMContentLoaded', function () {
 			scale: 1.6,
 			duration: 0.3,
 		});
+		const removeTransforms = () => {
+			let illustration = document.querySelector(`${id} .page-image`);
+			illustration.style.transform = 'none';
+		};
+		illustrationTransforms.add(id, removeTransforms);
 	};
 
+	setIllustrationAnimation('#homepage');
+	setIllustrationAnimation('#aboutme');
+	setIllustrationAnimation('#projects');
+
+	// tag animations
+	const splitText = textElem => {
+		const text = textElem.textContent;
+		const letters = text.split('');
+		const classname = textElem.classList[0] + '-split';
+		textElem.textContent = '';
+		letters.forEach(letter => {
+			let span = document.createElement('span');
+			span.classList.add(classname);
+			span.textContent = letter;
+			textElem.append(span);
+		});
+		const revoke = () => {
+			textElem.textContent = text;
+		};
+		return {
+			classname,
+			revoke,
+		};
+	};
+
+	const animateText = (selector, animate) => {
+		const text = document.querySelector(selector);
+		const { classname, revoke } = splitText(text);
+		const tl = animate(`.${classname}`);
+		tagTimelines.push({
+			timeline: tl,
+			destroy: revoke,
+			get elems() {
+				return [...text.children];
+			},
+		});
+		tl.play();
+	};
+
+	const rotate = selector => {
+		const tl = gsap.timeline({
+			defaults: {
+				duration: 0.5,
+				stagger: 0.1,
+			},
+			repeat: -1,
+			repeatDelay: 0.3,
+			paused: true,
+		});
+		tl.to(selector, {
+			rotateZ: 360,
+			ease: 'bounce',
+		});
+		return tl;
+	};
+	const hide = selector => {
+		const tl = gsap.timeline({
+			repeat: -1,
+			repeatDelay: 1,
+			paused: true,
+		});
+		tl.to(selector, { y: 25, ease: 'circ', duration: 0.28, stagger: 0.025 }).to(selector, {
+			y: 0,
+			ease: 'bounce',
+			duration: 0.13,
+			stagger: 0.08,
+		});
+		return tl;
+	};
+	const spin = selector => {
+		const tl = gsap.timeline({
+			defaults: {
+				duration: 0.5,
+				ease: 'bounce',
+			},
+			repeat: -1,
+			repeatDelay: 0.5,
+			paused: true,
+		});
+		tl.to(selector, {
+			rotateY: 520,
+		}).to(selector, {
+			rotateY: 0,
+		});
+		return tl;
+	};
+
+	const tagObserver = new IntersectionObserver(entries => {
+		if (entries[0].isIntersecting) {
+			// attach animation
+			animateText('.innovative', rotate);
+			animateText('.accessible', hide);
+			animateText('.performant', spin);
+		} else {
+			// remove animations
+			tagTimelines.forEach(({ timeline, destroy }) => {
+				destroy();
+				timeline.kill();
+			});
+		}
+	});
+
+	const tagline = document.querySelector('.tag-line');
+	tagObserver.observe(tagline);
+
+	// text animations
 	const setTextAnimation = function (parent, target) {
 		gsap.from(target, {
 			scrollTrigger: {
@@ -414,26 +564,30 @@ document.addEventListener('DOMContentLoaded', function () {
 			x: 20,
 			opacity: 0,
 			duration: 1,
-			stagger: 0.3,
 			ease: 'expo.out',
+			onComplete: () => (target.style.transform = 'none'),
 		});
 	};
 
-	let text_animate = [...document.getElementsByClassName('text-animate')];
+	// observer
+	let textAnimate = [...document.getElementsByClassName('text-animate')];
 
-	text_animate.forEach(text => {
-		setTextAnimation('#aboutme', text);
+	const textObserver = new IntersectionObserver(entries => {
+		if (entries[0].isIntersecting) {
+			textAnimate.forEach(text => {
+				setTextAnimation('#aboutme', text);
+			});
+		}
 	});
 
-	setIllustrationAnimation('#homepage');
-	setIllustrationAnimation('#aboutme');
-	setIllustrationAnimation('#projects');
+	textObserver.observe(pages[1]);
 });
 
 // remove menu on document click
 document.addEventListener('click', () => {
 	menu.classList.remove('active');
 	menuToggler.firstElementChild.setAttribute('src', 'assets/icons/pagenav/bars-solid.svg');
+	tagTimelines.forEach(({ timeline }) => {
+		timeline.resume();
+	});
 });
-
-//  TODO  make text animation properly
