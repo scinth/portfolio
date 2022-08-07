@@ -22,162 +22,250 @@
 		<link rel="manifest" href="./site.webmanifest" />
 		<title>Rodniel Briones Portfolio</title>
 		<link rel="stylesheet" href="main.css" />
-		<script src="gsap.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="ScrollTrigger.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+		<script src="https://kit.fontawesome.com/52378a1b3e.js" crossorigin="anonymous"></script>
 		<script src="index.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<div id="links-and-info">
-			<nav role="navigation" id="link-navigation" class="">
-				<ul>
-					<li>
-						<a class="active" href="#homepage">
-							<img
-								class="icon"
-								src="assets/icons/menulinks/house-user-solid.svg"
-								alt="homepage icon"
-							/>
-							Homepage
-						</a>
-					</li>
-					<li>
-						<a href="#aboutme">
-							<img class="icon" src="assets/icons/menulinks/user-solid.svg" alt="about-me icon" />
-							About Me
-						</a>
-					</li>
-					<li>
-						<a href="#projects">
-							<img
-								class="icon"
-								src="assets/icons/menulinks/laptop-code-solid.svg"
-								alt="projects icon"
-							/>
-							Projects
-						</a>
-					</li>
-				</ul>
-			</nav>
-			<nav role="navigation" id="page-navigation">
-				<button class="footer-toggler">
+		<div id="wrapper">
+			<div id="links-and-info">
+				<nav role="navigation" id="link-navigation" class="">
+					<ul>
+						<li>
+							<a class="active" href="#homepage">
+								<i class="icon fa-solid fa-house-user fa-fw"></i>
+								Homepage
+							</a>
+						</li>
+						<li>
+							<a href="#aboutme">
+								<i class="icon fa-solid fa-user fa-fw"></i>
+								About Me
+							</a>
+						</li>
+						<li>
+							<a href="#projects">
+								<i class="icon fa-solid fa-laptop-code fa-fw"></i>
+								Projects
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<nav role="navigation" id="page-navigation">
+					<button class="footer-toggler">
+						<i class="icon fa-solid fa-chevron-up"></i>
+					</button>
+					<a href="#">
+						<i class="fa-regular fa-address-card"></i>
+						resume&#769;
+					</a>
+					<button class="menu-toggler">
+						<i class="icon fa-solid fa-bars"></i>
+						<i class="icon fa-solid fa-xmark"></i>
+					</button>
+				</nav>
+				<div id="page-logo">
 					<img
-						class="icon"
-						src="assets/icons/pagenav/chevron-up-solid.svg"
-						alt="arrow-up/arrow-down"
+						class="logo-image"
+						src="assets/images/rodniel_briones_logo.png"
+						alt="Rodniel Briones logo"
 					/>
-				</button>
-				<a href="#">
-					<img
-						class="icon resume"
-						src="assets/icons/pagenav/address-card-regular.svg"
-						alt="resume icon"
-					/>
-					resume
-				</a>
-				<button class="menu-toggler">
-					<img class="icon" src="assets/icons/pagenav/bars-solid.svg" alt="menu icon" />
-				</button>
-			</nav>
-			<div id="page-logo">
-				<img
-					class="logo-image"
-					src="assets/images/rodniel_briones_logo.png"
-					alt="Rodniel Briones logo"
-				/>
-				<span class="logo-name">Rodniel Briones</span>
+					<span class="logo-name">Rodniel Briones</span>
+				</div>
+				<footer role="contentinfo" id="info">
+					<div id="tech-stack">
+						<img class="icon" src="assets/icons/techstack/html5-original.svg" alt="Html5 icon" />
+						<img class="icon" src="assets/icons/techstack/css3-original.svg" alt="Css3 icon" />
+						<img
+							class="icon"
+							src="assets/icons/techstack/javascript-original.svg"
+							alt="Javascript icon"
+						/>
+						<img class="icon" src="assets/icons/techstack/nodejs-original.svg" alt="NodeJS icon" />
+						<img
+							class="icon"
+							src="assets/icons/techstack/npm-original-wordmark.svg"
+							alt="Npm icon"
+						/>
+						<img class="icon" src="assets/icons/techstack/sass-original.svg" alt="Sass icon" />
+						<img class="icon" src="assets/icons/techstack/react-original.svg" alt="React icon" />
+						<img class="icon" src="assets/icons/techstack/redux-original.svg" alt="Redux icon" />
+						<img
+							class="icon"
+							src="assets/icons/techstack/webpack-original.svg"
+							alt="Webpack icon"
+						/>
+						<img class="icon" src="assets/icons/techstack/git-original.svg" alt="Git icon" />
+						<img class="icon" src="assets/icons/techstack/github-original.svg" alt="Github icon" />
+						<img class="icon" src="assets/icons/techstack/bash-original.svg" alt="Bash icon" />
+						<img class="icon" src="assets/icons/techstack/vscode-original.svg" alt="VScode icon" />
+					</div>
+					<div id="social-links">
+						<a href="https://www.facebook.com/profile.php/?id=100076113183013">
+							<i class="fa-brands fa-square-facebook"></i>
+						</a>
+						<a href="mailto:rodnielbriones@gmail.com">
+							<i class="fa-solid fa-square-envelope"></i>
+						</a>
+						<a href="https://www.linkedin.com/in/rodniel-b-a75bb7226/">
+							<i class="fa-brands fa-linkedin"></i>
+						</a>
+						<a href="https://github.com/scinth">
+							<i class="fa-brands fa-square-github"></i>
+						</a>
+					</div>
+				</footer>
 			</div>
-			<footer role="contentinfo" id="info">
-				<div id="tech-stack">
-					<img class="icon" src="assets/icons/techstack/html5-original.svg" alt="Html5 icon" />
-					<img class="icon" src="assets/icons/techstack/css3-original.svg" alt="Css3 icon" />
-					<img
-						class="icon"
-						src="assets/icons/techstack/javascript-original.svg"
-						alt="Javascript icon"
-					/>
-					<img class="icon" src="assets/icons/techstack/nodejs-original.svg" alt="NodeJS icon" />
-					<img class="icon" src="assets/icons/techstack/npm-original-wordmark.svg" alt="Npm icon" />
-					<img class="icon" src="assets/icons/techstack/sass-original.svg" alt="Sass icon" />
-					<img class="icon" src="assets/icons/techstack/react-original.svg" alt="React icon" />
-					<img class="icon" src="assets/icons/techstack/redux-original.svg" alt="Redux icon" />
-					<img class="icon" src="assets/icons/techstack/webpack-original.svg" alt="Webpack icon" />
-					<img class="icon" src="assets/icons/techstack/git-original.svg" alt="Git icon" />
-					<img class="icon" src="assets/icons/techstack/github-original.svg" alt="Github icon" />
-					<img class="icon" src="assets/icons/techstack/bash-original.svg" alt="Bash icon" />
-					<img class="icon" src="assets/icons/techstack/vscode-original.svg" alt="VScode icon" />
-				</div>
-				<div id="social-links">
-					<a href="https://www.facebook.com/profile.php/?id=100076113183013">
+			<main role="main" id="pages">
+				<div id="pages-wrapper" class="">
+					<section id="homepage" class="page active" tabindex="0">
 						<img
-							class="icon"
-							src="assets/icons/sociallinks/facebook-brands.svg"
-							alt="facebook account "
+							class="page-image"
+							src="assets/icons/illustrations/homepage_feeling_proud.svg"
+							alt="home image"
 						/>
-					</a>
-					<a href="mailto:rodnielbriones@gmail.com">
-						<img
-							class="icon"
-							src="assets/icons/sociallinks/envelope-regular.svg"
-							alt="Google mail"
-						/>
-					</a>
-					<a href="https://www.linkedin.com/in/rodniel-b-a75bb7226/">
-						<img
-							class="icon"
-							src="assets/icons/sociallinks/linkedin-brands.svg"
-							alt="linkedin account"
-						/>
-					</a>
-					<a href="https://github.com/scinth">
-						<img
-							class="icon"
-							src="assets/icons/sociallinks/github-brands.svg"
-							alt="github account"
-						/>
-					</a>
-				</div>
-			</footer>
-		</div>
-		<main role="main" id="pages">
-			<div id="pages-wrapper" class="">
-				<section id="homepage" class="page active" tabindex="0">
-					<img
-						class="page-image"
-						src="assets/icons/illustrations/homepage_feeling_proud.svg"
-						alt="home image"
-					/>
-					<h1 class="page-title">Maayong Adlaw!</h1>
-					<p class="tag-line">
-						Rodniel from Cebu,<br />passionately crafting
-						<span class="innovative">innovative</span>, <span class="accessible">accessible</span>,
-						and <span class="performant">performant</span> web interfaces.
-					</p>
-					<div id="featured-section">
-						<div class="projects-wrapper">
-							<div class="project-banner active">
-								<div class="image-header">
-									<img
-										class="mobile"
-										src="assets/images/nielbrioneschessgui_mobileimage.png"
-										alt="mobile image"
-									/>
-									<img
-										class="desktop"
-										src="assets/images/nielbrioneschessgui_desktopimage.png"
-										alt="desktop image"
-									/>
+						<h1 class="page-title">Maayong Adlaw!</h1>
+						<p class="tag-line">
+							Rodniel from Cebu,<br />passionately crafting
+							<span class="innovative">innovative</span>,
+							<span class="accessible">accessible</span>, and
+							<span class="performant">performant</span> web interfaces.
+						</p>
+						<div id="featured-section">
+							<div class="projects-wrapper">
+								<div class="project-banner active">
+									<div class="image-header">
+										<img
+											class="mobile"
+											src="assets/images/nielbrioneschessgui_mobileimage.png"
+											alt="mobile image"
+										/>
+										<img
+											class="desktop"
+											src="assets/images/nielbrioneschessgui_desktopimage.png"
+											alt="desktop image"
+										/>
+									</div>
+									<div class="project-title">
+										<img
+											class="project-icon"
+											src="assets/images/nielbrioneschessgui_logo.png"
+											alt="project icon"
+										/>
+										<h3>Chess GUI</h3>
+									</div>
+									<a class="project-link view-project" href="#projects">view project</a>
 								</div>
-								<div class="project-title">
-									<img
-										class="project-icon"
-										src="assets/images/nielbrioneschessgui_logo.png"
-										alt="project icon"
-									/>
-									<h3>Chess GUI</h3>
+								<div class="project-banner">
+									<div class="image-header">
+										<img
+											class="mobile"
+											src="assets/images/nielbriones2048_mobileimage.png"
+											alt="mobile image"
+										/>
+										<img
+											class="desktop"
+											src="assets/images/nielbriones2048_desktopimage.png"
+											alt="desktop image"
+										/>
+									</div>
+									<div class="project-title">
+										<img
+											class="project-icon"
+											src="assets/images/nielbriones2048_logo.png"
+											alt="project icon"
+										/>
+										<h3>2048</h3>
+									</div>
+									<a class="project-link view-project" href="#projects">view project</a>
 								</div>
-								<a class="project-link view-project" href="#projects">view project</a>
 							</div>
-							<div class="project-banner">
+						</div>
+					</section>
+					<section id="aboutme" class="page" tabindex="0">
+						<img
+							loading="lazy"
+							class="page-image"
+							src="assets/icons/illustrations/aboutme_profile.svg"
+							alt="aboutme image"
+						/>
+						<h1>About Me</h1>
+						<p class="text-animate">
+							I am Rodniel Briones from Mandaue City Cebu, passionate about programming, loves any
+							logical stuff that requires deep thinking, and is determined to become a professional
+							Web Developer.
+						</p>
+						<p class="text-animate">
+							I am interested in anything related to programming, chess, self-improvement,
+							psychology, nature, supernatural, mysteries, photo editing, problem solving, puzzles
+							and other similar subjects.
+						</p>
+						<p class="text-animate">
+							It is my greatest desire to become an "Android and Fullstack Website Developer" to be
+							able to contribute to the community by creating useful websites and apps that solves
+							daily hassle and services that allows people to boost their productivity especially
+							for students and self-taught.
+						</p>
+						<section>
+							<h2>College Undergraduate</h2>
+
+							<p class="text-animate">
+								I spent two years as a Bachelor of Science in Information Technology at Salazar
+								Colleges of Science in Information Technology where I first learned about
+								programming. What I learned from school was the basics of C, C++, a little bit of
+								Html, Css and JavaScript. Then out of curiosity I also studied the basics of C#,
+								Java and Python.
+							</p>
+						</section>
+						<section>
+							<h2>Self-taught</h2>
+
+							<p class="text-animate">
+								During the pandemic I decided to continue learning about Frontend Web Development by
+								teaching myself using the following resources:
+							</p>
+
+							<ol>
+								<li>MDN Web Docs</li>
+								<li>W3Schools</li>
+								<li>Documentations</li>
+								<li>Stack Overflow</li>
+								<li>YouTube tutorials</li>
+								<li>freeCodeCamp tutorials</li>
+								<li>Blogs</li>
+								<li>Newsletters</li>
+								<li>Podcasts</li>
+							</ol>
+						</section>
+						<p class="text-animate">For now I'm focusing on learning these technologies:</p>
+						<ol class="tech-to-study">
+							<li>React</li>
+							<li>Tailwind</li>
+							<li>NextJS</li>
+						</ol>
+					</section>
+					<section id="projects" class="page" tabindex="0">
+						<img
+							class="page-image"
+							src="assets/icons/illustrations/experience_building_websites.svg"
+							alt="projects image"
+						/>
+						<h1>Projects</h1>
+
+						<p class="text-animate">
+							The following projects are originally a practice project developed to be
+							fully-functional for the purpose of showing that I can start, scale, optimize, debug,
+							refactor and finish a project.
+						</p>
+
+						<p class="text-animate">
+							These projects are game-based because I prefer solving coding problems with
+							JavaScript, though I can also follow UI designs with my CSS skills.
+						</p>
+
+						<ul>
+							<li class="project-banner">
 								<div class="image-header">
 									<img
 										class="mobile"
@@ -196,228 +284,174 @@
 										src="assets/images/nielbriones2048_logo.png"
 										alt="project icon"
 									/>
-									<h3>2048</h3>
+									<h3>2048 Game</h3>
 								</div>
-								<a class="project-link view-project" href="#projects">view project</a>
-							</div>
-						</div>
-					</div>
-				</section>
-				<section id="aboutme" class="page" tabindex="0">
-					<img
-						loading="lazy"
-						class="page-image"
-						src="assets/icons/illustrations/aboutme_profile.svg"
-						alt="aboutme image"
-					/>
-					<h1>About Me</h1>
-					<p class="text-animate">
-						I am Rodniel Briones from Mandaue City Cebu, passionate about programming, loves any
-						logical stuff that requires deep thinking, and is determined to become a professional
-						Web Developer.
-					</p>
-					<p class="text-animate">
-						I am interested in anything related to programming, chess, self-improvement, psychology,
-						nature, supernatural, mysteries, photo editing, problem solving, puzzles and other
-						similar subjects.
-					</p>
-					<p class="text-animate">
-						It is my greatest desire to become an "Android and Fullstack Website Developer" to be
-						able to contribute to the community by creating useful websites and apps that solves
-						daily hassle and services that allows people to boost their productivity especially for
-						students and self-taught.
-					</p>
-					<section>
-						<h2>College Undergraduate</h2>
-
-						<p class="text-animate">
-							I spent two years as a Bachelor of Science in Information Technology at Salazar
-							Colleges of Science in Information Technology where I first learned about programming.
-							What I learned from school was the basics of C, C++, a little bit of Html, Css and
-							JavaScript. Then out of curiosity I also studied the basics of C#, Java and Python.
-						</p>
+								<p class="project-description">"A number-matching puzzle game with animations."</p>
+								<details>
+									<summary>About</summary>
+									<p>
+										I was searching for some project ideas on the internet and came across 2048
+										which I am very familiar about, I was fascinated by how the tiles move and merge
+										I realized its not an easy algorithm to do so I set myself up a challenge and
+										decided to do it my own way. There's a lot of problems along the way but the
+										trickiest one is to animate the tile's movement, to do this I have to get the
+										initial and final locations of the tiles which is not that easy. My final
+										solution was to retrieve these values from the internal function that moves the
+										actual tiles in the array which I doubt the best solution. It's working but I'm
+										planning to make this project better in the future.
+									</p>
+								</details>
+								<div class="skill-showcase">
+									<img
+										class="icon"
+										src="assets/icons/techstack/html5-original.svg"
+										alt="html5 icon"
+									/>
+									<img
+										class="icon"
+										src="assets/icons/techstack/sass-original.svg"
+										alt="sass icon"
+									/>
+									<img
+										class="icon"
+										src="assets/icons/techstack/javascript-original.svg"
+										alt="javascript icon"
+									/>
+									<img
+										class="icon"
+										src="assets/icons/techstack/webpack-original.svg"
+										alt="webpack icon"
+									/>
+								</div>
+								<a class="project-link website-link" href="https://nielbriones2048.netlify.app"
+									>Browse 2048 Game</a
+								>
+								<a class="project-link github-link" href="https://github.com/scinth/2048"
+									>View Repository on Github</a
+								>
+							</li>
+							<li class="project-banner">
+								<div class="image-header">
+									<img
+										class="mobile"
+										src="assets/images/nielbrioneschessgui_mobileimage.png"
+										alt="mobile image"
+									/>
+									<img
+										class="desktop"
+										src="assets/images/nielbrioneschessgui_desktopimage.png"
+										alt="desktop image"
+									/>
+								</div>
+								<div class="project-title">
+									<img
+										class="project-icon"
+										src="assets/images/nielbrioneschessgui_logo.png"
+										alt="project icon"
+									/>
+									<h3>Simple Chess GUI</h3>
+								</div>
+								<p class="project-description">
+									"A fully-functional chess interface with animations."
+								</p>
+								<details>
+									<summary>About</summary>
+									<p>
+										Chess is my favorite game, so I decide to create a chess interface and to make
+										it challenging I did not search for any logic and code references and decided to
+										do it my own way. The greatest problem was to make sure that pieces cannot move
+										when pinned to the king, it took me a couple of renditions just to solve this
+										problem. My final solution is to perform a mock move, that is to move the piece
+										temporarily and if the king is in check then the piece is immovable. It was not
+										perfect yet but I was able to make it fully-functional without using any chess
+										library. I am planning to migrate it to canvas and add more funtionalities to it
+										in the future.
+									</p>
+								</details>
+								<div class="skill-showcase">
+									<img
+										class="icon"
+										src="assets/icons/techstack/html5-original.svg"
+										alt="html5 icon"
+									/>
+									<img
+										class="icon"
+										src="assets/icons/techstack/sass-original.svg"
+										alt="sass icon"
+									/>
+									<img
+										class="icon"
+										src="assets/icons/techstack/javascript-original.svg"
+										alt="javascript icon"
+									/>
+									<img
+										class="icon"
+										src="assets/icons/techstack/webpack-original.svg"
+										alt="webpack icon"
+									/>
+								</div>
+								<a class="project-link website-link" href="https://nielbrioneschessgui.netlify.app"
+									>Browse Simple Chess GUI</a
+								>
+								<a class="project-link github-link" href="https://github.com/scinth/SimpleChessGUI"
+									>View Repository on Github</a
+								>
+							</li>
+							<li class="project-banner">
+								<div class="image-header">
+									<img class="mobile" src="#" alt="mobile image" />
+									<img class="desktop" src="#" alt="desktop image" />
+								</div>
+								<div class="project-title">
+									<img
+										class="project-icon"
+										src="assets/images/nielbrioneshearts_logo.png"
+										alt="project icon"
+									/>
+									<h3>Hearts Game</h3>
+								</div>
+								<p class="project-description">
+									"A 4-player card game made with React, Redux and DeckOfCards API."
+								</p>
+								<details>
+									<summary>About</summary>
+									<p>
+										I was thinking of a new project to improve my React skills and remembered the
+										game I played on windows which is the "Hearts" game. My goal is to learn the
+										"Redux toolkit framework" and to use the "DeckOfCards API" along with it. I
+										managed to code the game logic myself by taking advantage of the "Javascript
+										Generator Function" but the biggest struggle I face was thinking how to
+										implement the game along with React which is new to me. I was able to make it
+										work and is planning to make this project better in the future. I created this
+										project while learning Redux at the same time and no "Hearts Game" logic and
+										code references used for this project.
+									</p>
+								</details>
+								<div class="skill-showcase">
+									<img
+										class="icon"
+										src="assets/icons/techstack/react-original.svg"
+										alt="react icon"
+									/>
+									<img
+										class="icon"
+										src="assets/icons/techstack/redux-original.svg"
+										alt="redux icon"
+									/>
+								</div>
+								<a class="project-link website-link" href="https://nielbrioneshearts.netlify.app"
+									>Browse Hearts Game</a
+								>
+								<a
+									class="project-link github-link"
+									href="https://github.com/scinth/react-hearts-game"
+									>View Repository on Github</a
+								>
+							</li>
+						</ul>
 					</section>
-					<section>
-						<h2>Self-taught</h2>
-
-						<p class="text-animate">
-							During the pandemic I decided to continue learning about Frontend Web Development by
-							teaching myself using the following resources:
-						</p>
-
-						<ol>
-							<li>MDN Web Docs</li>
-							<li>W3Schools</li>
-							<li>Documentations</li>
-							<li>Stack Overflow</li>
-							<li>YouTube tutorials</li>
-							<li>freeCodeCamp tutorials</li>
-							<li>Blogs</li>
-							<li>Newsletters</li>
-							<li>Podcasts</li>
-						</ol>
-					</section>
-					<p class="text-animate">For now I'm focusing on learning these technologies:</p>
-					<ol class="tech-to-study">
-						<li>React</li>
-						<li>Tailwind</li>
-						<li>NextJS</li>
-					</ol>
-				</section>
-				<section id="projects" class="page" tabindex="0">
-					<img
-						class="page-image"
-						src="assets/icons/illustrations/experience_building_websites.svg"
-						alt="projects image"
-					/>
-					<h1>Projects</h1>
-
-					<p>
-						The following projects are originally a practice project developed to be
-						fully-functional for the purpose of showing that I can start, scale, optimize, debug,
-						refactor and finish a project.
-					</p>
-
-					<p>
-						These projects are game-based because I prefer solving coding problems with JavaScript,
-						though I can also follow UI designs with my CSS skills.
-					</p>
-
-					<ul>
-						<li class="project-banner">
-							<div class="image-header">
-								<img
-									class="mobile"
-									src="assets/images/nielbriones2048_mobileimage.png"
-									alt="mobile image"
-								/>
-								<img
-									class="desktop"
-									src="assets/images/nielbriones2048_desktopimage.png"
-									alt="desktop image"
-								/>
-							</div>
-							<div class="project-title">
-								<img
-									class="project-icon"
-									src="assets/images/nielbriones2048_logo.png"
-									alt="project icon"
-								/>
-								<h3>2048 Game</h3>
-							</div>
-							<p class="project-description">"A number-matching puzzle game with animations."</p>
-							<div class="skill-showcase">
-								<img
-									class="icon"
-									src="assets/icons/techstack/html5-original.svg"
-									alt="html5 icon"
-								/>
-								<img class="icon" src="assets/icons/techstack/sass-original.svg" alt="sass icon" />
-								<img
-									class="icon"
-									src="assets/icons/techstack/javascript-original.svg"
-									alt="javascript icon"
-								/>
-								<img
-									class="icon"
-									src="assets/icons/techstack/webpack-original.svg"
-									alt="webpack icon"
-								/>
-							</div>
-							<a class="project-link website-link" href="https://nielbriones2048.netlify.app"
-								>Browse 2048 Game</a
-							>
-							<a class="project-link github-link" href="https://github.com/scinth/2048"
-								>View Repository on Github</a
-							>
-						</li>
-						<li class="project-banner">
-							<div class="image-header">
-								<img
-									class="mobile"
-									src="assets/images/nielbrioneschessgui_mobileimage.png"
-									alt="mobile image"
-								/>
-								<img
-									class="desktop"
-									src="assets/images/nielbrioneschessgui_desktopimage.png"
-									alt="desktop image"
-								/>
-							</div>
-							<div class="project-title">
-								<img
-									class="project-icon"
-									src="assets/images/nielbrioneschessgui_logo.png"
-									alt="project icon"
-								/>
-								<h3>Simple Chess GUI</h3>
-							</div>
-							<p class="project-description">
-								"A fully-functional chess interface with animations."
-							</p>
-							<div class="skill-showcase">
-								<img
-									class="icon"
-									src="assets/icons/techstack/html5-original.svg"
-									alt="html5 icon"
-								/>
-								<img class="icon" src="assets/icons/techstack/sass-original.svg" alt="sass icon" />
-								<img
-									class="icon"
-									src="assets/icons/techstack/javascript-original.svg"
-									alt="javascript icon"
-								/>
-								<img
-									class="icon"
-									src="assets/icons/techstack/webpack-original.svg"
-									alt="webpack icon"
-								/>
-							</div>
-							<a class="project-link website-link" href="https://nielbrioneschessgui.netlify.app"
-								>Browse Simple Chess GUI</a
-							>
-							<a class="project-link github-link" href="https://github.com/scinth/SimpleChessGUI"
-								>View Repository on Github</a
-							>
-						</li>
-						<li class="project-banner">
-							<div class="image-header">
-								<img class="mobile" src="#" alt="mobile image" />
-								<img class="desktop" src="#" alt="desktop image" />
-							</div>
-							<div class="project-title">
-								<img
-									class="project-icon"
-									src="assets/images/nielbrioneshearts_logo.png"
-									alt="project icon"
-								/>
-								<h3>Hearts Game</h3>
-							</div>
-							<p class="project-description">
-								"A 4-player card game made with React, Redux and DeckOfCards API."
-							</p>
-							<div class="skill-showcase">
-								<img
-									class="icon"
-									src="assets/icons/techstack/react-original.svg"
-									alt="react icon"
-								/>
-								<img
-									class="icon"
-									src="assets/icons/techstack/redux-original.svg"
-									alt="redux icon"
-								/>
-							</div>
-							<a class="project-link website-link" href="https://nielbrioneshearts.netlify.app"
-								>Browse Hearts Game</a
-							>
-							<a class="project-link github-link" href="https://github.com/scinth/react-hearts-game"
-								>View Repository on Github</a
-							>
-						</li>
-					</ul>
-				</section>
-			</div>
-		</main>
+				</div>
+			</main>
+		</div>
 	</body>
 </html>

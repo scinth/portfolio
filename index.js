@@ -3,19 +3,6 @@ let isSliding = false;
 let featuredInterval = null;
 let startFeaturedInterval = null;
 let stopFeaturedInterval = null;
-const tagTimelines = [];
-const illustrationTransforms = {
-	transforms: [],
-	add(id, callback) {
-		this.transforms.push({ id, callback });
-	},
-	get(id) {
-		let item = this.transforms.find(item => {
-			return item.id === id;
-		});
-		return item?.callback;
-	},
-};
 
 // elements
 let menu = null;
@@ -349,25 +336,30 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	// ACTIONS
+	const illustrationTransforms = {
+		transforms: [],
+		add(id, callback) {
+			this.transforms.push({ id, callback });
+		},
+		get(id) {
+			let item = this.transforms.find(item => {
+				return item.id === id;
+			});
+			return item?.callback;
+		},
+	};
 
 	// toggle menu
 	menuToggler.addEventListener('click', e => {
 		menu.classList.toggle('active');
 		if (menu.classList.contains('active')) {
-			e.target.setAttribute('src', 'assets/icons/pagenav/xmark-solid.svg');
+			e.currentTarget.classList.add('open');
 			let removeTransforms = illustrationTransforms.get(location.hash);
 			removeTransforms();
-			tagTimelines.forEach(({ timeline, elems }) => {
-				timeline.pause();
-				elems.forEach(elem => {
-					elem.style.transform = 'none';
-				});
-			});
+			killTagAnimations();
 		} else {
-			e.target.setAttribute('src', 'assets/icons/pagenav/bars-solid.svg');
-			tagTimelines.forEach(({ timeline }) => {
-				timeline.resume();
-			});
+			e.currentTarget.classList.remove('open');
+			setTagAnimations();
 		}
 		e.stopPropagation();
 	});
@@ -377,16 +369,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		document.body.classList.toggle('showFooter');
 		if (document.body.classList.contains('showFooter')) {
 			menu.classList.remove('active');
-			tagTimelines.forEach(({ timeline, elems }) => {
-				timeline.pause();
-				elems.forEach(elem => {
-					elem.style.transform = 'none';
-				});
-			});
+			killTagAnimations();
 		} else {
-			tagTimelines.forEach(({ timeline }) => {
-				timeline.resume();
-			});
+			setTagAnimations();
 		}
 		e.stopPropagation();
 	});
@@ -416,9 +401,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
 
-	// remove footer on menu click
+	// remove drawers on menu click
 	menu.addEventListener('click', () => {
 		document.body.classList.remove('showFooter');
+		menu.classList.remove('active');
+		menuToggler.classList.remove('open');
+		if (location.hash === '#homepage') setTagAnimations();
 	});
 
 	///////////////////////////////////////////////////
@@ -429,7 +417,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// illustration
 	const setIllustrationAnimation = function (id) {
-		gsap.to(`${id} .page-image`, {
+		const illustration = document.querySelector(`${id} .page-image`);
+		gsap.to(illustration, {
 			scrollTrigger: {
 				scroller: id,
 				trigger: '.page-image',
@@ -442,7 +431,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			duration: 0.3,
 		});
 		const removeTransforms = () => {
-			let illustration = document.querySelector(`${id} .page-image`);
 			illustration.style.transform = 'none';
 		};
 		illustrationTransforms.add(id, removeTransforms);
@@ -453,6 +441,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	setIllustrationAnimation('#projects');
 
 	// tag animations
+	// doing it manually because "splitText" plugin is not free.
 	const splitText = textElem => {
 		const text = textElem.textContent;
 		const letters = text.split('');
@@ -464,27 +453,28 @@ document.addEventListener('DOMContentLoaded', function () {
 			span.textContent = letter;
 			textElem.append(span);
 		});
-		const revoke = () => {
+		const resetText = () => {
 			textElem.textContent = text;
 		};
 		return {
 			classname,
-			revoke,
+			resetText,
 		};
 	};
 
+	const tagTimelines = [];
+
 	const animateText = (selector, animate) => {
 		const text = document.querySelector(selector);
-		const { classname, revoke } = splitText(text);
+		const { classname, resetText } = splitText(text);
 		const tl = animate(`.${classname}`);
 		tagTimelines.push({
 			timeline: tl,
-			destroy: revoke,
+			destroy: resetText,
 			get elems() {
 				return [...text.children];
 			},
 		});
-		tl.play();
 	};
 
 	const rotate = selector => {
@@ -495,7 +485,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			},
 			repeat: -1,
 			repeatDelay: 0.3,
-			paused: true,
 		});
 		tl.to(selector, {
 			rotateZ: 360,
@@ -507,7 +496,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		const tl = gsap.timeline({
 			repeat: -1,
 			repeatDelay: 1,
-			paused: true,
 		});
 		tl.to(selector, { y: 25, ease: 'circ', duration: 0.28, stagger: 0.025 }).to(selector, {
 			y: 0,
@@ -524,8 +512,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				ease: 'bounce',
 			},
 			repeat: -1,
-			repeatDelay: 0.5,
-			paused: true,
+			repeatDelay: 1,
 		});
 		tl.to(selector, {
 			rotateY: 520,
@@ -535,18 +522,27 @@ document.addEventListener('DOMContentLoaded', function () {
 		return tl;
 	};
 
+	// attach animation
+	function setTagAnimations() {
+		if (location.hash !== '#homepage') return;
+		animateText('.innovative', rotate);
+		animateText('.accessible', hide);
+		animateText('.performant', spin);
+	}
+
+	// remove animations
+	function killTagAnimations() {
+		tagTimelines.forEach(({ timeline, destroy }) => {
+			destroy();
+			timeline.kill();
+		});
+	}
+
 	const tagObserver = new IntersectionObserver(entries => {
 		if (entries[0].isIntersecting) {
-			// attach animation
-			animateText('.innovative', rotate);
-			animateText('.accessible', hide);
-			animateText('.performant', spin);
+			setTagAnimations();
 		} else {
-			// remove animations
-			tagTimelines.forEach(({ timeline, destroy }) => {
-				destroy();
-				timeline.kill();
-			});
+			killTagAnimations();
 		}
 	});
 
@@ -570,24 +566,19 @@ document.addEventListener('DOMContentLoaded', function () {
 	};
 
 	// observer
-	let textAnimate = [...document.getElementsByClassName('text-animate')];
-
 	const textObserver = new IntersectionObserver(entries => {
 		if (entries[0].isIntersecting) {
+			let page = entries[0].target;
+			let textAnimate = [...page.getElementsByClassName('text-animate')];
 			textAnimate.forEach(text => {
-				setTextAnimation('#aboutme', text);
+				setTextAnimation(`#${page.id}`, text);
 			});
 		}
 	});
 
-	textObserver.observe(pages[1]);
-});
+	let aboutme = pages[1];
+	let projects = pages[2];
 
-// remove menu on document click
-document.addEventListener('click', () => {
-	menu.classList.remove('active');
-	menuToggler.firstElementChild.setAttribute('src', 'assets/icons/pagenav/bars-solid.svg');
-	tagTimelines.forEach(({ timeline }) => {
-		timeline.resume();
-	});
+	textObserver.observe(aboutme);
+	textObserver.observe(projects);
 });
