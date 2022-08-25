@@ -184,25 +184,23 @@ document.addEventListener('DOMContentLoaded', function () {
 	footerToggler = document.getElementsByClassName('footer-toggler')[0];
 	arrows = [...document.querySelectorAll('.arrow')];
 
+	const reorderElements = elems => {
+		let length = elems.length;
+		elems.forEach(elem => {
+			let order = Number(elem.style.order) - 1;
+			if (order < 0) order = length - 1;
+			elem.style.order = `${order}`;
+		});
+	};
+
 	let slideNext = (function () {
-		let activeBanner = 0;
 		let banners = [...projectsWrapper.children];
-		let bannerCount = banners.length - 1;
 		return function () {
-			let nextBanner = activeBanner + 1;
-			if (nextBanner > bannerCount) nextBanner = 0;
-			// set proper order
-			banners[activeBanner].style.order = '0';
-			banners[nextBanner].style.order = '1';
-			// show next banner
-			banners[nextBanner].classList.add('active');
-			// remove prev banner
 			projectsWrapper.addEventListener(
 				'animationend',
 				e => {
+					reorderElements(banners);
 					e.target.classList.remove('slide-left');
-					banners[activeBanner].classList.remove('active');
-					activeBanner = nextBanner;
 				},
 				{ once: true },
 			);

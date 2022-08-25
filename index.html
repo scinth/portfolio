@@ -29,94 +29,6 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<div id="links-and-info">
-				<nav role="navigation" id="link-navigation" class="">
-					<ul>
-						<li>
-							<a class="active" href="#homepage">
-								<i class="icon fa-solid fa-house-user fa-fw"></i>
-								Homepage
-							</a>
-						</li>
-						<li>
-							<a href="#aboutme">
-								<i class="icon fa-solid fa-user fa-fw"></i>
-								About Me
-							</a>
-						</li>
-						<li>
-							<a href="#projects">
-								<i class="icon fa-solid fa-laptop-code fa-fw"></i>
-								Projects
-							</a>
-						</li>
-					</ul>
-				</nav>
-				<nav role="navigation" id="page-navigation">
-					<button class="footer-toggler">
-						<i class="icon fa-solid fa-chevron-up"></i>
-					</button>
-					<a href="#">
-						<i class="fa-regular fa-address-card"></i>
-						resume&#769;
-					</a>
-					<button class="menu-toggler">
-						<i class="icon fa-solid fa-bars"></i>
-						<i class="icon fa-solid fa-xmark"></i>
-					</button>
-				</nav>
-				<div id="page-logo">
-					<img
-						class="logo-image"
-						src="assets/images/rodniel_briones_logo.png"
-						alt="Rodniel Briones logo"
-					/>
-					<span class="logo-name">Rodniel Briones</span>
-				</div>
-				<footer role="contentinfo" id="info">
-					<div id="tech-stack">
-						<img class="icon" src="assets/icons/techstack/html5-original.svg" alt="Html5 icon" />
-						<img class="icon" src="assets/icons/techstack/css3-original.svg" alt="Css3 icon" />
-						<img
-							class="icon"
-							src="assets/icons/techstack/javascript-original.svg"
-							alt="Javascript icon"
-						/>
-						<img class="icon" src="assets/icons/techstack/nodejs-original.svg" alt="NodeJS icon" />
-						<img
-							class="icon"
-							src="assets/icons/techstack/npm-original-wordmark.svg"
-							alt="Npm icon"
-						/>
-						<img class="icon" src="assets/icons/techstack/sass-original.svg" alt="Sass icon" />
-						<img class="icon" src="assets/icons/techstack/react-original.svg" alt="React icon" />
-						<img class="icon" src="assets/icons/techstack/redux-original.svg" alt="Redux icon" />
-						<img
-							class="icon"
-							src="assets/icons/techstack/webpack-original.svg"
-							alt="Webpack icon"
-						/>
-						<img class="icon" src="assets/icons/techstack/git-original.svg" alt="Git icon" />
-						<img class="icon" src="assets/icons/techstack/github-original.svg" alt="Github icon" />
-						<img class="icon" src="assets/icons/techstack/bash-original.svg" alt="Bash icon" />
-						<img class="icon" src="assets/icons/techstack/vscode-original.svg" alt="VScode icon" />
-					</div>
-					<div id="social-links">
-						<a href="https://www.facebook.com/profile.php/?id=100076113183013">
-							<i class="fa-brands fa-square-facebook"></i>
-						</a>
-						<a href="mailto:rodnielbriones@gmail.com">
-							<i class="fa-solid fa-square-envelope"></i>
-						</a>
-						<a href="https://www.linkedin.com/in/rodniel-b-a75bb7226/">
-							<i class="fa-brands fa-linkedin"></i>
-						</a>
-						<a href="https://github.com/scinth">
-							<i class="fa-brands fa-square-github"></i>
-						</a>
-					</div>
-				</footer>
-			</div>
 			<main role="main" id="pages">
 				<div id="pages-wrapper" class="">
 					<section id="homepage" class="page active" tabindex="0">
@@ -134,7 +46,7 @@
 						</p>
 						<div id="featured-section">
 							<div class="projects-wrapper">
-								<div class="project-banner active">
+								<div class="project-banner" style="order: 0">
 									<div class="image-header">
 										<img
 											class="mobile"
@@ -157,7 +69,7 @@
 									</div>
 									<a class="project-link view-project" href="#projects">view project</a>
 								</div>
-								<div class="project-banner">
+								<div class="project-banner" style="order: 1">
 									<div class="image-header">
 										<img
 											class="mobile"
@@ -452,6 +364,94 @@
 					</section>
 				</div>
 			</main>
+			<div id="links-and-info">
+				<nav role="navigation" id="link-navigation" class="">
+					<ul>
+						<li>
+							<a class="active" href="#homepage">
+								<i class="icon fa-solid fa-house-user fa-fw"></i>
+								Homepage
+							</a>
+						</li>
+						<li>
+							<a href="#aboutme">
+								<i class="icon fa-solid fa-user fa-fw"></i>
+								About Me
+							</a>
+						</li>
+						<li>
+							<a href="#projects">
+								<i class="icon fa-solid fa-laptop-code fa-fw"></i>
+								Projects
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<nav role="navigation" id="page-navigation">
+					<button class="footer-toggler">
+						<i class="icon fa-solid fa-chevron-up"></i>
+					</button>
+					<a href="#">
+						<i class="fa-regular fa-address-card"></i>
+						resume&#769;
+					</a>
+					<button class="menu-toggler">
+						<i class="icon fa-solid fa-bars"></i>
+						<i class="icon fa-solid fa-xmark"></i>
+					</button>
+				</nav>
+				<div id="page-logo">
+					<img
+						class="logo-image"
+						src="assets/images/rodniel_briones_logo.png"
+						alt="Rodniel Briones logo"
+					/>
+					<span class="logo-name">Rodniel Briones</span>
+				</div>
+				<footer role="contentinfo" id="info">
+					<div id="tech-stack">
+						<img class="icon" src="assets/icons/techstack/html5-original.svg" alt="Html5 icon" />
+						<img class="icon" src="assets/icons/techstack/css3-original.svg" alt="Css3 icon" />
+						<img
+							class="icon"
+							src="assets/icons/techstack/javascript-original.svg"
+							alt="Javascript icon"
+						/>
+						<img class="icon" src="assets/icons/techstack/nodejs-original.svg" alt="NodeJS icon" />
+						<img
+							class="icon"
+							src="assets/icons/techstack/npm-original-wordmark.svg"
+							alt="Npm icon"
+						/>
+						<img class="icon" src="assets/icons/techstack/sass-original.svg" alt="Sass icon" />
+						<img class="icon" src="assets/icons/techstack/react-original.svg" alt="React icon" />
+						<img class="icon" src="assets/icons/techstack/redux-original.svg" alt="Redux icon" />
+						<img
+							class="icon"
+							src="assets/icons/techstack/webpack-original.svg"
+							alt="Webpack icon"
+						/>
+						<img class="icon" src="assets/icons/techstack/git-original.svg" alt="Git icon" />
+						<img class="icon" src="assets/icons/techstack/github-original.svg" alt="Github icon" />
+						<img class="icon" src="assets/icons/techstack/bash-original.svg" alt="Bash icon" />
+						<img class="icon" src="assets/icons/techstack/vscode-original.svg" alt="VScode icon" />
+					</div>
+					<div id="social-links">
+						<a href="https://www.facebook.com/profile.php/?id=100076113183013">
+							<i class="fa-brands fa-square-facebook"></i>
+						</a>
+						<a href="mailto:rodnielbriones@gmail.com">
+							<i class="fa-solid fa-square-envelope"></i>
+						</a>
+						<a href="https://www.linkedin.com/in/rodniel-b-a75bb7226/">
+							<i class="fa-brands fa-linkedin"></i>
+						</a>
+						<a href="https://github.com/scinth">
+							<i class="fa-brands fa-square-github"></i>
+						</a>
+					</div>
+				</footer>
+			</div>
 		</div>
 	</body>
 </html>
