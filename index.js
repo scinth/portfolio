@@ -114,7 +114,7 @@ const updateCustomProps = function () {
 	let pageNavHeight = pageNavigation.clientHeight;
 	let footerHeight = footer.clientHeight;
 	style.setProperty('--client-height', `${window.innerHeight}px`);
-	style.setProperty('--footer-height', `${pageNavHeight + pageLogoHeight + footerHeight}px`);
+	style.setProperty('--footer-height', `${footerHeight}px`);
 	style.setProperty('--page-logo-height', `${pageLogoHeight}px`);
 	style.setProperty('--page-navigation-height', `${pageNavHeight}px`);
 	style.setProperty('--pagenav-slide-height', `-${pageLogoHeight + footerHeight}px`);
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	})();
 
 	startFeaturedInterval = () => {
-		featuredInterval = setInterval(slideNext, 7000);
+		featuredInterval = setInterval(slideNext, 5000);
 	};
 
 	stopFeaturedInterval = () => {
