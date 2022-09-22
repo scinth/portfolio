@@ -286,6 +286,28 @@ ul {
 	height: var(--pages-height);
 	min-height: var(--pages-height);
 	overflow: hidden;
+	position: relative;
+}
+#pages .notifier {
+	font-family: 'Economica', sans-serif;
+	font-size: 0.7em;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	padding: 0.3em;
+	color: #555;
+	background-color: #ffffffdd;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	transform: translateY(-100%);
+}
+#pages .notifier.show {
+	transition: transform 0.3s ease-out;
+	transform: translateY(0);
 }
 #pages-wrapper {
 	width: 100%;

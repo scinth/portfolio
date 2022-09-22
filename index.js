@@ -200,6 +200,43 @@ document.addEventListener('DOMContentLoaded', function () {
 	projectsWrapper = document.querySelector('#featured-section .projects-wrapper');
 	footerToggler = document.getElementsByClassName('footer-toggler')[0];
 
+	(() => {
+		let notifier = document.getElementsByClassName('notifier')[0];
+		let details = navigator.userAgent;
+		let regexp = /android|iphone|kindle|ipad/i;
+		let isOnMobile = regexp.test(details);
+		if (!isOnMobile) {
+			console.log("You're on a desktop computer");
+			const showNotifier = () => {
+				notifier.classList.add('show');
+			};
+			const hideNotifier = () => {
+				notifier.classList.remove('show');
+			};
+			pages.forEach(page => {
+				page.addEventListener('focus', showNotifier);
+				page.addEventListener('focusout', hideNotifier);
+			});
+			const removeNotifier = e => {
+				if (e.repeat) return;
+				console.log('You clicked', e.key);
+				let keyCodes = ['ArrowLeft', 'ArrowRight'];
+				let isNavigator = keyCodes.includes(e.key);
+				if (!isNavigator) return;
+				setTimeout(() => {
+					notifier.remove();
+					console.log('notifier removed');
+				}, 1000);
+				document.removeEventListener('keydown', removeNotifier);
+				pages.forEach(page => {
+					page.removeEventListener('focus', showNotifier);
+					page.removeEventListener('focusout', hideNotifier);
+				});
+			};
+			document.addEventListener('keydown', removeNotifier);
+		} else console.log("You're on a mobile device");
+	})();
+
 	const toggleVideo = (() => {
 		const video = document.getElementsByClassName('background')[0];
 		const playVideo = async () => {
@@ -406,6 +443,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		document.body.classList.toggle('showFooter');
 		if (document.body.classList.contains('showFooter')) {
 			menu.classList.remove('active');
+			menuToggler.classList.remove('open');
 		}
 		e.stopPropagation();
 	});
