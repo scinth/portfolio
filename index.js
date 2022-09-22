@@ -7,12 +7,13 @@ let stopFeaturedInterval = null;
 // elements
 let menu = null;
 let menuToggler = null;
-let arrows = null;
 let pagesWrapper = null;
 let projectsWrapper = null;
 let pages = null;
 let pageLogo = null;
 let links = null;
+let prevLinks = null;
+let projectsList = null;
 let pageNavigation = null;
 let footerToggler = null;
 let footer = null;
@@ -55,10 +56,15 @@ window.addEventListener('hashchange', e => {
 
 // HANDLERS
 // render page
-const renderPage = (index, animationSettings) => {
+const renderPage = (index, animationSettings, scrollIndex = null) => {
 	let currentPage = pages[currentPageIndex];
 	let nextPage = pages[index];
 	let { name: animationName, axis, order } = animationSettings;
+	let pageNames = ['homepage', 'aboutme', 'projects'];
+	pageNames.forEach((name, nameIndex) => {
+		if (nameIndex == index) document.body.classList.add(name);
+		else document.body.classList.remove(name);
+	});
 
 	pagesWrapper.setAnimationAxis(axis);
 	currentPage.style.order = order.activePage;
@@ -72,6 +78,7 @@ const renderPage = (index, animationSettings) => {
 			if (index == 0) startFeaturedInterval();
 			else stopFeaturedInterval();
 
+			currentPage.scrollTo(0, 0);
 			currentPage.classList.remove('active');
 			this.setAttribute('class', '');
 			currentPage.style.order = '';
@@ -79,6 +86,14 @@ const renderPage = (index, animationSettings) => {
 			nextPage.focus();
 			isSliding = false;
 			currentPageIndex = index;
+			if (scrollIndex !== null)
+				setTimeout(() => {
+					let banner = projectsList[scrollIndex];
+					nextPage.scrollTo({
+						top: banner.offsetTop,
+						behavior: 'smooth',
+					});
+				}, 200);
 		},
 		{ once: true },
 	);
@@ -179,10 +194,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	pages = [...document.querySelectorAll('#pages .page')];
 	links = [...document.querySelectorAll('#link-navigation a')];
+	prevLinks = [...pages[0].getElementsByClassName('project-banner')];
+	projectsList = [...pages[2].getElementsByClassName('project-banner')];
 	pagesWrapper = document.getElementById('pages-wrapper');
 	projectsWrapper = document.querySelector('#featured-section .projects-wrapper');
 	footerToggler = document.getElementsByClassName('footer-toggler')[0];
-	arrows = [...document.querySelectorAll('.arrow')];
+
+	const toggleVideo = (() => {
+		const video = document.getElementsByClassName('background')[0];
+		const playVideo = async () => {
+			try {
+				await video.play();
+			} catch (err) {
+				console.log('Playing video failed', err);
+			}
+		};
+		return () => {
+			let orientation =
+				(screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+			if (orientation.includes('landscape') && video.paused) playVideo();
+			else if (!video.paused) video.pause();
+			console.log('Video is', video.paused ? 'paused' : 'played');
+		};
+	})();
+	toggleVideo();
+	window.addEventListener('orientationchange', toggleVideo);
 
 	const reorderElements = elems => {
 		let length = elems.length;
@@ -309,6 +345,9 @@ document.addEventListener('DOMContentLoaded', function () {
 			'index.html#homepage',
 		);
 	} else {
+		let _hash = hash.split('');
+		_hash.shift();
+		document.body.classList.add(_hash.join(''));
 		let nextIndex = links.findIndex(link => {
 			return link.hash === hash;
 		});
@@ -334,26 +373,26 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	// ACTIONS
-	const illustrationTransforms = {
-		transforms: [],
-		add(id, callback) {
-			this.transforms.push({ id, callback });
-		},
-		get(id) {
-			let item = this.transforms.find(item => {
-				return item.id === id;
-			});
-			return item?.callback;
-		},
-	};
+	// const illustrationTransforms = {
+	// 	transforms: [],
+	// 	add(id, callback) {
+	// 		this.transforms.push({ id, callback });
+	// 	},
+	// 	get(id) {
+	// 		let item = this.transforms.find(item => {
+	// 			return item.id === id;
+	// 		});
+	// 		return item?.callback;
+	// 	},
+	// };
 
 	// toggle menu
 	menuToggler.addEventListener('click', e => {
 		menu.classList.toggle('active');
 		if (menu.classList.contains('active')) {
 			e.currentTarget.classList.add('open');
-			let removeTransforms = illustrationTransforms.get(location.hash);
-			removeTransforms();
+			// let removeTransforms = illustrationTransforms.get(location.hash);
+			// removeTransforms();
 			killTagAnimations();
 		} else {
 			e.currentTarget.classList.remove('open');
@@ -367,9 +406,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		document.body.classList.toggle('showFooter');
 		if (document.body.classList.contains('showFooter')) {
 			menu.classList.remove('active');
-			killTagAnimations();
-		} else {
-			setTagAnimations();
 		}
 		e.stopPropagation();
 	});
@@ -386,16 +422,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	});
 
-	// click arrow buttons
-	arrows.forEach(arrow => {
-		arrow.addEventListener('click', () => {
+	// click preview links
+	prevLinks.forEach((link, index) => {
+		link.addEventListener('click', e => {
+			e.preventDefault();
 			if (isSliding) return;
-			let nextIndex = null;
-			if (arrow.classList.contains('next-page')) nextIndex = getNextIndex('increment');
-			else if (arrow.classList.contains('prev-page')) nextIndex = getNextIndex('decrement');
-			activateLink(nextIndex);
-			replaceHistory(nextIndex);
-			renderPage(nextIndex, getAnimationSettings());
+			if (currentPageIndex == 2) return;
+			activateLink(2);
+			replaceHistory(2);
+			renderPage(2, getAnimationSettings(), index);
 		});
 	});
 
@@ -428,10 +463,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			scale: 1.6,
 			duration: 0.3,
 		});
-		const removeTransforms = () => {
-			illustration.style.transform = 'none';
-		};
-		illustrationTransforms.add(id, removeTransforms);
+		// const removeTransforms = () => {
+		// 	illustration.style.transform = 'none';
+		// };
+		// illustrationTransforms.add(id, removeTransforms);
 	};
 
 	setIllustrationAnimation('#homepage');
@@ -553,24 +588,74 @@ document.addEventListener('DOMContentLoaded', function () {
 			scrollTrigger: {
 				scroller: parent,
 				trigger: target,
-				start: 'top 70%',
+				start: 'top 60%',
 			},
 			x: 20,
 			opacity: 0,
 			duration: 1,
 			ease: 'expo.out',
-			onComplete: () => (target.style.transform = 'none'),
+			// onComplete: () => {
+			// 	target.style.transform = 'none';
+			// },
 		});
 	};
+
+	// list animations
+	const setListAnimations = (() => {
+		const anims = [];
+		const setTrigger = (parent, target, anim) => {
+			gsap.set(target, {
+				scrollTrigger: {
+					scroller: parent,
+					trigger: target,
+					start: 'top 60%',
+					once: true,
+					onEnter: () => {
+						anim.play();
+					},
+				},
+			});
+		};
+		return function (parent, target) {
+			if (!target) return;
+			let anim = anims.find(anim => {
+				return parent === anim.parent && target === anim.target;
+			});
+			if (anim) {
+				anim.liAnim.restart();
+				anim.liAnim.pause();
+				setTrigger(parent, target, anim.liAnim);
+				return;
+			}
+			let liAnim = gsap.from(`.${target.classList[0]} li`, {
+				x: 20,
+				opacity: 0,
+				duration: 1,
+				ease: 'expo.out',
+				stagger: 0.1,
+				paused: true,
+			});
+			setTrigger(parent, target, liAnim);
+			anims.push({
+				parent,
+				target,
+				// olAnim,
+				liAnim,
+			});
+		};
+	})();
 
 	// observer
 	const textObserver = new IntersectionObserver(entries => {
 		if (entries[0].isIntersecting) {
 			let page = entries[0].target;
 			let textAnimate = [...page.getElementsByClassName('text-animate')];
+			let listAnimate = page.getElementsByClassName('list-animate')[0];
+			let id = `#${page.id}`;
 			textAnimate.forEach(text => {
-				setTextAnimation(`#${page.id}`, text);
+				setTextAnimation(id, text);
 			});
+			setListAnimations(id, listAnimate);
 		}
 	});
 

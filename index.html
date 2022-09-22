@@ -22,12 +22,20 @@
 		<link rel="manifest" href="./site.webmanifest" />
 		<title>Rodniel Briones Portfolio</title>
 		<link rel="stylesheet" href="main.css" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
-		<script src="https://kit.fontawesome.com/52378a1b3e.js" crossorigin="anonymous"></script>
-		<script src="index.js" type="text/javascript" charset="utf-8"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script> -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script> -->
+		<!-- <script src="https://kit.fontawesome.com/52378a1b3e.js" crossorigin="anonymous"></script> -->
+		<script src="https://kit.fontawesome.com/52378a1b3e.js"></script>
+		<script src="ScrollTrigger.min.js"></script>
+		<script src="gsap.min.js"></script>
+		<script src="index.js" type="text/javascript" charset="utf-8" defer></script>
 	</head>
-	<body>
+	<body class="homepage">
+		<video class="background" muted="muted" loop>
+			<source src="./assets/videos/background.mp4" type="video/mp4" />
+			You browser does not support the Video API, please use latest versions of modern browsers like
+			Chrome, Firefox, and Edge.
+		</video>
 		<div id="wrapper">
 			<main role="main" id="pages">
 				<div id="pages-wrapper" class="">
@@ -50,29 +58,6 @@
 									<div class="image-header">
 										<img
 											class="mobile"
-											src="assets/images/nielbrioneschessgui_mobileimage.png"
-											alt="mobile image"
-										/>
-										<img
-											class="desktop"
-											src="assets/images/nielbrioneschessgui_desktopimage.png"
-											alt="desktop image"
-										/>
-									</div>
-									<div class="project-title">
-										<img
-											class="project-icon"
-											src="assets/images/nielbrioneschessgui_logo.png"
-											alt="project icon"
-										/>
-										<h3>Chess GUI</h3>
-									</div>
-									<a class="project-link view-project" href="#projects">view project</a>
-								</div>
-								<div class="project-banner" style="order: 1">
-									<div class="image-header">
-										<img
-											class="mobile"
 											src="assets/images/nielbriones2048_mobileimage.png"
 											alt="mobile image"
 										/>
@@ -92,6 +77,52 @@
 									</div>
 									<a class="project-link view-project" href="#projects">view project</a>
 								</div>
+								<div class="project-banner" style="order: 1">
+									<div class="image-header">
+										<img
+											class="mobile"
+											src="assets/images/nielbrioneschessgui_mobileimage.png"
+											alt="mobile image"
+										/>
+										<img
+											class="desktop"
+											src="assets/images/nielbrioneschessgui_desktopimage.png"
+											alt="desktop image"
+										/>
+									</div>
+									<div class="project-title">
+										<img
+											class="project-icon"
+											src="assets/images/nielbrioneschessgui_logo.png"
+											alt="project icon"
+										/>
+										<h3>Chess GUI</h3>
+									</div>
+									<a class="project-link view-project" href="#projects">view project</a>
+								</div>
+								<div class="project-banner" style="order: 2">
+									<div class="image-header">
+										<img
+											class="mobile"
+											src="assets/images/nielbrioneshearts_mobileimage.png"
+											alt="mobile image"
+										/>
+										<img
+											class="desktop"
+											src="assets/images/nielbrioneshearts_desktopimage.png"
+											alt="desktop image"
+										/>
+									</div>
+									<div class="project-title">
+										<img
+											class="project-icon"
+											src="assets/images/nielbrioneshearts_logo.png"
+											alt="project icon"
+										/>
+										<h3>Hearts</h3>
+									</div>
+									<a class="project-link view-project" href="#projects">view project</a>
+								</div>
 							</div>
 						</div>
 					</section>
@@ -105,29 +136,27 @@
 						<h1>About Me</h1>
 						<p class="text-animate">
 							I am Rodniel Briones from Mandaue City Cebu, passionate about programming, loves any
-							logical stuff that requires deep thinking, and is determined to become a professional
-							Web Developer.
+							logical stuff that requires deep thinking, and is determined to become a successful
+							programmer.
 						</p>
 						<p class="text-animate">
 							I am interested in anything related to programming, chess, self-improvement,
-							psychology, nature, supernatural, mysteries, photo editing, problem solving, puzzles
-							and other similar subjects.
+							psychology, photo editing, problem solving, puzzles and other similar subjects.
 						</p>
 						<p class="text-animate">
-							It is my greatest desire to become an "Android and Fullstack Website Developer" to be
-							able to contribute to the community by creating useful websites and apps that solves
-							daily hassle and services that allows people to boost their productivity especially
-							for students and self-taught.
+							It is my greatest desire to become an "Android and Fullstack Web Developer" to be able
+							to contribute to the community by creating useful websites and apps that solves daily
+							hassle and services that allows people to boost their productivity especially for
+							students and self-taught.
 						</p>
 						<section>
 							<h2>College Undergraduate</h2>
 
 							<p class="text-animate">
-								I spent two years as a Bachelor of Science in Information Technology at Salazar
-								Colleges of Science in Information Technology where I first learned about
-								programming. What I learned from school was the basics of C, C++, a little bit of
-								Html, Css and JavaScript. Then out of curiosity I also studied the basics of C#,
-								Java and Python.
+								I spent two years as an IT student at Salazar Colleges of Science in Information
+								Technology where I first learned about programming. What I learned from school was
+								the basics of C, C++, a little bit of Html, Css and JavaScript. Then out of
+								curiosity I also studied the basics of C#, Java and Python.
 							</p>
 						</section>
 						<section>
@@ -138,7 +167,7 @@
 								teaching myself using the following resources:
 							</p>
 
-							<ol>
+							<ol class="list-animate">
 								<li>MDN Web Docs</li>
 								<li>W3Schools</li>
 								<li>Documentations</li>
@@ -150,12 +179,6 @@
 								<li>Podcasts</li>
 							</ol>
 						</section>
-						<p class="text-animate">For now I'm focusing on learning these technologies:</p>
-						<ol class="tech-to-study">
-							<li>React</li>
-							<li>Tailwind</li>
-							<li>NextJS</li>
-						</ol>
 					</section>
 					<section id="projects" class="page" tabindex="0">
 						<img
@@ -166,14 +189,13 @@
 						<h1>Projects</h1>
 
 						<p class="text-animate">
-							The following projects are originally a practice project developed to be
-							fully-functional for the purpose of showing that I can start, scale, optimize, debug,
-							refactor and finish a project.
+							The following projects I chose to present are game-based because they offer more
+							complex problems to solve.
 						</p>
 
 						<p class="text-animate">
-							These projects are game-based because I prefer solving coding problems with
-							JavaScript, though I can also follow UI designs with my CSS skills.
+							I prefer solving coding problems with Javascript, though I can also follow UI designs
+							with my CSS skills.
 						</p>
 
 						<ul>
@@ -196,22 +218,29 @@
 										src="assets/images/nielbriones2048_logo.png"
 										alt="project icon"
 									/>
-									<h3>2048 Game</h3>
+									<h3>2048</h3>
 								</div>
 								<p class="project-description">"A number-matching puzzle game with animations."</p>
 								<details>
-									<summary>About</summary>
-									<p>
-										I was searching for some project ideas on the internet and came across 2048
-										which I am very familiar about, I was fascinated by how the tiles move and merge
-										I realized its not an easy algorithm to do so I set myself up a challenge and
-										decided to do it my own way. There's a lot of problems along the way but the
-										trickiest one is to animate the tile's movement, to do this I have to get the
-										initial and final locations of the tiles which is not that easy. My final
-										solution was to retrieve these values from the internal function that moves the
-										actual tiles in the array which I doubt the best solution. It's working but I'm
-										planning to make this project better in the future.
-									</p>
+									<summary>Details</summary>
+									<section>
+										<h3>About</h3>
+										<p>
+											2048 is a famous puzzle game created by Gabrielle Cirulli. I was fascinated by
+											how the tiles move and merge, and decided to challenge myself to see if I can
+											manage to create my own algorithms to build it.
+										</p>
+									</section>
+									<section>
+										<h3>Highlights</h3>
+										<ul>
+											<li>Setup development and production builds using webpack</li>
+											<li>Manual animations using Css and Javascript</li>
+											<li>No scroll and reload on swipe (mobile devices)</li>
+											<li>No logic/code references used</li>
+											<li>No game-related libraries used</li>
+										</ul>
+									</section>
 								</details>
 								<div class="skill-showcase">
 									<img
@@ -220,7 +249,7 @@
 										alt="html5 icon"
 									/>
 									<img
-										class="icon"
+										class="icon brighten"
 										src="assets/icons/techstack/sass-original.svg"
 										alt="sass icon"
 									/>
@@ -236,7 +265,7 @@
 									/>
 								</div>
 								<a class="project-link website-link" href="https://nielbriones2048.netlify.app"
-									>Browse 2048 Game</a
+									>Browse 2048</a
 								>
 								<a class="project-link github-link" href="https://github.com/scinth/2048"
 									>View Repository on Github</a
@@ -261,24 +290,30 @@
 										src="assets/images/nielbrioneschessgui_logo.png"
 										alt="project icon"
 									/>
-									<h3>Simple Chess GUI</h3>
+									<h3>Chess GUI</h3>
 								</div>
 								<p class="project-description">
-									"A fully-functional chess interface with animations."
+									"A fully-functional interface for loading and generating chess game files."
 								</p>
 								<details>
-									<summary>About</summary>
-									<p>
-										Chess is my favorite game, so I decide to create a chess interface and to make
-										it challenging I did not search for any logic and code references and decided to
-										do it my own way. The greatest problem was to make sure that pieces cannot move
-										when pinned to the king, it took me a couple of renditions just to solve this
-										problem. My final solution is to perform a mock move, that is to move the piece
-										temporarily and if the king is in check then the piece is immovable. It was not
-										perfect yet but I was able to make it fully-functional without using any chess
-										library. I am planning to migrate it to canvas and add more funtionalities to it
-										in the future.
-									</p>
+									<summary>Details</summary>
+									<section>
+										<h3>About</h3>
+										<p>
+											Chess GUI is a simple interface for analyzing chess games. Fascinated with the
+											complexity of chess, I challenged myself to build it without any chess library
+											to improve my Javascript and problem solving skills.
+										</p>
+									</section>
+									<section>
+										<h3>Highlights</h3>
+										<ul>
+											<li>Setup development and production builds using webpack</li>
+											<li>Manual animations using Css and Javascript</li>
+											<li>No logic/code references used</li>
+											<li>No chess libraries used</li>
+										</ul>
+									</section>
 								</details>
 								<div class="skill-showcase">
 									<img
@@ -287,7 +322,7 @@
 										alt="html5 icon"
 									/>
 									<img
-										class="icon"
+										class="icon brighten"
 										src="assets/icons/techstack/sass-original.svg"
 										alt="sass icon"
 									/>
@@ -303,7 +338,7 @@
 									/>
 								</div>
 								<a class="project-link website-link" href="https://nielbrioneschessgui.netlify.app"
-									>Browse Simple Chess GUI</a
+									>Browse Chess GUI</a
 								>
 								<a class="project-link github-link" href="https://github.com/scinth/SimpleChessGUI"
 									>View Repository on Github</a
@@ -311,8 +346,16 @@
 							</li>
 							<li class="project-banner">
 								<div class="image-header">
-									<img class="mobile" src="#" alt="mobile image" />
-									<img class="desktop" src="#" alt="desktop image" />
+									<img
+										class="mobile"
+										src="./assets/images/nielbrioneshearts_mobileimage.png"
+										alt="mobile image"
+									/>
+									<img
+										class="desktop"
+										src="./assets/images/nielbrioneshearts_desktopimage.png"
+										alt="desktop image"
+									/>
 								</div>
 								<div class="project-title">
 									<img
@@ -320,24 +363,30 @@
 										src="assets/images/nielbrioneshearts_logo.png"
 										alt="project icon"
 									/>
-									<h3>Hearts Game</h3>
+									<h3>Hearts</h3>
 								</div>
 								<p class="project-description">
 									"A 4-player card game made with React, Redux and DeckOfCards API."
 								</p>
 								<details>
-									<summary>About</summary>
-									<p>
-										I was thinking of a new project to improve my React skills and remembered the
-										game I played on windows which is the "Hearts" game. My goal is to learn the
-										"Redux toolkit framework" and to use the "DeckOfCards API" along with it. I
-										managed to code the game logic myself by taking advantage of the "Javascript
-										Generator Function" but the biggest struggle I face was thinking how to
-										implement the game along with React which is new to me. I was able to make it
-										work and is planning to make this project better in the future. I created this
-										project while learning Redux at the same time and no "Hearts Game" logic and
-										code references used for this project.
-									</p>
+									<summary>Details</summary>
+									<section>
+										<h3>About</h3>
+										<p>
+											Hearts is a 4-player card game in which the goal is to pass all of your cards
+											to your opponents, the player with the lowest points wins. I figured the
+											constant change of card piles would be a good fit to improve my React skills
+											and to integrate the Redux state management framework.
+										</p>
+									</section>
+									<section>
+										<h3>Highlights</h3>
+										<ul>
+											<li>Learned and used the Redux state management framework</li>
+											<li>Use a REST API (DeckOfCards API)</li>
+											<li>Handle asynchronous tasks</li>
+										</ul>
+									</section>
 								</details>
 								<div class="skill-showcase">
 									<img
@@ -346,13 +395,13 @@
 										alt="react icon"
 									/>
 									<img
-										class="icon"
+										class="icon brighten"
 										src="assets/icons/techstack/redux-original.svg"
 										alt="redux icon"
 									/>
 								</div>
 								<a class="project-link website-link" href="https://nielbrioneshearts.netlify.app"
-									>Browse Hearts Game</a
+									>Browse Hearts</a
 								>
 								<a
 									class="project-link github-link"

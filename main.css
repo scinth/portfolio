@@ -45,6 +45,24 @@ body.showFooter .footer-toggler .icon {
 body.showFooter .menu-toggler {
 	visibility: hidden;
 }
+body.homepage {
+	background-color: seagreen;
+}
+body.aboutme {
+	background-color: peru;
+}
+body.projects {
+	background-color: orchid;
+}
+.background {
+	display: none;
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	background-size: cover;
+	mix-blend-mode: luminosity;
+	z-index: -1;
+}
 #wrapper {
 	display: contents;
 }
@@ -167,43 +185,33 @@ ul {
 	animation-timing-function: ease-out;
 	animation-fill-mode: forwards;
 }
-@keyframes fade-in {
-	to {
-		background-color: rgb(230, 230, 230, 0.7);
-		z-index: initial;
-	}
-}
-@keyframes slide-in {
-	to {
-		transform: translateX(0);
-	}
-}
+
 /* page navigation */
+
 #page-navigation {
-	--icon-size: calc(1vh + 3vw);
+	font-size: 0.8em;
 	width: 100%;
 	height: auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
-#page-navigation button {
-	background: none;
-	margin: 1.2em;
+#page-navigation > * {
+	color: white;
 	padding: 0.8em 1.3em;
+}
+#page-navigation button {
+	font-size: inherit;
+	background: none;
+	margin: 1em;
 	border: none;
 	flex-grow: 0;
 }
 #page-navigation a {
-	font-size: var(--icon-size);
+	font-size: inherit;
 	font-family: 'Nunito', sans-serif;
 	font-weight: 600;
 	text-transform: uppercase;
-	color: white;
-}
-#page-navigation .icon {
-	font-size: var(--icon-size);
-	filter: invert(100%);
 }
 #page-navigation .menu-toggler .icon:last-child {
 	display: none;
@@ -214,9 +222,7 @@ ul {
 #page-navigation .menu-toggler.open .icon:last-child {
 	display: initial;
 }
-#page-navigation .icon.resume {
-	height: auto;
-}
+
 /* page logo */
 #page-logo {
 	width: 100%;
@@ -258,28 +264,21 @@ ul {
 }
 #info #tech-stack .icon[alt='Github icon'],
 #info #tech-stack .icon[alt='Bash icon'] {
-	filter: contrast(0);
+	filter: brightness(10);
 }
 #info #social-links {
-	--radius: 0.7rem;
+	font-size: 1.7em;
 	width: 100%;
 	height: auto;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	background-color: white;
-	border-top-left-radius: var(--radius);
-	border-top-right-radius: var(--radius);
 }
 #info #social-links a {
-	--link-size: calc(3vh + 4vw);
-	font-size: var(--link-size);
+	color: white;
 	margin: 0.5em 0;
 }
-#info #social-links i {
-	font-size: var(--link-size);
-	color: black;
-}
+
 /* pages */
 #pages {
 	font-size: 6vw;
@@ -349,7 +348,7 @@ ul {
 	overflow-x: hidden;
 }
 #pages .projects-wrapper {
-	width: 200%;
+	width: 300%;
 	height: max-content;
 	min-height: max-content;
 	display: flex;
@@ -418,9 +417,23 @@ ul {
 	font-size: 0.7em;
 	font-weight: bold;
 	text-align: center;
+	padding: 1em;
+	width: max-content;
+	cursor: pointer;
+	margin: 0 auto;
 }
-#pages details p {
+#pages details :where(p, ul) {
 	font-size: 0.9em;
+}
+#pages details h3 {
+	padding-bottom: 0;
+}
+#pages details ul {
+	font-family: 'Josefin Sans', sans-serif;
+	list-style-type: circle;
+	list-style-position: inside;
+	line-height: 1.5em;
+	margin: 1.5em var(--text-padding);
 }
 #pages .skill-showcase {
 	margin: 1em clamp(1em, 10%, 3em);
@@ -432,6 +445,9 @@ ul {
 	width: calc(2vh + 3vw);
 	height: auto;
 	margin: 0.7em 0 0 0.7em;
+}
+#pages .skill-showcase .icon.brighten {
+	filter: brightness(1.5);
 }
 #pages .project-link {
 	font-family: 'Encode Sans Expanded', sans-serif;
@@ -508,15 +524,46 @@ ul {
 }
 #aboutme ol {
 	font-family: 'Josefin Sans', sans-serif;
+	font-weight: bold;
+	font-style: oblique;
+	list-style-type: none;
 	list-style-position: inside;
 	line-height: 1.5em;
 	padding: var(--text-padding);
 }
+#aboutme ol li::before {
+	--size: 1.5em;
+	content: counter(list-item);
+	font-size: 0.7em;
+	font-style: normal;
+	text-align: center;
+	vertical-align: text-bottom;
+	display: inline-block;
+	width: var(--size);
+	height: var(--size);
+	padding-bottom: 0.3em;
+	margin-right: 0.5em;
+	color: white;
+	background-color: #111;
+	border-radius: 1em;
+}
 #projects {
 	background-color: orchid;
 }
+
 /* animations */
 
+@keyframes fade-in {
+	to {
+		background-color: rgb(230, 230, 230, 0.7);
+		z-index: initial;
+	}
+}
+@keyframes slide-in {
+	to {
+		transform: translateX(0);
+	}
+}
 @keyframes push-left {
 	to {
 		transform: translateX(-50%);
@@ -539,7 +586,7 @@ ul {
 }
 @keyframes slide-left {
 	to {
-		transform: translateX(-50%);
+		transform: translateX(-33.33%);
 	}
 }
 
@@ -560,14 +607,21 @@ ul {
 	body.showFooter #links-and-info #link-navigation {
 		background-color: initial;
 	}
+	.background {
+		display: block;
+	}
 	#wrapper {
 		aspect-ratio: 5/3;
+		--shadow-base: calc(1vh + 3vw);
+		--shadow-spread: calc(var(--shadow-base) / 5);
+		--shadow-blur: calc(var(--shadow-base) / 20);
 		display: flex;
 		flex-direction: row-reverse;
 		height: 80%;
 		min-height: 80%;
 		border-radius: 7vh 3vh 3vh 0;
 		overflow: hidden;
+		box-shadow: 0 0 var(--shadow-spread) var(--shadow-blur) rgb(0 0 0 / 50%);
 	}
 	#pages {
 		--pages-width: 65%;
@@ -584,7 +638,6 @@ ul {
 		width: 35%;
 		height: 100%;
 		max-height: max-content;
-		background-color: hsl(0, 0%, 0%);
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -598,36 +651,27 @@ ul {
 		z-index: 0;
 		order: 1;
 	}
+	#link-navigation.active {
+		animation-fill-mode: none;
+	}
 	#link-navigation ul {
-		width: 100%;
-		height: 100%;
-		max-width: unset;
-		margin-top: calc(var(--max-height) / 2);
-		background-color: inherit;
-		position: initial;
-		transform: translate(0, -50%);
+		display: contents;
 	}
 	#page-navigation {
 		order: 2;
-		justify-content: space-around;
+		align-items: flex-start;
 	}
 	#page-navigation .footer-toggler {
-		margin: 1rem;
+		margin: 0.45em 2.3em 1.8em 0;
 		padding: 0;
 		order: 1;
 	}
 	#page-navigation .menu-toggler {
 		display: none;
 	}
-	#page-navigation .icon {
-		--icon-size: calc(1vh + 3vw);
-		width: var(--icon-size);
-		height: auto;
-	}
 	#page-navigation a {
-		--resume-link-size: calc(1vh + 1.7vw);
-		font-size: var(--resume-link-size);
-		margin: 1rem;
+		margin: 0.25em 0 2em 2.3em;
+		padding: 0;
 		order: 0;
 	}
 	#page-logo {
@@ -636,8 +680,12 @@ ul {
 	#page-logo .logo-image {
 		width: 5em;
 	}
+	#page-logo .logo-name {
+		padding-bottom: 0.25em;
+	}
 	#info {
 		order: 3;
+		background-color: inherit;
 	}
 	.menu,
 	.menu.active {
@@ -646,9 +694,6 @@ ul {
 		border-radius: 0;
 		transform: none;
 		transition: none;
-	}
-	#info {
-		background-color: inherit;
 	}
 }
 @media only screen and (max-width: 300px) {
