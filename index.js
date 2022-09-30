@@ -190,7 +190,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	pageNavigation = document.getElementById('page-navigation');
 	pageLogo = document.getElementById('page-logo');
 	footer = document.getElementById('info');
-	setTimeout(updateCustomProps, 100);
 
 	pages = [...document.querySelectorAll('#pages .page')];
 	links = [...document.querySelectorAll('#link-navigation a')];
@@ -205,36 +204,54 @@ document.addEventListener('DOMContentLoaded', function () {
 		let details = navigator.userAgent;
 		let regexp = /android|iphone|kindle|ipad/i;
 		let isOnMobile = regexp.test(details);
+		const showNotifier = () => {
+			notifier.classList.add('show');
+		};
+		const hideNotifier = () => {
+			notifier.classList.remove('show');
+		};
+		const removeNotifier = () => {
+			notifier.remove();
+		};
+		const removePageListeners = () => {
+			for (const page of pages) {
+				page.removeEventListener('focus', showNotifier);
+				page.removeEventListener('blur', hideNotifier);
+				page.removeEventListener('scroll', e => e.target.focus());
+			}
+		};
+		for (const page of pages) {
+			page.addEventListener('focus', showNotifier);
+			page.addEventListener('blur', hideNotifier);
+			page.addEventListener('scroll', e => e.target.focus());
+		}
 		if (!isOnMobile) {
-			console.log("You're on a desktop computer");
-			const showNotifier = () => {
-				notifier.classList.add('show');
-			};
-			const hideNotifier = () => {
-				notifier.classList.remove('show');
-			};
-			pages.forEach(page => {
-				page.addEventListener('focus', showNotifier);
-				page.addEventListener('focusout', hideNotifier);
-			});
-			const removeNotifier = e => {
+			const keydownHandler = e => {
 				if (e.repeat) return;
-				console.log('You clicked', e.key);
 				let keyCodes = ['ArrowLeft', 'ArrowRight'];
-				let isNavigator = keyCodes.includes(e.key);
-				if (!isNavigator) return;
-				setTimeout(() => {
-					notifier.remove();
-					console.log('notifier removed');
-				}, 1000);
-				document.removeEventListener('keydown', removeNotifier);
-				pages.forEach(page => {
-					page.removeEventListener('focus', showNotifier);
-					page.removeEventListener('focusout', hideNotifier);
-				});
+				let isNavigating = keyCodes.includes(e.key);
+				if (!isNavigating) return;
+				setTimeout(removeNotifier, 1000);
+				removePageListeners();
+				document.removeEventListener('keydown', keydownHandler);
 			};
-			document.addEventListener('keydown', removeNotifier);
-		} else console.log("You're on a mobile device");
+			document.addEventListener('keydown', keydownHandler);
+		} else {
+			// on mobile
+			notifier.textContent = 'swipe left/right for quick navigation';
+			const touchEndHandler = () => {
+				let swipePath = getSwipePath();
+				if (swipePath.length < 2) return;
+				let swipeDirection = getSwipeDirection(swipePath);
+				let keyCodes = ['left', 'right'];
+				let isNavigating = keyCodes.includes(swipeDirection);
+				if (!isNavigating) return;
+				setTimeout(removeNotifier, 1000);
+				removePageListeners();
+				main.removeEventListener('touchend', touchEndHandler);
+			};
+			main.addEventListener('touchend', touchEndHandler);
+		}
 	})();
 
 	const toggleVideo = (() => {
@@ -243,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			try {
 				await video.play();
 			} catch (err) {
-				console.log('Playing video failed', err);
+				alert('Playing background video failed', err);
 			}
 		};
 		return () => {
@@ -251,7 +268,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				(screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
 			if (orientation.includes('landscape') && video.paused) playVideo();
 			else if (!video.paused) video.pause();
-			console.log('Video is', video.paused ? 'paused' : 'played');
 		};
 	})();
 	toggleVideo();
@@ -259,11 +275,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	const reorderElements = elems => {
 		let length = elems.length;
-		elems.forEach(elem => {
+		for (const elem of elems) {
 			let order = Number(elem.style.order) - 1;
 			if (order < 0) order = length - 1;
 			elem.style.order = `${order}`;
-		});
+		}
 	};
 
 	let slideNext = (function () {
@@ -302,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		this.classList.add(axis);
 	};
 
-	const [saveSwipePaths, getSwipePath] = (function () {
+	const [saveSwipePaths, getSwipePath, clearPath] = (function () {
 		let path = [];
 		return [
 			coord => {
@@ -313,8 +329,10 @@ document.addEventListener('DOMContentLoaded', function () {
 				// return first & last path
 				if (!(path[0] && path[path.length - 1])) return [];
 				let paths = [path[0], path[path.length - 1]];
-				path = [];
 				return paths;
+			},
+			() => {
+				path = [];
 			},
 		];
 	})();
@@ -329,6 +347,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (touchStart[0] > touchEnd[0]) return 'left';
 		return 'invalid';
 	};
+
+	main.addEventListener('touchstart', () => {
+		clearPath();
+	});
 
 	main.addEventListener('touchmove', e => {
 		let coord = [];
@@ -409,27 +431,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		}, 0.3);
 	}
 
-	// ACTIONS
-	// const illustrationTransforms = {
-	// 	transforms: [],
-	// 	add(id, callback) {
-	// 		this.transforms.push({ id, callback });
-	// 	},
-	// 	get(id) {
-	// 		let item = this.transforms.find(item => {
-	// 			return item.id === id;
-	// 		});
-	// 		return item?.callback;
-	// 	},
-	// };
-
 	// toggle menu
 	menuToggler.addEventListener('click', e => {
 		menu.classList.toggle('active');
 		if (menu.classList.contains('active')) {
 			e.currentTarget.classList.add('open');
-			// let removeTransforms = illustrationTransforms.get(location.hash);
-			// removeTransforms();
 			killTagAnimations();
 		} else {
 			e.currentTarget.classList.remove('open');
@@ -439,6 +445,15 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	// toggle footer
+	footerToggler.addEventListener(
+		'click',
+		e => {
+			updateCustomProps();
+			e.stopPropagation();
+		},
+		{ once: true },
+	);
+
 	footerToggler.addEventListener('click', e => {
 		document.body.classList.toggle('showFooter');
 		if (document.body.classList.contains('showFooter')) {
@@ -501,15 +516,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			scale: 1.6,
 			duration: 0.3,
 		});
-		// const removeTransforms = () => {
-		// 	illustration.style.transform = 'none';
-		// };
-		// illustrationTransforms.add(id, removeTransforms);
 	};
 
-	setIllustrationAnimation('#homepage');
-	setIllustrationAnimation('#aboutme');
-	setIllustrationAnimation('#projects');
+	for (const page of pages) {
+		setIllustrationAnimation(`#${page.id}`);
+	}
 
 	// tag animations
 	// doing it manually because "splitText" plugin is not free.
@@ -518,12 +529,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		const letters = text.split('');
 		const classname = textElem.classList[0] + '-split';
 		textElem.textContent = '';
-		letters.forEach(letter => {
+		for (const letter of letters) {
 			let span = document.createElement('span');
 			span.classList.add(classname);
 			span.textContent = letter;
 			textElem.append(span);
-		});
+		}
 		const resetText = () => {
 			textElem.textContent = text;
 		};
@@ -621,22 +632,47 @@ document.addEventListener('DOMContentLoaded', function () {
 	tagObserver.observe(tagline);
 
 	// text animations
-	const setTextAnimation = function (parent, target) {
-		gsap.from(target, {
-			scrollTrigger: {
-				scroller: parent,
-				trigger: target,
-				start: 'top 60%',
-			},
-			x: 20,
-			opacity: 0,
-			duration: 1,
-			ease: 'expo.out',
-			// onComplete: () => {
-			// 	target.style.transform = 'none';
-			// },
-		});
-	};
+	const setTextAnimations = (() => {
+		const anims = [];
+		const setTrigger = (parent, target, anim) => {
+			gsap.set(target, {
+				scrollTrigger: {
+					scroller: parent,
+					trigger: target,
+					start: 'top 60%',
+					once: true,
+					onEnter: () => {
+						anim.play();
+					},
+				},
+			});
+		};
+		return function (parent, target) {
+			if (!target) return;
+			let anim = anims.find(anim => {
+				return parent === anim.parent && target === anim.target;
+			});
+			if (anim) {
+				anim.tween.restart();
+				anim.tween.pause();
+				setTrigger(parent, target, anim.tween);
+				return;
+			}
+			let tween = gsap.from(target, {
+				x: 20,
+				opacity: 0,
+				duration: 1,
+				ease: 'expo.out',
+				paused: true,
+			});
+			setTrigger(parent, target, tween);
+			anims.push({
+				parent,
+				target,
+				tween,
+			});
+		};
+	})();
 
 	// list animations
 	const setListAnimations = (() => {
@@ -677,29 +713,33 @@ document.addEventListener('DOMContentLoaded', function () {
 			anims.push({
 				parent,
 				target,
-				// olAnim,
 				liAnim,
 			});
 		};
 	})();
 
-	// observer
-	const textObserver = new IntersectionObserver(entries => {
+	// text observer
+
+	const setAnimations = parent => {
+		const texts = document.querySelectorAll(`#${parent.id} .text-animate`);
+		const lists = document.querySelectorAll(`#${parent.id} .list-animate`);
+		for (const text of texts) {
+			setTextAnimations(parent, text);
+		}
+		for (const list of lists) {
+			setListAnimations(parent, list);
+		}
+	};
+
+	const sectionObserver = new IntersectionObserver(entries => {
 		if (entries[0].isIntersecting) {
-			let page = entries[0].target;
-			let textAnimate = [...page.getElementsByClassName('text-animate')];
-			let listAnimate = page.getElementsByClassName('list-animate')[0];
-			let id = `#${page.id}`;
-			textAnimate.forEach(text => {
-				setTextAnimation(id, text);
-			});
-			setListAnimations(id, listAnimate);
+			setAnimations(entries[0].target);
 		}
 	});
 
-	let aboutme = pages[1];
-	let projects = pages[2];
+	for (const page of pages) {
+		sectionObserver.observe(page);
+	}
 
-	textObserver.observe(aboutme);
-	textObserver.observe(projects);
+	setTimeout(updateCustomProps, 1000);
 });

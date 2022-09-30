@@ -27,7 +27,7 @@ body {
 	width: 100%;
 	height: 100%;
 	min-height: inherit;
-	color: white;
+	color: #ffffff;
 	background-color: #2f2e41;
 	overflow: inherit;
 	position: relative;
@@ -37,7 +37,7 @@ body.showFooter #links-and-info {
 	transform: translateY(var(--pagenav-slide-height));
 }
 body.showFooter #links-and-info #link-navigation {
-	background-color: rgb(230, 230, 230, 0.7);
+	background-color: #e6e6e6b3;
 }
 body.showFooter .footer-toggler .icon {
 	transform: rotate(180deg);
@@ -46,13 +46,13 @@ body.showFooter .menu-toggler {
 	visibility: hidden;
 }
 body.homepage {
-	background-color: seagreen;
+	background-color: #2e8b57;
 }
 body.aboutme {
-	background-color: peru;
+	background-color: #cd853f;
 }
 body.projects {
-	background-color: orchid;
+	background-color: #da70d6;
 }
 .background {
 	display: none;
@@ -146,7 +146,7 @@ ul {
 	font-family: 'Caveat', cursive;
 	font-weight: 600;
 	letter-spacing: 2px;
-	color: white;
+	color: #ffffff;
 	display: block;
 	padding: 1em 1.5em;
 	border: 0 solid transparent;
@@ -159,18 +159,18 @@ ul {
 }
 #link-navigation a[href='#homepage']:hover,
 #link-navigation a[href='#homepage'].active {
-	border-color: rgb(46, 139, 87);
-	background-color: rgb(46, 139, 87, 0.3);
+	border-color: #2e8b57;
+	background-color: #2e8b574d;
 }
 #link-navigation a[href='#aboutme']:hover,
 #link-navigation a[href='#aboutme'].active {
-	border-color: rgb(205, 133, 63);
-	background-color: rgb(205, 133, 63, 0.3);
+	border-color: #cd853f;
+	background-color: #cd853f4d;
 }
 #link-navigation a[href='#projects']:hover,
 #link-navigation a[href='#projects'].active {
-	border-color: rgb(218, 112, 214);
-	background-color: rgb(218, 112, 214, 0.3);
+	border-color: #da70d6;
+	background-color: #da70d64d;
 }
 #link-navigation.active {
 	animation-name: fade-in;
@@ -197,7 +197,7 @@ ul {
 	align-items: center;
 }
 #page-navigation > * {
-	color: white;
+	color: #ffffff;
 	padding: 0.8em 1.3em;
 }
 #page-navigation button {
@@ -275,7 +275,7 @@ ul {
 	align-items: center;
 }
 #info #social-links a {
-	color: white;
+	color: #ffffff;
 	margin: 0.5em 0;
 }
 
@@ -296,7 +296,7 @@ ul {
 	text-transform: uppercase;
 	letter-spacing: 0.15em;
 	padding: 0.3em;
-	color: #555;
+	color: #555555;
 	background-color: #ffffffdd;
 	position: absolute;
 	top: 0;
@@ -385,8 +385,8 @@ ul {
 	width: calc(var(--pages-width) - 1.4em);
 	height: auto;
 	margin: 1em 0.7em;
-	background-color: rgb(0, 0, 0, 0.4);
-	background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+	background-color: #00000066;
+	background: linear-gradient(to bottom, transparent, #00000066);
 	border-radius: 0.5em;
 	overflow: hidden;
 	display: flex;
@@ -431,7 +431,7 @@ ul {
 	font-size: 0.8em;
 	font-style: oblique;
 	text-align: center;
-	color: #eee;
+	color: #eeeeee;
 	flex-grow: 1;
 }
 #pages summary {
@@ -475,7 +475,7 @@ ul {
 	font-family: 'Encode Sans Expanded', sans-serif;
 	font-size: 0.6em;
 	font-weight: bold;
-	color: #111;
+	color: #111111;
 	text-align: center;
 	padding: 1em;
 	border-radius: 0.3em;
@@ -490,7 +490,7 @@ ul {
 }
 #pages .view-project {
 	width: 100%;
-	color: white;
+	color: #ffffff;
 	background-color: #ff6347;
 	border: none;
 	border-radius: 0;
@@ -509,7 +509,7 @@ ul {
 	bottom: 0;
 }
 #homepage {
-	background-color: seagreen;
+	background-color: #2e8b57;
 }
 #homepage .page-title {
 	text-align: center;
@@ -539,7 +539,7 @@ ul {
 	overflow-y: hidden;
 }
 #aboutme {
-	background-color: peru;
+	background-color: #cd853f;
 }
 #aboutme p {
 	transform: none;
@@ -565,19 +565,19 @@ ul {
 	height: var(--size);
 	padding-bottom: 0.3em;
 	margin-right: 0.5em;
-	color: white;
-	background-color: #111;
+	color: #ffffff;
+	background-color: #111111;
 	border-radius: 1em;
 }
 #projects {
-	background-color: orchid;
+	background-color: #da70d6;
 }
 
 /* animations */
 
 @keyframes fade-in {
 	to {
-		background-color: rgb(230, 230, 230, 0.7);
+		background-color: #e6e6e6b3;
 		z-index: initial;
 	}
 }
