@@ -6,8 +6,15 @@ This is my portfolio website created with Html, Css, Javascript, GSAP and Passio
 
 <br />
 
-> **Note:**
-> Navigating the document using the "TAB" key will break the layout, this issue is not yet handled and will be fixed soon.
+> **Issues:**
+>
+> - For some occasions the document does'nt render properly, if this happens please try to resize the window
+> - Navigating the document using the "TAB" key will break the layout, this issue is not yet handled and will be fixed soon.
+>   <br />
+
+<br />
+
+[Browse Portfolio](https://scinth.github.io)
 
 ---
 
@@ -15,8 +22,8 @@ This is my portfolio website created with Html, Css, Javascript, GSAP and Passio
 
 - bottom navigation on mobile
 - swipe navigation on mobile
-- random push animation on page navigation
-- page navigation using arrow keys
+- random push animation on section navigation
+- section navigation using arrow keys
 
 <br />
 
