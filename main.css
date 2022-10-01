@@ -444,7 +444,8 @@ ul {
 	cursor: pointer;
 	margin: 0 auto;
 }
-#pages details :where(p, ul) {
+#pages details p,
+#pages details ul {
 	font-size: 0.9em;
 }
 #pages details h3 {
