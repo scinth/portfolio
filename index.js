@@ -502,9 +502,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	gsap.registerPlugin(ScrollTrigger);
 
 	// illustration
-	const setIllustrationAnimation = function (id) {
-		const illustration = document.querySelector(`${id} .page-image`);
-		gsap.to(illustration, {
+	const setIllustrationAnimation = id => {
+		gsap.to('.page-image', {
 			scrollTrigger: {
 				scroller: id,
 				trigger: '.page-image',
@@ -614,10 +613,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// remove animations
 	function killTagAnimations() {
-		tagTimelines.forEach(({ timeline, destroy }) => {
+		for (const { timeline, destroy } of tagTimelines) {
 			destroy();
 			timeline.kill();
-		});
+		}
 	}
 
 	const tagObserver = new IntersectionObserver(entries => {
