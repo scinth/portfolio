@@ -445,20 +445,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	// toggle footer
-	footerToggler.addEventListener(
-		'click',
-		e => {
-			updateCustomProps();
-			e.stopPropagation();
-		},
-		{ once: true },
-	);
-
 	footerToggler.addEventListener('click', e => {
 		document.body.classList.toggle('showFooter');
 		if (document.body.classList.contains('showFooter')) {
 			menu.classList.remove('active');
 			menuToggler.classList.remove('open');
+			updateCustomProps();
 		}
 		e.stopPropagation();
 	});

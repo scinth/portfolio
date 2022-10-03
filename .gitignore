@@ -1,4 +1,2 @@
 .vscode
-*.txt
-gsap.min.js
-ScrollTrigger.min.js
+.dev

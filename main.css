@@ -623,6 +623,8 @@ ul {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		overflow: initial;
+		overscroll-behavior: initial;
 	}
 	body.showFooter #links-and-info {
 		transform: translateY(calc(var(--footer-height) * -1));
