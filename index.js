@@ -12,6 +12,7 @@ let projectsWrapper = null;
 let pages = null;
 let pageLogo = null;
 let links = null;
+let socialLinks = null;
 let prevLinks = null;
 let projectsList = null;
 let pageNavigation = null;
@@ -191,10 +192,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	pageLogo = document.getElementById('page-logo');
 	footer = document.getElementById('info');
 
-	pages = [...document.querySelectorAll('#pages .page')];
+	pages = document.querySelectorAll('#pages .page');
 	links = [...document.querySelectorAll('#link-navigation a')];
+	socialLinks = footer.querySelectorAll('#social-links a');
 	prevLinks = [...pages[0].getElementsByClassName('project-banner')];
-	projectsList = [...pages[2].getElementsByClassName('project-banner')];
+	projectsList = pages[2].getElementsByClassName('project-banner');
 	pagesWrapper = document.getElementById('pages-wrapper');
 	projectsWrapper = document.querySelector('#featured-section .projects-wrapper');
 	footerToggler = document.getElementsByClassName('footer-toggler')[0];
@@ -217,13 +219,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			for (const page of pages) {
 				page.removeEventListener('focus', showNotifier);
 				page.removeEventListener('blur', hideNotifier);
-				page.removeEventListener('scroll', e => e.target.focus());
 			}
 		};
 		for (const page of pages) {
 			page.addEventListener('focus', showNotifier);
 			page.addEventListener('blur', hideNotifier);
-			page.addEventListener('scroll', e => e.target.focus());
 		}
 		if (!isOnMobile) {
 			const keydownHandler = e => {
@@ -249,8 +249,14 @@ document.addEventListener('DOMContentLoaded', function () {
 				setTimeout(removeNotifier, 1000);
 				removePageListeners();
 				main.removeEventListener('touchend', touchEndHandler);
+				for (const page of pages) {
+					page.removeEventListener('scroll', e.target.focus());
+				}
 			};
 			main.addEventListener('touchend', touchEndHandler);
+			for (const page of pages) {
+				page.addEventListener('scroll', e.target.focus());
+			}
 		}
 	})();
 
@@ -283,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	};
 
 	let slideNext = (function () {
-		let banners = [...projectsWrapper.children];
+		let banners = projectsWrapper.children;
 		return function () {
 			projectsWrapper.addEventListener(
 				'animationend',
@@ -451,7 +457,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			menu.classList.remove('active');
 			menuToggler.classList.remove('open');
 			updateCustomProps();
-		}
+			for (const link of socialLinks) link.tabIndex = '2';
+		} else for (const link of socialLinks) link.tabIndex = '-1';
 		e.stopPropagation();
 	});
 
@@ -485,6 +492,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		menu.classList.remove('active');
 		menuToggler.classList.remove('open');
 		if (location.hash === '#homepage') setTagAnimations();
+	});
+
+	socialLinks[3].addEventListener('blur', () => {
+		footerToggler.click();
 	});
 
 	///////////////////////////////////////////////////
@@ -544,9 +555,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		tagTimelines.push({
 			timeline: tl,
 			destroy: resetText,
-			get elems() {
-				return [...text.children];
-			},
 		});
 	};
 
@@ -650,10 +658,10 @@ document.addEventListener('DOMContentLoaded', function () {
 				return;
 			}
 			let tween = gsap.from(target, {
-				x: 20,
+				x: 70,
 				opacity: 0,
-				duration: 1,
-				ease: 'expo.out',
+				duration: 0.8,
+				ease: 'bounce',
 				paused: true,
 			});
 			setTrigger(parent, target, tween);
@@ -693,7 +701,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				return;
 			}
 			let liAnim = gsap.from(`.${target.classList[0]} li`, {
-				x: 20,
+				x: 40,
 				opacity: 0,
 				duration: 1,
 				ease: 'expo.out',

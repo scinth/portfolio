@@ -37,6 +37,7 @@ body.showFooter #links-and-info {
 	transform: translateY(var(--pagenav-slide-height));
 }
 body.showFooter #links-and-info #link-navigation {
+	visibility: visible;
 	background-color: #e6e6e6b3;
 }
 body.showFooter .footer-toggler .icon {
@@ -64,7 +65,8 @@ body.projects {
 	z-index: -1;
 }
 #wrapper {
-	display: contents;
+	display: flex;
+	flex-direction: column-reverse;
 }
 h1 {
 	font-size: 2rem;
@@ -94,6 +96,11 @@ button {
 	text-decoration: none;
 	cursor: pointer;
 }
+a:focus,
+button:focus,
+summary:focus {
+	outline: 2px solid white;
+}
 a:hover,
 a:active {
 	text-decoration: underline;
@@ -120,6 +127,8 @@ ul {
 	background-color: #111111;
 	display: table;
 	transition: transform 0.3s ease-out;
+	position: relative;
+	z-index: 1;
 }
 /* link navigation */
 #link-navigation {
@@ -130,7 +139,7 @@ ul {
 	margin-top: calc(var(--pages-height) * -1);
 	background-color: transparent;
 	position: relative;
-	z-index: -1;
+	visibility: hidden;
 }
 #link-navigation ul {
 	width: calc(100% - 2em);
@@ -222,6 +231,9 @@ ul {
 #page-navigation .menu-toggler.open .icon:last-child {
 	display: initial;
 }
+#page-navigation .footer-toggler {
+	transition: transform 0.3s ease-out;
+}
 
 /* page logo */
 #page-logo {
@@ -286,7 +298,6 @@ ul {
 	height: var(--pages-height);
 	min-height: var(--pages-height);
 	overflow: hidden;
-	position: relative;
 }
 #pages .notifier {
 	font-family: 'Economica', sans-serif;
@@ -441,8 +452,9 @@ ul {
 	text-align: center;
 	padding: 1em;
 	width: max-content;
-	cursor: pointer;
+	border-radius: 0.3em;
 	margin: 0 auto;
+	cursor: pointer;
 }
 #pages details p,
 #pages details ul {
@@ -496,6 +508,8 @@ ul {
 	border: none;
 	border-radius: 0;
 	justify-self: flex-end;
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
 }
 .page .page-image {
 	width: calc(100% - 2em);
@@ -579,7 +593,7 @@ ul {
 @keyframes fade-in {
 	to {
 		background-color: #e6e6e6b3;
-		z-index: initial;
+		visibility: visible;
 	}
 }
 @keyframes slide-in {
@@ -641,7 +655,7 @@ ul {
 		--shadow-spread: calc(var(--shadow-base) / 5);
 		--shadow-blur: calc(var(--shadow-base) / 20);
 		display: flex;
-		flex-direction: row-reverse;
+		flex-direction: row;
 		height: 80%;
 		min-height: 80%;
 		border-radius: 7vh 3vh 3vh 0;
@@ -653,6 +667,7 @@ ul {
 		font-size: 4.5vh;
 		height: 100%;
 		min-height: 100%;
+		position: relative;
 	}
 	#pages-wrapper {
 		height: inherit;
@@ -675,6 +690,7 @@ ul {
 		margin-top: 0;
 		z-index: 0;
 		order: 1;
+		visibility: visible;
 	}
 	#link-navigation.active {
 		animation-fill-mode: none;
