@@ -6,10 +6,9 @@ This is my portfolio website created with Html, Css, Javascript, GSAP and Passio
 
 <br />
 
-> **Issues:**
+> **Issue:**
 >
-> - For some occasions the document does'nt render properly, if this happens please try to resize the window
-> - Navigating the document using the "TAB" key will break the layout, this issue is not yet handled and will be fixed soon.
+> - For some occasions the document does'nt render properly, if this happens please try to resize the window.
 >   <br />
 
 <br />
