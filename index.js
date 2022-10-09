@@ -511,7 +511,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		document.body.classList.toggle('showFooter');
 		if (document.body.classList.contains('showFooter')) {
 			showFooter();
-		} else hideFooter();
+		} else {
+			hideFooter();
+			setTagAnimations();
+		}
 		e.stopPropagation();
 	});
 
@@ -546,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		document.body.classList.remove('showFooter');
 		menu.classList.remove('active');
 		menuToggler.classList.remove('open');
-		if (location.hash === '#homepage') setTagAnimations();
+		setTagAnimations();
 	});
 
 	const closeFooter = () => {
@@ -604,7 +607,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		};
 	};
 
-	const tagTimelines = [];
+	let tagTimelines = [];
 
 	const animateText = (selector, animate) => {
 		const text = document.querySelector(selector);
@@ -664,6 +667,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	// attach animation
 	function setTagAnimations() {
 		if (location.hash !== '#homepage') return;
+		if (tagTimelines.length > 0) return;
 		animateText('.innovative', rotate);
 		animateText('.accessible', hide);
 		animateText('.performant', spin);
@@ -675,6 +679,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			destroy();
 			timeline.kill();
 		}
+		tagTimelines = [];
 	}
 
 	const tagObserver = new IntersectionObserver(entries => {
