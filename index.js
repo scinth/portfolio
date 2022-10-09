@@ -251,12 +251,16 @@ document.addEventListener('DOMContentLoaded', function () {
 				removePageListeners();
 				main.removeEventListener('touchend', touchEndHandler);
 				for (const page of pages) {
-					page.removeEventListener('scroll', e.target.focus());
+					page.removeEventListener('scroll', e => {
+						e.target.focus();
+					});
 				}
 			};
 			main.addEventListener('touchend', touchEndHandler);
 			for (const page of pages) {
-				page.addEventListener('scroll', e.target.focus());
+				page.addEventListener('scroll', e => {
+					e.target.focus();
+				});
 			}
 		}
 	})();
