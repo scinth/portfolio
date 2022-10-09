@@ -96,17 +96,15 @@ button {
 	text-decoration: none;
 	cursor: pointer;
 }
-a:focus,
-button:focus,
-summary:focus {
-	outline: 2px solid white;
-}
 a:hover,
 a:active {
 	text-decoration: underline;
 }
 ul {
 	list-style-type: none;
+}
+:focus {
+	outline: 2px solid white;
 }
 ::-webkit-scrollbar {
 	background-color: inherit;
@@ -208,6 +206,7 @@ ul {
 #page-navigation > * {
 	color: #ffffff;
 	padding: 0.8em 1.3em;
+	border-radius: 0.5em;
 }
 #page-navigation button {
 	font-size: inherit;
@@ -216,7 +215,7 @@ ul {
 	border: none;
 	flex-grow: 0;
 }
-#page-navigation a {
+#page-navigation .resume {
 	font-size: inherit;
 	font-family: 'Nunito', sans-serif;
 	font-weight: 600;
@@ -231,8 +230,8 @@ ul {
 #page-navigation .menu-toggler.open .icon:last-child {
 	display: initial;
 }
-#page-navigation .footer-toggler {
-	transition: transform 0.3s ease-out;
+#page-navigation .footer-toggler .icon {
+	transition: transform 0.5s ease-out;
 }
 
 /* page logo */
@@ -297,6 +296,7 @@ ul {
 	width: var(--pages-width);
 	height: var(--pages-height);
 	min-height: var(--pages-height);
+	background-color: black;
 	overflow: hidden;
 }
 #pages .notifier {
@@ -358,17 +358,17 @@ ul {
 #pages-wrapper.push-down {
 	animation-name: push-down;
 }
-#pages-wrapper > section {
+#pages-wrapper > .page {
 	overflow: hidden scroll;
 }
-#pages-wrapper > section:not(.active) {
+#pages-wrapper > .page:not(.active) {
 	display: none;
 }
-#pages-wrapper.horizontal > section {
+#pages-wrapper.horizontal > .page {
 	width: 50%;
 	height: 100%;
 }
-#pages-wrapper.vertical > section {
+#pages-wrapper.vertical > .page {
 	width: 100%;
 	height: 50%;
 }
@@ -510,6 +510,7 @@ ul {
 	justify-self: flex-end;
 	border-bottom-left-radius: inherit;
 	border-bottom-right-radius: inherit;
+	outline-offset: -2px;
 }
 .page .page-image {
 	width: calc(100% - 2em);
@@ -630,6 +631,32 @@ ul {
 /* breakpoints */
 
 @media only screen and (orientation: landscape) {
+	:focus,
+	:focus-visible {
+		outline: none;
+	}
+	a:focus-visible,
+	button:focus-visible,
+	button:hover,
+	summary:focus-visible,
+	summary:hover,
+	a.project-link:hover,
+	#page-navigation .resume:hover {
+		outline: 2px solid white;
+	}
+	#page-navigation > * {
+		outline-offset: 0.8em;
+		border-radius: 0.1em;
+	}
+	#info #social-links a:focus-visible {
+		outline: none;
+	}
+	#info #social-links a:focus-visible i,
+	#info #social-links a:hover i {
+		outline: 2px solid white;
+		outline-offset: 0.3em;
+		border-radius: 0.01em;
+	}
 	body {
 		width: 100vw;
 		height: 100vh;
@@ -673,6 +700,12 @@ ul {
 		height: inherit;
 		min-height: inherit;
 	}
+	.page {
+		opacity: 0.8;
+	}
+	.page:focus-within {
+		opacity: 1;
+	}
 	#links-and-info {
 		font-size: 3.5vh;
 		width: 35%;
@@ -705,15 +738,13 @@ ul {
 	#page-navigation .footer-toggler {
 		margin: 0.45em 2.3em 1.8em 0;
 		padding: 0;
-		order: 1;
 	}
 	#page-navigation .menu-toggler {
 		display: none;
 	}
-	#page-navigation a {
+	#page-navigation .resume {
 		margin: 0.25em 0 2em 2.3em;
 		padding: 0;
-		order: 0;
 	}
 	#page-logo {
 		order: 0;

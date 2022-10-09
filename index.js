@@ -3,6 +3,7 @@ let isSliding = false;
 let featuredInterval = null;
 let startFeaturedInterval = null;
 let stopFeaturedInterval = null;
+let reorderBanners = null;
 
 // elements
 let menu = null;
@@ -193,9 +194,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	footer = document.getElementById('info');
 
 	pages = document.querySelectorAll('#pages .page');
-	links = [...document.querySelectorAll('#link-navigation a')];
+	links = [...menu.getElementsByTagName('a')];
 	socialLinks = footer.querySelectorAll('#social-links a');
-	prevLinks = [...pages[0].getElementsByClassName('project-banner')];
+	prevLinks = [...pages[0].getElementsByClassName('project-link')];
 	projectsList = pages[2].getElementsByClassName('project-banner');
 	pagesWrapper = document.getElementById('pages-wrapper');
 	projectsWrapper = document.querySelector('#featured-section .projects-wrapper');
@@ -279,37 +280,82 @@ document.addEventListener('DOMContentLoaded', function () {
 	toggleVideo();
 	window.addEventListener('orientationchange', toggleVideo);
 
-	const reorderElements = elems => {
-		let length = elems.length;
-		for (const elem of elems) {
-			let order = Number(elem.style.order) - 1;
-			if (order < 0) order = length - 1;
-			elem.style.order = `${order}`;
-		}
-	};
+	const [focusInHandler, focusOutHandler] = (() => {
+		let isIn = false;
+		const slider = projectsWrapper.parentElement;
+		return [
+			e => {
+				// if first enter
+				if (!isIn) {
+					isIn = true;
+					// cancel animations if has
+					let anims = projectsWrapper.getAnimations();
+					for (const anim of anims) {
+						anim.cancel();
+					}
+					projectsWrapper.classList.remove('slide-left');
+					// remove interval if has
+					stopFeaturedInterval();
+				}
+				if (e.target.dataset.index == 0) reorderBanners(0);
+				else reorderBanners();
 
-	let slideNext = (function () {
+				slider.scrollLeft = 0;
+				setTimeout(() => {
+					slider.scrollLeft = 0;
+				}, 100);
+			},
+			() => {
+				if (!document.activeElement.classList.contains('view-project')) {
+					// set interval
+					startFeaturedInterval();
+					isIn = false;
+				}
+			},
+		];
+	})();
+
+	projectsWrapper.addEventListener('focusin', focusInHandler);
+	projectsWrapper.addEventListener('focusout', focusOutHandler);
+
+	reorderBanners = (() => {
 		let banners = projectsWrapper.children;
-		return function () {
-			projectsWrapper.addEventListener(
-				'animationend',
-				e => {
-					reorderElements(banners);
-					e.target.classList.remove('slide-left');
-				},
-				{ once: true },
-			);
-			// slide left
-			projectsWrapper.classList.add('slide-left');
+		return (orderIndex = null) => {
+			let _order = orderIndex;
+			let length = banners.length;
+			for (const banner of banners) {
+				let order = _order ?? Number(banner.style.order) - 1;
+				if (order < 0) order = length - 1;
+				banner.style.order = `${order}`;
+				if (_order !== null) _order++;
+			}
 		};
 	})();
 
+	const slideNext = () => {
+		projectsWrapper.addEventListener(
+			'animationend',
+			e => {
+				reorderBanners();
+				e.target.classList.remove('slide-left');
+			},
+			{ once: true },
+		);
+		// slide left
+		projectsWrapper.classList.add('slide-left');
+	};
+
 	startFeaturedInterval = () => {
-		featuredInterval = setInterval(slideNext, 5000);
+		if (featuredInterval === null) {
+			featuredInterval = setInterval(slideNext, 5000);
+		}
 	};
 
 	stopFeaturedInterval = () => {
-		clearInterval(featuredInterval);
+		if (featuredInterval !== null) {
+			clearInterval(featuredInterval);
+			featuredInterval = null;
+		}
 	};
 
 	startFeaturedInterval();
@@ -451,14 +497,21 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	// toggle footer
+	const showFooter = () => {
+		menu.classList.remove('active');
+		menuToggler.classList.remove('open');
+		updateCustomProps();
+		for (const link of socialLinks) link.tabIndex = '0';
+	};
+
+	const hideFooter = () => {
+		for (const link of socialLinks) link.tabIndex = '-1';
+	};
 	footerToggler.addEventListener('click', e => {
 		document.body.classList.toggle('showFooter');
 		if (document.body.classList.contains('showFooter')) {
-			menu.classList.remove('active');
-			menuToggler.classList.remove('open');
-			updateCustomProps();
-			for (const link of socialLinks) link.tabIndex = '2';
-		} else for (const link of socialLinks) link.tabIndex = '-1';
+			showFooter();
+		} else hideFooter();
 		e.stopPropagation();
 	});
 
@@ -476,10 +529,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// click preview links
 	prevLinks.forEach((link, index) => {
+		link.addEventListener('mousedown', e => {
+			// preventing focus on the link
+			e.preventDefault();
+		});
 		link.addEventListener('click', e => {
 			e.preventDefault();
-			if (isSliding) return;
-			if (currentPageIndex == 2) return;
 			activateLink(2);
 			replaceHistory(2);
 			renderPage(2, getAnimationSettings(), index);
@@ -494,9 +549,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (location.hash === '#homepage') setTagAnimations();
 	});
 
-	socialLinks[3].addEventListener('blur', () => {
-		footerToggler.click();
-	});
+	const closeFooter = () => {
+		document.body.classList.remove('showFooter');
+		hideFooter();
+	};
+
+	menu.addEventListener('focusin', closeFooter);
 
 	///////////////////////////////////////////////////
 	// GSAP ANIMATIONS
