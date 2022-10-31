@@ -8,7 +8,7 @@
 		"start": "echo 'The author did not provide a development build for this project'",
 		"build": "webpack --config webpack.prod.js",
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build"
+		"deploy": "gh-pages -d dist"
 	},
 	"keywords": [],
 	"author": "scinth",
