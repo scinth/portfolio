@@ -1,11 +1,14 @@
 {
+	"homepage": "http://scinth.github.io/portfolio",
 	"name": "rodniel-briones-portfolio",
 	"version": "1.0.0",
 	"description": "Personal portfolio website created with Html, Css, JavaScript & GSAP",
 	"main": "src/index.js",
 	"scripts": {
 		"start": "echo 'The author did not provide a development build for this project'",
-		"build": "webpack --config webpack.prod.js"
+		"build": "webpack --config webpack.prod.js",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"keywords": [],
 	"author": "scinth",
@@ -20,6 +23,7 @@
 		"babel-loader": "^8.2.3",
 		"clean-webpack-plugin": "^4.0.0",
 		"css-loader": "^6.7.1",
+		"gh-pages": "^4.0.0",
 		"html-loader": "^4.2.0",
 		"html-webpack-plugin": "^5.5.0",
 		"mini-css-extract-plugin": "^2.6.1",
@@ -30,10 +34,9 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/scinth/scinth.github.io.git"
+		"url": "git+https://github.com/scinth/portfolio.git"
 	},
 	"bugs": {
-		"url": "https://github.com/scinth/scinth.github.io/issues"
-	},
-	"homepage": "https://github.com/scinth/scinth.github.io#readme"
+		"url": "https://github.com/scinth/portfolio/issues"
+	}
 }
