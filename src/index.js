@@ -1,3 +1,5 @@
+import './main.css';
+
 let currentPageIndex = 0;
 let isSliding = false;
 let featuredInterval = null;
@@ -188,11 +190,10 @@ window.addEventListener('resize', updateCustomProps);
 document.addEventListener('DOMContentLoaded', function () {
 	let main = document.getElementById('pages');
 	menu = document.getElementById('link-navigation');
-	menuToggler = document.getElementsByClassName('menu-toggler')[0];
 	pageNavigation = document.getElementById('page-navigation');
+	menuToggler = document.getElementById('menu-toggler');
 	pageLogo = document.getElementById('page-logo');
 	footer = document.getElementById('info');
-
 	pages = document.querySelectorAll('#pages .page');
 	links = [...menu.getElementsByTagName('a')];
 	socialLinks = footer.querySelectorAll('#social-links a');
@@ -200,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	projectsList = pages[2].getElementsByClassName('project-banner');
 	pagesWrapper = document.getElementById('pages-wrapper');
 	projectsWrapper = document.querySelector('#featured-section .projects-wrapper');
-	footerToggler = document.getElementsByClassName('footer-toggler')[0];
+	footerToggler = document.getElementById('footer-toggler');
 
 	(() => {
 		let notifier = document.getElementsByClassName('notifier')[0];
@@ -249,14 +250,14 @@ document.addEventListener('DOMContentLoaded', function () {
 				if (!isNavigating) return;
 				setTimeout(removeNotifier, 1000);
 				removePageListeners();
-				main.removeEventListener('touchend', touchEndHandler);
+				main.removeEventListener('touchend', touchEndHandler, { passive: true });
 				for (const page of pages) {
 					page.removeEventListener('scroll', e => {
 						e.target.focus();
 					});
 				}
 			};
-			main.addEventListener('touchend', touchEndHandler);
+			main.addEventListener('touchend', touchEndHandler, { passive: true });
 			for (const page of pages) {
 				page.addEventListener('scroll', e => {
 					e.target.focus();
@@ -404,50 +405,62 @@ document.addEventListener('DOMContentLoaded', function () {
 		return 'invalid';
 	};
 
-	main.addEventListener('touchstart', () => {
-		clearPath();
-	});
+	main.addEventListener(
+		'touchstart',
+		() => {
+			clearPath();
+		},
+		{ passive: true },
+	);
 
-	main.addEventListener('touchmove', e => {
-		let coord = [];
-		coord.push(e.changedTouches[0].clientX);
-		coord.push(e.changedTouches[0].clientY);
-		if (coord[0] && coord[1]) saveSwipePaths(coord);
-	});
+	main.addEventListener(
+		'touchmove',
+		e => {
+			let coord = [];
+			coord.push(e.changedTouches[0].clientX);
+			coord.push(e.changedTouches[0].clientY);
+			if (coord[0] && coord[1]) saveSwipePaths(coord);
+		},
+		{ passive: true },
+	);
 
-	main.addEventListener('touchend', () => {
-		let swipePath = getSwipePath();
-		if (swipePath.length < 2) return;
-		let swipeDirection = getSwipeDirection(swipePath);
-		let nextIndex = null;
-		switch (swipeDirection) {
-			case 'left':
-				nextIndex = getNextIndex('increment');
-				activateLink(nextIndex);
-				replaceHistory(nextIndex);
-				renderPage(nextIndex, {
-					name: 'push-left',
-					axis: 'horizontal',
-					order: {
-						activePage: '0',
-						nextPage: '1',
-					},
-				});
-				break;
-			case 'right':
-				nextIndex = getNextIndex('decrement');
-				activateLink(nextIndex);
-				replaceHistory(nextIndex);
-				renderPage(nextIndex, {
-					name: 'push-right',
-					axis: 'horizontal',
-					order: {
-						activePage: '1',
-						nextPage: '0',
-					},
-				});
-		}
-	});
+	main.addEventListener(
+		'touchend',
+		() => {
+			let swipePath = getSwipePath();
+			if (swipePath.length < 2) return;
+			let swipeDirection = getSwipeDirection(swipePath);
+			let nextIndex = null;
+			switch (swipeDirection) {
+				case 'left':
+					nextIndex = getNextIndex('increment');
+					activateLink(nextIndex);
+					replaceHistory(nextIndex);
+					renderPage(nextIndex, {
+						name: 'push-left',
+						axis: 'horizontal',
+						order: {
+							activePage: '0',
+							nextPage: '1',
+						},
+					});
+					break;
+				case 'right':
+					nextIndex = getNextIndex('decrement');
+					activateLink(nextIndex);
+					replaceHistory(nextIndex);
+					renderPage(nextIndex, {
+						name: 'push-right',
+						axis: 'horizontal',
+						order: {
+							activePage: '1',
+							nextPage: '0',
+						},
+					});
+			}
+		},
+		{ passive: true },
+	);
 
 	// initial hash
 	let hash = location.hash;

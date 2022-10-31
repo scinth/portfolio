@@ -1,0 +1,39 @@
+{
+	"name": "rodniel-briones-portfolio",
+	"version": "1.0.0",
+	"description": "Personal portfolio website created with Html, Css, JavaScript & GSAP",
+	"main": "src/index.js",
+	"scripts": {
+		"start": "echo 'The author did not provide a development build for this project'",
+		"build": "webpack --config webpack.prod.js"
+	},
+	"keywords": [],
+	"author": "scinth",
+	"license": "MIT",
+	"dependencies": {
+		"@babel/runtime": "^7.20.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.19.6",
+		"@babel/plugin-transform-runtime": "^7.19.6",
+		"@babel/preset-env": "^7.19.4",
+		"babel-loader": "^8.2.3",
+		"clean-webpack-plugin": "^4.0.0",
+		"css-loader": "^6.7.1",
+		"html-loader": "^4.2.0",
+		"html-webpack-plugin": "^5.5.0",
+		"mini-css-extract-plugin": "^2.6.1",
+		"optimize-css-assets-webpack-plugin": "^6.0.1",
+		"style-loader": "^3.3.1",
+		"webpack": "^5.74.0",
+		"webpack-cli": "^4.10.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/scinth/scinth.github.io.git"
+	},
+	"bugs": {
+		"url": "https://github.com/scinth/scinth.github.io/issues"
+	},
+	"homepage": "https://github.com/scinth/scinth.github.io#readme"
+}

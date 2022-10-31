@@ -1,4 +1,4 @@
-<img src="assets/images/rodniel_briones_logo.png" width="200" />
+<img src="rodniel_briones_logo.png" width="200" />
 
 # Rodniel Briones Portfolio
 
