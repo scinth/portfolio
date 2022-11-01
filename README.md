@@ -13,7 +13,7 @@ This is my portfolio website created with Html, Css, Javascript, GSAP and Passio
 
 <br />
 
-[Browse Portfolio](https://scinth.github.io)
+[Browse Portfolio](https://scinth.github.io/portfolio)
 
 ---
 
@@ -26,9 +26,10 @@ This is my portfolio website created with Html, Css, Javascript, GSAP and Passio
 
 <br />
 
-<img width="50px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" alt="html5" /> &nbsp;
+<img width="50px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="html5" /> &nbsp;
 <img width="50px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="css" /> &nbsp;
-<img width="50px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" alt="javascript" />
+<img width="50px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="javascript" /> &nbsp;
+<img width="50px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" alt="webpack" />
 
 <br /><hr /><br />
 
