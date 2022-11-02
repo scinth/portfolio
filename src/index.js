@@ -1,4 +1,5 @@
 import './main.css';
+import PDF from './rodnielbrionesresume2022.pdf';
 
 let currentPageIndex = 0;
 let isSliding = false;
@@ -188,6 +189,8 @@ const getAnimationSettings = () => {
 
 window.addEventListener('resize', updateCustomProps);
 document.addEventListener('DOMContentLoaded', function () {
+	document.getElementById('resume').href = PDF;
+
 	let main = document.getElementById('pages');
 	menu = document.getElementById('link-navigation');
 	pageNavigation = document.getElementById('page-navigation');

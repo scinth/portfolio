@@ -21,7 +21,6 @@
 		"@babel/plugin-transform-runtime": "^7.19.6",
 		"@babel/preset-env": "^7.19.4",
 		"babel-loader": "^8.2.3",
-		"clean-webpack-plugin": "^4.0.0",
 		"css-loader": "^6.7.1",
 		"gh-pages": "^4.0.0",
 		"html-loader": "^4.2.0",
