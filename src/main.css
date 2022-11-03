@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Josefin+Sans&family=Nunito&family=Arizonia&family=Encode+Sans+Expanded&family=Economica&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Josefin+Sans&family=Nunito&family=Arizonia&family=Encode+Sans+Expanded&family=Economica&display=swap'); */
 :root {
 	--client-height: 0;
 	--page-navigation-height: 0;
@@ -24,8 +24,8 @@ html {
 	overflow: hidden;
 }
 body {
-	width: 100%;
-	height: 100%;
+	width: inherit;
+	height: inherit;
 	min-height: inherit;
 	color: #ffffff;
 	background-color: #2f2e41;
@@ -242,10 +242,11 @@ ul {
 	flex-direction: column;
 	place-items: center;
 }
-#page-logo .logo-image {
+.logo-image {
 	width: 7em;
-	height: auto;
+	height: 7em;
 	margin-top: 2em;
+	object-fit: contain;
 }
 #page-logo .logo-name {
 	font-family: 'Arizonia', cursive;
@@ -417,10 +418,14 @@ ul {
 	align-items: center;
 }
 #pages .image-header .mobile {
+	aspect-ratio: 1/2.09;
 	width: calc(25% - 0.7em);
+	object-fit: contain;
 }
 #pages .image-header .desktop {
+	aspect-ratio: 1/1;
 	width: calc(75% - 0.7em);
+	object-fit: contain;
 }
 #pages .project-title {
 	text-align: left;
@@ -435,8 +440,10 @@ ul {
 	padding: 0;
 }
 #pages .project-title .project-icon {
+	aspect-ratio: 1/1;
 	width: 2em;
 	margin-right: 1em;
+	object-fit: contain;
 }
 #pages .project-description {
 	font-size: 0.8em;
@@ -512,10 +519,19 @@ ul {
 	border-bottom-right-radius: inherit;
 	outline-offset: -2px;
 }
+.page #homepage_illustration {
+	aspect-ratio: 1.06/1;
+}
+.page #aboutme_illustration {
+	aspect-ratio: 1.77/1;
+}
+.page #projects_illustration {
+	aspect-ratio: 1.33/1;
+}
 .page .page-image {
 	width: calc(100% - 2em);
-	height: auto;
 	margin: 1em 1em 0;
+	object-fit: contain;
 }
 .page h1:first-of-type {
 	font-size: 3em;
@@ -751,6 +767,7 @@ ul {
 	}
 	#page-logo .logo-image {
 		width: 5em;
+		height: 5em;
 	}
 	#page-logo .logo-name {
 		padding-bottom: 0.25em;

@@ -17,22 +17,32 @@
 		<meta property="twitter:description" content="Rodniel Briones personal portfolio website" />
 		<meta property="twitter:image" content="assets/images/portfolio.png" />
 		<title>Rodniel Briones Portfolio</title>
-		<link rel="preload" href="assets/images/homepage_feeling_proud.svg" as="image" />
-		<link rel="preload" href="assets/images/aboutme_profile.svg" as="image" />
-		<link rel="preload" href="assets/images/experience_building_websites.svg" as="image" />
-		<link rel="preload" href="assets/images/rodniel_briones_logo.png" as="image" />
-		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 		<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png" />
 		<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png" />
 		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
 		<link rel="manifest" href="site.webmanifest" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="preload"
+			as="style"
+			href="https://fonts.googleapis.com/css2?family=Caveat&family=Josefin+Sans&family=Nunito&family=Arizonia&family=Encode+Sans+Expanded&family=Economica&display=swap"
+		/>
+		<link rel="preload" href="assets/images/homepage_feeling_proud.svg" as="image" />
+		<link rel="preload" href="assets/images/rodniel_briones_logo.png" as="image" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Caveat&family=Josefin+Sans&family=Nunito&family=Arizonia&family=Encode+Sans+Expanded&family=Economica&display=swap"
+		/>
+		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 		<script src="https://kit.fontawesome.com/52378a1b3e.js" crossorigin="anonymous"></script>
 		<script
 			defer
 			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"
 		></script>
 		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+		<!-- <script defer src="../.dev/ScrollTrigger.min.js"></script>
+		<script defer src="../.dev/gsap.min.js"></script> -->
 	</head>
 	<body class="homepage">
 		<video preload="none" class="background" muted="muted" loop>
@@ -79,6 +89,8 @@
 				</nav>
 				<div id="page-logo">
 					<img
+						width="114"
+						height="114"
 						class="logo-image"
 						src="assets/images/rodniel_briones_logo.png"
 						alt="Rodniel Briones logo"
@@ -88,78 +100,91 @@
 				<footer id="info">
 					<div id="tech-stack">
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/html5-original.svg"
 							alt="Html5 icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/css3-original.svg"
 							alt="Css3 icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/javascript-original.svg"
 							alt="Javascript icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/nodejs-original.svg"
 							alt="NodeJS icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/npm-original-wordmark.svg"
 							alt="Npm icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/sass-original.svg"
 							alt="Sass icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/react-original.svg"
 							alt="React icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/redux-original.svg"
 							alt="Redux icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/webpack-original.svg"
 							alt="Webpack icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/git-original.svg"
 							alt="Git icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/github-original.svg"
 							alt="Github icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/bash-original.svg"
 							alt="Bash icon"
 							loading="lazy"
 						/>
 						<img
+							role="img"
 							class="icon"
 							src="assets/icons/techstack/vscode-original.svg"
 							alt="VScode icon"
@@ -211,6 +236,8 @@
 				<div id="pages-wrapper" class="">
 					<section id="homepage" class="page active" tabindex="0">
 						<img
+							role="img"
+							id="homepage_illustration"
 							class="page-image"
 							src="assets/images/homepage_feeling_proud.svg"
 							alt="home image"
@@ -318,7 +345,13 @@
 						</div>
 					</section>
 					<section id="aboutme" class="page" tabindex="0">
-						<img class="page-image" src="assets/images/aboutme_profile.svg" alt="aboutme image" />
+						<img
+							role="img"
+							id="aboutme_illustration"
+							class="page-image"
+							src="assets/images/aboutme_profile.svg"
+							alt="aboutme image"
+						/>
 						<h1>About Me</h1>
 						<p class="text-animate">
 							I am Rodniel Briones from Mandaue City Cebu, passionate about programming, loves any
@@ -368,6 +401,8 @@
 					</section>
 					<section id="projects" class="page" tabindex="0">
 						<img
+							role="img"
+							id="projects_illustration"
 							class="page-image"
 							src="assets/images/experience_building_websites.svg"
 							alt="projects image"
@@ -432,24 +467,28 @@
 								</details>
 								<div class="skill-showcase">
 									<img
+										role="img"
 										class="icon"
 										src="assets/icons/techstack/html5-original.svg"
 										alt="html5 icon"
 										loading="lazy"
 									/>
 									<img
+										role="img"
 										class="icon brighten"
 										src="assets/icons/techstack/sass-original.svg"
 										alt="sass icon"
 										loading="lazy"
 									/>
 									<img
+										role="img"
 										class="icon"
 										src="assets/icons/techstack/javascript-original.svg"
 										alt="javascript icon"
 										loading="lazy"
 									/>
 									<img
+										role="img"
 										class="icon"
 										src="assets/icons/techstack/webpack-original.svg"
 										alt="webpack icon"
@@ -524,24 +563,28 @@
 								</details>
 								<div class="skill-showcase">
 									<img
+										role="img"
 										class="icon"
 										src="assets/icons/techstack/html5-original.svg"
 										alt="html5 icon"
 										loading="lazy"
 									/>
 									<img
+										role="img"
 										class="icon brighten"
 										src="assets/icons/techstack/sass-original.svg"
 										alt="sass icon"
 										loading="lazy"
 									/>
 									<img
+										role="img"
 										class="icon"
 										src="assets/icons/techstack/javascript-original.svg"
 										alt="javascript icon"
 										loading="lazy"
 									/>
 									<img
+										role="img"
 										class="icon"
 										src="assets/icons/techstack/webpack-original.svg"
 										alt="webpack icon"
@@ -616,12 +659,14 @@
 								</details>
 								<div class="skill-showcase">
 									<img
+										role="img"
 										class="icon"
 										src="assets/icons/techstack/react-original.svg"
 										alt="react icon"
 										loading="lazy"
 									/>
 									<img
+										role="img"
 										class="icon brighten"
 										src="assets/icons/techstack/redux-original.svg"
 										alt="redux icon"
