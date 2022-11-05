@@ -206,6 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	projectsWrapper = document.querySelector('#featured-section .projects-wrapper');
 	footerToggler = document.getElementById('footer-toggler');
 
+	let isPageNavInPlace = () => false;
 	(() => {
 		let notifier = document.getElementsByClassName('notifier')[0];
 		let details = navigator.userAgent;
@@ -241,6 +242,15 @@ document.addEventListener('DOMContentLoaded', function () {
 				document.removeEventListener('keydown', keydownHandler);
 			};
 			document.addEventListener('keydown', keydownHandler);
+			isPageNavInPlace = (() => {
+				const wrapper = document.getElementById('wrapper');
+				return () => {
+					let wrapperBottom = wrapper.getBoundingClientRect().bottom;
+					let pageNavigationBottom = pageNavigation.getBoundingClientRect().bottom;
+					let absoluteDifference = Math.abs(wrapperBottom - pageNavigationBottom);
+					return absoluteDifference <= 10;
+				};
+			})();
 		} else {
 			// on mobile
 			notifier.textContent = 'swipe left/right for quick navigation';
@@ -266,6 +276,12 @@ document.addEventListener('DOMContentLoaded', function () {
 					e.target.focus();
 				});
 			}
+			isPageNavInPlace = () => {
+				let bodyBottom = document.body.getBoundingClientRect().bottom;
+				let pageNavigationBottom = pageNavigation.getBoundingClientRect().bottom;
+				let absoluteDifference = Math.abs(bodyBottom - pageNavigationBottom);
+				return absoluteDifference <= 10;
+			};
 		}
 	})();
 
@@ -823,5 +839,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		sectionObserver.observe(page);
 	}
 
-	setTimeout(updateCustomProps, 1000);
+	let counter = 5;
+	const pageNavInterval = setInterval(() => {
+		if (isPageNavInPlace() || counter <= 0) {
+			clearInterval(pageNavInterval);
+			return;
+		}
+		updateCustomProps();
+		counter--;
+	}, 100);
 });
